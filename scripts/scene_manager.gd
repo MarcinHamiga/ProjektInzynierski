@@ -3,6 +3,9 @@ extends Node
 var current_scene: Node
 var scene_tree: Array[Node]
 
+signal scene_changed
+signal scene_hidden
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

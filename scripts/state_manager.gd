@@ -35,5 +35,5 @@ func on_change_state(new_state: GameState):
 	self.change_state(new_state)
 
 
-func get_state() -> Array:
-	return [self.game_state, str(self.game_state)]
+func get_state() -> GameState:
+	return self.game_state

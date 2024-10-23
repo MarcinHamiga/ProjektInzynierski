@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dr47tf3eall83"]
+
+[node name="Employees" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Employees_list" type="ItemList" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Employee" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Info" type="VBoxContainer" parent="Employee"]
+layout_mode = 2
+
+[node name="Ip_address" type="Label" parent="Employee/Info"]
+layout_mode = 2
+
+[node name="Access" type="Label" parent="Employee/Info"]
+layout_mode = 2
+
+[node name="Other_info" type="Label" parent="Employee/Info"]
+layout_mode = 2

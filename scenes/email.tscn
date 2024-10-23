@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b1mrpd50t5dir"]
+
+[node name="Email" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Messages_list" type="ItemList" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Message" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Address" type="Label" parent="Message"]
+layout_mode = 2
+
+[node name="Topic" type="Label" parent="Message"]
+layout_mode = 2
+
+[node name="Attachment" type="Button" parent="Message"]
+layout_mode = 2

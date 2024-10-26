@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://44gmm2mg016h"]
+
+[node name="ActivityMenager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrossButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="EmployeesList" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Activity" type="HBoxContainer" parent="EmployeesList"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="EmployeesList/Activity"]
+layout_mode = 2
+
+[node name="Address" type="Label" parent="EmployeesList/Activity"]
+layout_mode = 2
+
+[node name="TimeToFinishTask" type="ProgressBar" parent="EmployeesList/Activity"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EmployeesList/Activity"]
+layout_mode = 2
+
+[node name="AcceptButton" type="Button" parent="EmployeesList/Activity/HBoxContainer"]
+layout_mode = 2
+
+[node name="BlockButton" type="Button" parent="EmployeesList/Activity/HBoxContainer"]
+layout_mode = 2

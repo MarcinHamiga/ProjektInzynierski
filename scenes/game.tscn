@@ -14,3 +14,7 @@ script = ExtResource("2_d61ba")
 script = ExtResource("3_vc6jq")
 
 [node name="GameScenes" type="CanvasLayer" parent="."]
+
+[node name="DayTimer" type="Timer" parent="."]
+
+[node name="StrikeTimer" type="Timer" parent="."]

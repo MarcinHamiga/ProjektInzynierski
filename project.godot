@@ -10,8 +10,7 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
-run/main_scene="res://scenes/game.tscn"
+config/name="ProjektInzynierski"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 

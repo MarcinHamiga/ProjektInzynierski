@@ -16,11 +16,23 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Address" type="Label" parent="Message"]
+[node name="AddressIP" type="Label" parent="Message"]
+layout_mode = 2
+
+[node name="AddressEmail" type="Label" parent="Message"]
 layout_mode = 2
 
 [node name="Topic" type="Label" parent="Message"]
 layout_mode = 2
 
+[node name="ProblemMessage" type="Label" parent="Message"]
+layout_mode = 2
+
 [node name="Attachment" type="Button" parent="Message"]
+layout_mode = 2
+
+[node name="Accept" type="Button" parent="Message"]
+layout_mode = 2
+
+[node name="NotAccept" type="Button" parent="Message"]
 layout_mode = 2

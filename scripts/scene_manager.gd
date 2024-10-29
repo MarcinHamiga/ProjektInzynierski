@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 
 func hide_scene(scene: Node) -> void:
 	scene.hide()
+	scene_hidden.emit(scene)
 	
 func show_scene(scene: Node) -> void:
 	scene.show()
@@ -27,11 +28,12 @@ func set_current_scene(scene_name: String) -> void:
 	for scene in self.scene_tree:
 		if scene.name == scene_name:
 			self.current_scene = scene
+			scene_changed.emit(scene)
 	
 func hide_unused_scenes() -> void:
 	if not self.scene_tree:
 		self.scene_tree = $GamesScenes.get_children()
 	for scene in self.scene_tree:
 		if scene.name != current_scene.name:
-			scene.hide()
+			self.hide_scene(scene)
 			

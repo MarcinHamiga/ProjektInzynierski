@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=10 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_i4jwi"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_d61ba"]
 [ext_resource type="Script" path="res://scripts/scene_manager.gd" id="3_vc6jq"]
+[ext_resource type="PackedScene" uid="uid://buhyma3thhvsr" path="res://scenes/main_menu.tscn" id="4_7s5e3"]
+[ext_resource type="PackedScene" uid="uid://44gmm2mg016h" path="res://scenes/activity_menager.tscn" id="4_xurnc"]
+[ext_resource type="PackedScene" uid="uid://b1mrpd50t5dir" path="res://scenes/email.tscn" id="5_vk2q2"]
+[ext_resource type="PackedScene" uid="uid://dr47tf3eall83" path="res://scenes/emplyee_list.tscn" id="6_rafxk"]
+[ext_resource type="PackedScene" uid="uid://dv6uht3s2mdrb" path="res://scenes/login_data.tscn" id="7_6yjlr"]
+[ext_resource type="PackedScene" uid="uid://db1aotek1dx4a" path="res://scenes/notebook.tscn" id="8_63uaq"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_i4jwi")
@@ -15,6 +21,59 @@ script = ExtResource("3_vc6jq")
 
 [node name="GameScenes" type="CanvasLayer" parent="."]
 
+[node name="ActivityMenager" parent="GameScenes" instance=ExtResource("4_xurnc")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Email" parent="GameScenes" instance=ExtResource("5_vk2q2")]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+
+[node name="Employees" parent="GameScenes" instance=ExtResource("6_rafxk")]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+
+[node name="LoginData" parent="GameScenes" instance=ExtResource("7_6yjlr")]
+
+[node name="AppMargin" type="MarginContainer" parent="GameScenes"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="MainMenu" parent="GameScenes/AppMargin" instance=ExtResource("4_7s5e3")]
+layout_mode = 2
+
+[node name="Notebook" parent="GameScenes" instance=ExtResource("8_63uaq")]
+offset_left = 1548.0
+offset_top = 584.0
+offset_right = 1939.0
+offset_bottom = 1070.0
+
 [node name="DayTimer" type="Timer" parent="."]
 
 [node name="StrikeTimer" type="Timer" parent="."]
+
+[connection signal="change_state" from="." to="StateManager" method="_on_game_change_state"]
+[connection signal="exit_button_pressed" from="GameScenes/AppMargin/MainMenu" to="." method="_on_main_menu_exit_button_pressed"]
+[connection signal="new_game_button_pressed" from="GameScenes/AppMargin/MainMenu" to="." method="_on_main_menu_new_game_button_pressed"]
+[connection signal="settings_button_pressed" from="GameScenes/AppMargin/MainMenu" to="." method="_on_main_menu_settings_button_pressed"]

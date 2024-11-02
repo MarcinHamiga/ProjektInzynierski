@@ -1,24 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1mrpd50t5dir"]
+[gd_scene load_steps=2 format=3 uid="uid://dsghr27gb43s4"]
 
-[ext_resource type="Script" path="res://scripts/attachment.gd" id="1_tri1i"]
+[ext_resource type="Script" path="res://scripts/serwery_i_pliki/attachment.gd" id="1_s2pmx"]
 
 [node name="Email" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 75.0
-offset_bottom = 71.0
-
-[node name="Messages_list" type="ItemList" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Message" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 117.0
-offset_top = 55.0
-offset_right = 673.0
-offset_bottom = 539.0
+offset_left = 494.0
+offset_top = 467.0
+offset_right = 1050.0
+offset_bottom = 951.0
 
 [node name="AddressIP" type="Label" parent="Message"]
 layout_mode = 2
@@ -37,7 +34,7 @@ layout_mode = 2
 [node name="Attachment" type="Button" parent="Message"]
 layout_mode = 2
 text = "Attachment"
-script = ExtResource("1_tri1i")
+script = ExtResource("1_s2pmx")
 
 [node name="Accept" type="Button" parent="Message"]
 layout_mode = 2

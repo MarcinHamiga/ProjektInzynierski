@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1mrpd50t5dir"]
+
+[ext_resource type="Script" path="res://scripts/serwery_i_pliki/email_box.gd" id="1_0iu7a"]
+
+[node name="EmailBox" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 182.0
+offset_top = 134.0
+offset_right = 1782.0
+offset_bottom = 934.0
+size_flags_vertical = 4
+script = ExtResource("1_0iu7a")
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessagesList" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

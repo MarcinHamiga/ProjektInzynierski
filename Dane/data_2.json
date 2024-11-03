@@ -1,0 +1,43 @@
+{
+	"names": [
+		"Jan",
+		"Anna",
+		"Piotr",
+		"Maria",
+		"Tomasz",
+		"Ewa",
+		"Krzysztof",
+		"Zofia",
+		"Michał",
+		"Joanna",
+		"Kacper",
+		"Filip",
+		"Zuzanna"
+	],
+	"surnames": [
+		"Kowalski",
+		"Nowak",
+		"Zając",
+		"Wiśniewska",
+		"Nowicki",
+		"Kaczmarek",
+		"Jabłoński",
+		"Malinowska",
+		"Lewandowski",
+		"Wójcik",
+		"Stec",
+		"Giertych",
+		"Abram"
+	],
+	"topics": [
+		"Problem z aplikacją",
+		"Pytanie o produkt",
+		"Błąd w systemie",
+		"Prośba o pomoc",
+		"Sugestia"
+	],
+	"types": [
+		"Dostęp do serwera",
+		"Instalacja oprogramowania"
+	]
+}

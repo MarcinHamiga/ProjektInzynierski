@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bhm57v0kmapoq"]
+
+[node name="GameScreen" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameScreenGrid" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 40
+columns = 2
+
+[node name="Test1" type="Button" parent="GameScreenGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Test2" type="Button" parent="GameScreenGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Test3" type="Button" parent="GameScreenGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Test4" type="Button" parent="GameScreenGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

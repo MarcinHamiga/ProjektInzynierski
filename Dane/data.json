@@ -1,0 +1,19 @@
+{
+	"entries": [
+		{
+			"name": "Jan Kowalski",
+			"topic": "Problem z aplikacją",
+			"type": "Serwis"
+		},
+		{
+			"name": "Anna Nowak",
+			"topic": "Pytanie o produkt",
+			"type": "Zapytanie"
+		},
+		{
+			"name": "Piotr Zając",
+			"topic": "Błąd w systemie",
+			"type": "Inne"
+		}
+	]
+}

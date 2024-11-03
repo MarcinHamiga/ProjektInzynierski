@@ -1,73 +1,98 @@
 extends Control
 
-var num_items := 10  # Liczba wierszy na liście
-var entries = []  # Lista na dane z pliku JSON
+var num_records := 40  # Liczba losowanych rekordów
+var names = []  # Lista imion
+var surnames = []  # Lista nazwisk
+var topics = []  # Lista tematów zgłoszeń
+var types = []  # Lista typów zgłoszeń
+var record_list = []  # Lista przechowująca wszystkie wygenerowane rekordy
 
 func _ready() -> void:
-	load_data()  # Wczytaj dane z pliku JSON
-	add_item()  # Dodaj elementy do listy
+	var data_file_path = "res://Dane/data_2.json"  # Ścieżka do pliku JSON
+	var itemData = load_json_file(data_file_path)  # Wczytaj dane z pliku JSON
 
-func load_data() -> void:
-	var file_path = "res://Dane/data.json"  # Ścieżka do pliku JSON
-	var json_as_text = FileAccess.get_file_as_string(file_path)  # Odczytanie pliku jako tekst
-	var json_as_dict = JSON.parse_string(json_as_text)  # Parsowanie danych JSON
+	# Uzupełnienie list imion, nazwisk, tematów oraz typów z itemData
+	if itemData.has("names"):
+		names = itemData["names"]
+	if itemData.has("surnames"):
+		surnames = itemData["surnames"]
+	if itemData.has("topics"):
+		topics = itemData["topics"]
+	if itemData.has("types"):
+		types = itemData["types"]
 
-	if json_as_dict:  # Jeśli poprawnie sparsowane
-		entries = json_as_dict["entries"]  # Przypisanie wpisów do listy
+	generate_random_records()  # Generuje i dodaje rekordy do listy
+	display_all_records()  # Wyświetla wszystkie rekordy
+
+func load_json_file(file_path: String) -> Dictionary:
+	if FileAccess.file_exists(file_path):  # Sprawdzenie, czy plik istnieje
+		var data_file = FileAccess.open(file_path, FileAccess.READ)  # Otwórz plik
+		var parsed_result = JSON.parse_string(data_file.get_as_text())  # Parsowanie danych JSON
+		data_file.close()  # Zamknij plik po odczycie
+
+		if parsed_result is Dictionary:
+			return parsed_result  # Zwróć wynik parsowania
+		else:
+			print("Błąd podczas odczytu pliku:", parsed_result)  # Informacja o błędzie
 	else:
-		print("Błąd podczas parsowania JSON")  # Wydrukowanie błędu
+		print("Plik nie istnieje!")  # Informacja o nieistniejącym pliku
+	return {}  # Zwróć pusty słownik, jeśli coś poszło nie tak
 
-func add_item():
+func generate_random_records():
+	record_list.clear()  # Wyczyść listę rekordów przed generowaniem nowych
+
+	for i in range(num_records):
+		# Wylosuj imię, nazwisko, temat i typ zgłoszenia
+		var name_index = randi() % names.size()
+		var surname_index = randi() % surnames.size()
+		var topic_index = randi() % topics.size()
+		var type_index = randi() % types.size()
+
+		# Tworzenie unikalnego ID oraz rekordu
+		var record = {
+			"id": i + 1,  # Unikalne ID
+			"name": names[name_index] + " " + surnames[surname_index],  # Losowane imię i nazwisko
+			"topic": topics[topic_index],
+			"type": types[type_index]
+		}
+
+		# Dodanie rekordu do listy
+		record_list.append(record)
+
+func display_all_records() -> void:
 	var vbox = $MessList/VBoxContainer  # Uzyskanie dostępu do VBoxContainer
-
-	# Wygenerowanie elementów listy
-	for i in range(num_items):
-		var random_entry = entries[randi() % entries.size()]  # Losowy wybór wpisu z listy
-		var hbox = HBoxContainer.new()  # Nowy HBoxContainer dla każdego wiersza
+	#vbox.clear()  # Wyczyść VBoxContainer przed dodaniem nowych elementów
+	
+	for record in record_list:
+		var hbox = HBoxContainer.new()  # Nowy HBoxContainer dla każdego rekordu
 		hbox.set_custom_minimum_size(Vector2(0, 50))  # Ustawienie wysokości wiersza
-
-		# Dodanie kontrolki "spacer" dla marginesu po lewej stronie
-		var left_margin = Control.new()
-		left_margin.set_custom_minimum_size(Vector2(10, 0))
-		hbox.add_child(left_margin)
 
 		# Dodanie ikony
 		var texture_rect = TextureRect.new()
-		texture_rect.texture = load("res://icon.svg")
+		texture_rect.texture = load("res://icon.svg")  # Ścieżka do ikony
 		texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		texture_rect.custom_minimum_size = Vector2(50, 50)  # Ustawienie mniejszego rozmiaru ikony
+		texture_rect.custom_minimum_size = Vector2(50, 50)
 		hbox.add_child(texture_rect)
 
 		# Dodanie imienia i nazwiska
 		var name_label = Label.new()
-		name_label.text = random_entry["name"]  # Użyj losowego imienia i nazwiska
-		name_label.custom_minimum_size = Vector2(200, 0)  # Minimalna szerokość dla imienia i nazwiska
+		name_label.text = record["name"]
+		name_label.custom_minimum_size = Vector2(200, 0)
 		hbox.add_child(name_label)
 
 		# Dodanie tematu zgłoszenia
 		var topic_label = Label.new()
-		topic_label.text = random_entry["topic"]  # Użyj losowego tematu zgłoszenia
-		topic_label.custom_minimum_size = Vector2(300, 0)  # Minimalna szerokość dla tematu zgłoszenia
-		topic_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # Rozciąganie na całą dostępną szerokość
-		topic_label.clip_text = true  # Włączenie przycinania tekstu
+		topic_label.text = record["topic"]
+		topic_label.custom_minimum_size = Vector2(300, 0)
+		topic_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		topic_label.clip_text = true
 		hbox.add_child(topic_label)
 
 		# Dodanie typu zgłoszenia
 		var type_label = Label.new()
-		type_label.text = random_entry["type"]  # Użyj losowego typu zgłoszenia
-		type_label.custom_minimum_size = Vector2(250, 0)  # Minimalna szerokość dla typu zgłoszenia
+		type_label.text = record["type"]
+		type_label.custom_minimum_size = Vector2(250, 0)
 		hbox.add_child(type_label)
-
-		# Dodanie kontrolki "spacer" dla marginesu po prawej stronie
-		var right_margin = Control.new()
-		right_margin.set_custom_minimum_size(Vector2(10, 0))
-		hbox.add_child(right_margin)
 
 		# Dodanie wiersza do VBoxContainer
 		vbox.add_child(hbox)
-
-		# Dodanie separatora między wierszami
-		if i < num_items - 1:
-			var separator = Control.new()
-			separator.set_custom_minimum_size(Vector2(0, 10))  # Ustawienie wysokości odstępu między wierszami
-			vbox.add_child(separator)

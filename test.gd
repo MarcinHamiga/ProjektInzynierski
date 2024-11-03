@@ -1,24 +1,28 @@
 extends Node  # Używamy Node zamiast Control, aby uprościć strukturę
 
 var num_records := 40  # Liczba losowanych rekordów
-var full_names = []  # Lista pełnych imion i nazwisk
+var names = []  # Lista imion
+var surnames = []  # Lista nazwisk
 var topics = []  # Lista tematów zgłoszeń
 var types = []  # Lista typów zgłoszeń
+var record_list = []  # Lista przechowująca wszystkie wygenerowane rekordy
 
 func _ready() -> void:
 	var data_file_path = "res://Dane/data_2.json"  # Zaktualizowana ścieżka do pliku JSON
 	var itemData = load_json_file(data_file_path)  # Wczytaj dane z pliku JSON
 
-	# Uzupełnienie list pełnych imion i tematów oraz typów z itemData
-	if itemData.has("names") and itemData.has("surnames"):
-		for i in range(itemData["names"].size()):
-			full_names.append(itemData["names"][i] + " " + itemData["surnames"][i])  # Łączenie imienia i nazwiska
+	# Uzupełnienie list imion, nazwisk, tematów oraz typów z itemData
+	if itemData.has("names"):
+		names = itemData["names"]
+	if itemData.has("surnames"):
+		surnames = itemData["surnames"]
 	if itemData.has("topics"):
 		topics = itemData["topics"]
 	if itemData.has("types"):
 		types = itemData["types"]
 
-	display_random_records()  # Wyświetl losowe rekordy w terminalu
+	generate_random_records()  # Generuje i dodaje rekordy do listy
+	display_records_in_terminal()  # Wyświetla wygenerowane rekordy w terminalu
 
 func load_json_file(file_path: String) -> Dictionary:
 	if FileAccess.file_exists(file_path):  # Sprawdzenie, czy plik istnieje
@@ -34,25 +38,31 @@ func load_json_file(file_path: String) -> Dictionary:
 		print("Plik nie istnieje!")  # Informacja o nieistniejącym pliku
 	return {}  # Zwróć pusty słownik, jeśli coś poszło nie tak
 
-func display_random_records():
-	# Sprawdź, czy tablice mają dane
-	if full_names.size() == 0:
-		print("Brak pełnych imion i nazwisk do losowania.")
-		return
-	if topics.size() == 0:
-		print("Brak tematów do losowania.")
-		return
-	if types.size() == 0:
-		print("Brak typów do losowania.")
-		return
+func generate_random_records():
+	record_list.clear()  # Wyczyść listę rekordów przed generowaniem nowych
 
-	# Wygenerowanie losowych rekordów
 	for i in range(num_records):
-		var name_index = randi() % full_names.size()  # Wybór losowego indeksu dla pełnego imienia
-		var topic_index = randi() % topics.size()  # Typ zgłoszenia może nie być unikalny
-		var type_index = randi() % types.size()  # Typ zgłoszenia może nie być unikalny
+		# Wylosuj imię, nazwisko, temat i typ zgłoszenia
+		var name_index = randi() % names.size()
+		var surname_index = randi() % surnames.size()
+		var topic_index = randi() % topics.size()
+		var type_index = randi() % types.size()
 
-		# Wypisanie rekordu w terminalu
-		print("Rekord " + str(i + 1) + ": " + full_names[name_index] +
-			  ", Temat: " + topics[topic_index] + 
-			  ", Typ: " + types[type_index])
+		# Tworzenie unikalnego ID oraz rekordu
+		var record = {
+			"id": i + 1,  # Unikalne ID
+			"name": names[name_index] + " " + surnames[surname_index],  # Losowane imię i nazwisko
+			"topic": topics[topic_index],
+			"type": types[type_index]
+		}
+
+		# Dodanie rekordu do listy
+		record_list.append(record)
+
+func display_records_in_terminal():
+	# Wyświetl każdy rekord w terminalu
+	for record in record_list:
+		print("ID:", record["id"], ", Name:", record["name"], ", Topic:", record["topic"], ", Type:", record["type"])
+		
+func get_record_list() -> Array:
+	return record_list

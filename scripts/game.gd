@@ -42,3 +42,18 @@ func _on_main_menu_new_game_button_pressed() -> void:
 
 func _on_main_menu_settings_button_pressed() -> void:
 	print("Settings button pressed")
+	change_state.emit(Globals.GameState.MENU_SETTINGS)
+
+
+func _on_ingame_menu_continue_button_pressed() -> void:
+	print("Continue button pressed")
+	change_state.emit(Globals.GameState.GAME)
+
+
+func _on_ingame_menu_settings_button_pressed() -> void:
+	print("Settings button pressed")
+	change_state.emit(Globals.GameState.MENU_SETTINGS)
+
+
+func _on_ingame_menu_exit_button_pressed() -> void:
+	self.get_tree().quit()

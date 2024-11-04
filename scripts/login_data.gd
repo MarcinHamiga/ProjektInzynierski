@@ -36,4 +36,3 @@ func get_tfa() -> String:
 func set_tfa(tfa: String) -> String:
 	self._tfa.text = tfa
 	return self._tfa.text
-

@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvldgsjh7nl1c"]
+
+[ext_resource type="Script" path="res://scripts/ingame_menu.gd" id="1_6qga0"]
+
+[node name="IngameMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6qga0")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="MenuContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Title" type="RichTextLabel" parent="MenuContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b][i][center][font_size=64]Projekt Inżynierski[/font_size][/center][/i][/b]"
+fit_content = true
+scroll_active = false
+
+[node name="Continue" type="Button" parent="MenuContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Continue"
+
+[node name="Settings" type="Button" parent="MenuContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+
+[node name="Exit" type="Button" parent="MenuContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Exit"
+
+[node name="Spacer" type="Control" parent="MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.15
+
+[connection signal="pressed" from="MenuContainer/ButtonsContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MenuContainer/ButtonsContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MenuContainer/ButtonsContainer/Exit" to="." method="_on_exit_pressed"]

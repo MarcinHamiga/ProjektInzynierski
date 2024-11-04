@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scripts/scene_manager.gd" id="3_vc6jq"]
 [ext_resource type="PackedScene" uid="uid://buhyma3thhvsr" path="res://scenes/main_menu.tscn" id="4_7s5e3"]
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="4_ua4k7"]
-[ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="6_8iwu0"]
 [ext_resource type="PackedScene" uid="uid://bhm57v0kmapoq" path="res://scenes/game_screen.tscn" id="7_48ec3"]
+[ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="8_u02o4"]
 [ext_resource type="PackedScene" uid="uid://cvldgsjh7nl1c" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3kk3"]
@@ -46,12 +46,17 @@ theme_override_constants/margin_bottom = 64
 
 [node name="MainMenu" parent="SceneManager/GameScenes/MainMenuMargin" instance=ExtResource("4_7s5e3")]
 layout_mode = 2
-theme = ExtResource("6_8iwu0")
 
 [node name="GameScreen" parent="SceneManager/GameScenes" instance=ExtResource("7_48ec3")]
 visible = false
-offset_right = -1320.0
-offset_bottom = -480.0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 600.0
+offset_bottom = 500.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_vertical = 3
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
@@ -59,28 +64,64 @@ theme_override_constants/margin_bottom = 64
 
 [node name="IngameMenu" parent="SceneManager/GameScenes" instance=ExtResource("8_vtu0e")]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_8iwu0")
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="DayTimer" type="Timer" parent="."]
+[node name="UI" type="CanvasLayer" parent="SceneManager"]
+visible = false
+
+[node name="TaskBarContainer" type="PanelContainer" parent="SceneManager/UI"]
+offset_left = 60.0
+offset_top = 970.0
+offset_right = 1860.0
+offset_bottom = 1050.0
+
+[node name="TaskBarIcons" type="HBoxContainer" parent="SceneManager/UI/TaskBarContainer"]
+layout_mode = 2
+
+[node name="OSButton" type="Button" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LLOS"
+
+[node name="Separator" type="Control" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 11.0
+
+[node name="DateTime" type="RichTextLabel" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/normal_font = ExtResource("8_u02o4")
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[center]Day 1 00:00[/center]"
+fit_content = true
+
+[node name="Tick" type="Timer" parent="."]
 
 [node name="StrikeTimer" type="Timer" parent="."]
 
 [connection signal="change_state" from="." to="StateManager" method="_on_game_change_state"]
+[connection signal="update_datetime" from="." to="SceneManager" method="_on_game_update_datetime"]
 [connection signal="new_scene" from="StateManager" to="SceneManager" method="_on_state_manager_new_scene"]
+[connection signal="request_hide_ui" from="StateManager" to="SceneManager" method="_on_state_manager_request_hide_ui"]
+[connection signal="request_pause_ticks" from="StateManager" to="." method="_on_state_manager_request_pause_ticks"]
+[connection signal="request_resume_ticks" from="StateManager" to="." method="_on_state_manager_request_resume_ticks"]
+[connection signal="request_show_ui" from="StateManager" to="SceneManager" method="_on_state_manager_request_show_ui"]
 [connection signal="exit_button_pressed" from="SceneManager/GameScenes/MainMenuMargin/MainMenu" to="." method="_on_main_menu_exit_button_pressed"]
 [connection signal="new_game_button_pressed" from="SceneManager/GameScenes/MainMenuMargin/MainMenu" to="." method="_on_main_menu_new_game_button_pressed"]
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/MainMenuMargin/MainMenu" to="." method="_on_main_menu_settings_button_pressed"]
 [connection signal="continue_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_continue_button_pressed"]
 [connection signal="exit_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_exit_button_pressed"]
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_settings_button_pressed"]
+[connection signal="pressed" from="SceneManager/UI/TaskBarContainer/TaskBarIcons/OSButton" to="." method="_on_os_button_pressed"]
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

@@ -1,4 +1,7 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cfxt25d75fpp"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cfxt25d75fpp"]
+
+[ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="1_druga"]
+[ext_resource type="FontFile" uid="uid://2lxnqbw3nuit" path="res://fonts/DotGothic16-Regular.ttf" id="1_nskq7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ji2dj"]
 bg_color = Color(0.493545, 0.493546, 0.493545, 1)
@@ -37,6 +40,12 @@ corner_detail = 16
 Button/colors/font_hover_color = Color(0, 0.663, 0.78, 0.831373)
 Button/colors/font_hover_pressed_color = Color(0, 0.53945, 0.636887, 0.831373)
 Button/colors/font_pressed_color = Color(0, 0.541176, 0.635294, 0.831373)
+Button/font_sizes/font_size = 64
+Button/fonts/font = ExtResource("1_druga")
 Button/styles/hover = SubResource("StyleBoxFlat_ji2dj")
 Button/styles/normal = SubResource("StyleBoxFlat_uoq4m")
 Button/styles/pressed = SubResource("StyleBoxFlat_63w04")
+Label/fonts/font = ExtResource("1_nskq7")
+RichTextLabel/fonts/bold_font = ExtResource("1_druga")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_druga")
+RichTextLabel/fonts/normal_font = ExtResource("1_druga")

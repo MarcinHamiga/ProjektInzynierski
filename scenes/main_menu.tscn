@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://buhyma3thhvsr"]
+[gd_scene load_steps=3 format=3 uid="uid://buhyma3thhvsr"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_4qhvq"]
+[ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="1_iaa3j"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_iaa3j")
 script = ExtResource("1_4qhvq")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -44,19 +46,19 @@ scroll_active = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 64
-text = "Play"
+text = "Nowa Gra"
 
 [node name="Settings" type="Button" parent="MenuContainer/ButtonsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 64
-text = "Settings"
+text = "Ustawienia"
 
 [node name="Exit" type="Button" parent="MenuContainer/ButtonsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 64
-text = "Exit"
+text = "Wyjdź do pulpitu"
 
 [node name="Spacer" type="Control" parent="MenuContainer"]
 layout_mode = 2

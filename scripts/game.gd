@@ -90,3 +90,7 @@ func _on_state_manager_request_resume_ticks() -> void:
 
 func _on_os_button_pressed() -> void:
 	change_state.emit(Globals.GameState.INGAME_MENU)
+
+
+func _on_ingame_menu_exit_to_menu_button_pressed() -> void:
+	change_state.emit(Globals.GameState.MAIN_MENU)

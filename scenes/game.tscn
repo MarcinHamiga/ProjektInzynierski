@@ -122,6 +122,7 @@ fit_content = true
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/MainMenuMargin/MainMenu" to="." method="_on_main_menu_settings_button_pressed"]
 [connection signal="continue_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_continue_button_pressed"]
 [connection signal="exit_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_exit_button_pressed"]
+[connection signal="exit_to_menu_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_exit_to_menu_button_pressed"]
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_settings_button_pressed"]
 [connection signal="pressed" from="SceneManager/UI/TaskBarContainer/TaskBarIcons/OSButton" to="." method="_on_os_button_pressed"]
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

@@ -1,7 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnu33pet08tkr"]
+[gd_scene load_steps=10 format=3 uid="uid://cnu33pet08tkr"]
 
 [ext_resource type="Script" path="res://scripts/acceptance_component.gd" id="1_m6a7p"]
 [ext_resource type="Theme" uid="uid://dnfi30vjiygrq" path="res://themes/accept_button.tres" id="2_tv055"]
+[ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="3_bnni6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnwss"]
+bg_color = Color(0.25, 0, 0, 0.227451)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6uwm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7olv"]
+bg_color = Color(0.647059, 0, 0.105882, 1)
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.517647, 0, 0.0745098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lavpy"]
+bg_color = Color(0.648903, 0, 0.107476, 1)
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.517547, 0, 0.0762016, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfv6o"]
+bg_color = Color(0.36, 0, 0.078, 1)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0.388235, 0, 0.105882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_qe12n"]
+Button/colors/font_color = Color(0.406217, 0, 0.0827598, 1)
+Button/colors/font_disabled_color = Color(0.41, 0, 0.0820001, 0.454902)
+Button/colors/font_focus_color = Color(0.407843, 0, 0.0823529, 1)
+Button/colors/font_hover_color = Color(0.407843, 0, 0.0823529, 1)
+Button/colors/font_hover_pressed_color = Color(0.606455, 3.97079e-06, 0.141294, 1)
+Button/colors/font_pressed_color = Color(0.607843, 0, 0.141176, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("3_bnni6")
+Button/styles/disabled = SubResource("StyleBoxFlat_cnwss")
+Button/styles/focus = SubResource("StyleBoxEmpty_q6uwm")
+Button/styles/hover = SubResource("StyleBoxFlat_s7olv")
+Button/styles/normal = SubResource("StyleBoxFlat_lavpy")
+Button/styles/pressed = SubResource("StyleBoxFlat_sfv6o")
 
 [node name="AcceptanceComponent" type="MarginContainer"]
 custom_minimum_size = Vector2(300, 100)
@@ -65,6 +120,10 @@ text = "Akceptuj"
 [node name="DeclineButton" type="Button" parent="MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_qe12n")
 text = "Odrzuć"
 
 [node name="MatchInfoDisappearTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing/DeclineButton" to="." method="_on_decline_button_pressed"]

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/scene_manager.gd" id="3_vc6jq"]
 [ext_resource type="PackedScene" uid="uid://buhyma3thhvsr" path="res://scenes/main_menu.tscn" id="4_7s5e3"]
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="4_ua4k7"]
-[ext_resource type="PackedScene" path="res://scenes/game_screen.tscn" id="7_48ec3"]
+[ext_resource type="PackedScene" uid="uid://bewnwvp14pvsh" path="res://scenes/game_screen.tscn" id="7_48ec3"]
 [ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="8_u02o4"]
 [ext_resource type="PackedScene" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
 [ext_resource type="PackedScene" uid="uid://cnu33pet08tkr" path="res://scenes/acceptance_component.tscn" id="8_wvxwk"]
@@ -15,11 +15,15 @@ texture = ExtResource("4_ua4k7")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_i4jwi")
-tickrate = 0.5
+tickrate = 2.5
 timerate = 5
 
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("2_d61ba")
+
+[node name="TaskManager" type="Node" parent="."]
+
+[node name="TaskTimeLeft" type="Timer" parent="TaskManager"]
 
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("3_vc6jq")
@@ -93,6 +97,8 @@ layout_mode = 2
 [node name="OSButton" type="Button" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("8_u02o4")
+theme_override_font_sizes/font_size = 48
 text = "LLOS"
 
 [node name="Separator" type="Control" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]

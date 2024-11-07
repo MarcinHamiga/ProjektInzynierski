@@ -1,5 +1,8 @@
 extends Node
 
+
+@export var tickrate: float = 30.0
+@export var timerate: int = 30
 var state_manager: Node
 var scene_manager: Node
 var game_state_enum
@@ -18,7 +21,7 @@ func _ready() -> void:
 	self.state_manager = $StateManager
 	self.scene_manager = $SceneManager
 	self.tick_timer = $Tick
-	self.tick_timer.wait_time = 0.2
+	self.tick_timer.wait_time = self.tickrate
 	self.strike_time = $StrikeTimer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,7 +65,7 @@ func _on_ingame_menu_exit_button_pressed() -> void:
 
 
 func _on_tick_timeout() -> void:
-	self.minute += 30
+	self.minute += self.timerate
 	if self.minute >= 60:
 		self.minute = 0
 		self.hour += 1

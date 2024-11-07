@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnu33pet08tkr"]
+
+[ext_resource type="Script" path="res://scripts/acceptance_component.gd" id="1_m6a7p"]
+[ext_resource type="Theme" uid="uid://dnfi30vjiygrq" path="res://themes/accept_button.tres" id="2_tv055"]
+
+[node name="AcceptanceComponent" type="MarginContainer"]
+custom_minimum_size = Vector2(300, 100)
+offset_right = 300.0
+offset_bottom = 206.0
+script = ExtResource("1_m6a7p")
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MatchInfoContainer" type="PanelContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MatchInfoMargin" type="MarginContainer" parent="MainContainer/MatchInfoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="MatchInfoSpacing" type="VBoxContainer" parent="MainContainer/MatchInfoContainer/MatchInfoMargin"]
+layout_mode = 2
+
+[node name="Spacer1" type="Control" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MatchInfo" type="RichTextLabel" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]"
+fit_content = true
+
+[node name="Spacer2" type="Control" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer" type="PanelContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonMargin" type="MarginContainer" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ButtonSpacing" type="HBoxContainer" parent="MainContainer/ButtonContainer/ButtonMargin"]
+layout_mode = 2
+
+[node name="AcceptButton" type="Button" parent="MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_tv055")
+text = "Akceptuj"
+
+[node name="DeclineButton" type="Button" parent="MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Odrzuć"
+
+[node name="MatchInfoDisappearTimer" type="Timer" parent="."]

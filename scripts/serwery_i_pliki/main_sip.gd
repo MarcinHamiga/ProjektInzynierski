@@ -1,8 +1,8 @@
 extends Node
-
+var num_records := 4 
 var records = []  # Lista przechowująca wszystkie wygenerowane rekordy
 
-func _ready():
+func _ready() -> void:
 	load_and_generate_records()  # Załaduj dane i wygeneruj rekordy
 
 func load_and_generate_records():
@@ -17,7 +17,7 @@ func load_and_generate_records():
 
 	# Generowanie rekordów
 	records.clear()  # Wyczyść poprzednią listę przed generowaniem nowych
-	for i in range(4):
+	for i in range(num_records):
 		# Wylosuj imię, nazwisko, temat i typ zgłoszenia
 		var name_index = randi() % names.size()
 		var surname_index = randi() % surnames.size()

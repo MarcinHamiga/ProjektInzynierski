@@ -1,6 +1,7 @@
 extends Control
 
-var num_records := 40  # Liczba losowanych rekordów
+var vbox: VBoxContainer
+var num_records := 3 # Liczba losowanych rekordów
 var names = []  # Lista imion
 var surnames = []  # Lista nazwisk
 var topics = []  # Lista tematów zgłoszeń
@@ -8,6 +9,7 @@ var types = []  # Lista typów zgłoszeń
 var record_list = []  # Lista przechowująca wszystkie wygenerowane rekordy
 
 func _ready() -> void:
+	vbox = $MessList/VBoxContainer
 	var data_file_path = "res://Dane/data_2.json"  # Ścieżka do pliku JSON
 	var itemData = load_json_file(data_file_path)  # Wczytaj dane z pliku JSON
 
@@ -60,12 +62,10 @@ func generate_random_records():
 		record_list.append(record)
 
 func display_all_records() -> void:
-	var vbox = $MessList/VBoxContainer  # Uzyskanie dostępu do VBoxContainer
-	#vbox.clear()  # Wyczyść VBoxContainer przed dodaniem nowych elementów
 	
 	for record in record_list:
 		var hbox = HBoxContainer.new()  # Nowy HBoxContainer dla każdego rekordu
-		hbox.set_custom_minimum_size(Vector2(0, 50))  # Ustawienie wysokości wiersza
+		hbox.set_custom_minimum_size(Vector2(0, 55))  # Ustawienie wysokości wiersza
 
 		# Dodanie ikony
 		var texture_rect = TextureRect.new()

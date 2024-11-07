@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3ed3v2mtffbj"]
+
+[ext_resource type="Script" path="res://scripts/Root.cs" id="1_rcnjm"]
+
+[node name="Root" type="Node"]
+script = ExtResource("1_rcnjm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "!!!Click me!!!"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

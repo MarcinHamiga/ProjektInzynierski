@@ -1,7 +1,6 @@
 extends Control
 
 var vbox: VBoxContainer
-var num_records := 4  # Liczba losowanych rekordów
 var record_list = []  # Lista przechowująca wszystkie wygenerowane rekordy
 
 func _ready() -> void:

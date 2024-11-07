@@ -20,3 +20,11 @@ func _on_accept_button_pressed():
 
 func _on_decline_button_pressed():
 	decline_pressed.emit()
+
+func disable_buttons():
+	self.accept_button.disabled = true
+	self.decline_button.disabled = true
+
+func enable_buttons():
+	self.accept_button.disabled = false
+	self.decline_button.disabled = false

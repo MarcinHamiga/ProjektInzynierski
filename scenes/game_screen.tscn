@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bhm57v0kmapoq"]
+[gd_scene load_steps=2 format=3 uid="uid://bewnwvp14pvsh"]
+
+[ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="1_xrcqm"]
 
 [node name="GameScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -17,6 +19,7 @@ columns = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_xrcqm")
 autowrap_mode = 3
 clip_text = true
 
@@ -24,6 +27,7 @@ clip_text = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_xrcqm")
 autowrap_mode = 3
 clip_text = true
 
@@ -31,6 +35,7 @@ clip_text = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_xrcqm")
 autowrap_mode = 3
 clip_text = true
 
@@ -38,5 +43,6 @@ clip_text = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_xrcqm")
 autowrap_mode = 3
 clip_text = true

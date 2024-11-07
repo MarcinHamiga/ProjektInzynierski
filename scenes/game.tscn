@@ -15,11 +15,15 @@ texture = ExtResource("4_ua4k7")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_i4jwi")
-tickrate = 0.5
+tickrate = 2.5
 timerate = 5
 
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("2_d61ba")
+
+[node name="TaskManager" type="Node" parent="."]
+
+[node name="TaskTimeLeft" type="Timer" parent="TaskManager"]
 
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("3_vc6jq")

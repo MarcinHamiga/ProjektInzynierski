@@ -4,6 +4,10 @@ extends Node
  
 signal state_changed
 signal new_scene
+signal request_hide_ui
+signal request_show_ui
+signal request_pause_ticks
+signal request_resume_ticks
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,10 +48,16 @@ func handle_state_change():
 	match self.game_state:
 		Globals.GameState.MAIN_MENU:
 			new_scene.emit("MainMenuMargin")
+			request_pause_ticks.emit()
+			request_hide_ui.emit()
 		Globals.GameState.GAME:
 			new_scene.emit("GameScreen")
+			request_show_ui.emit()
+			request_resume_ticks.emit()
 		Globals.GameState.INGAME_MENU:
 			new_scene.emit("IngameMenu")
+			request_pause_ticks.emit()
+			request_hide_ui.emit()
 
 
 func get_state() -> Globals.GameState:

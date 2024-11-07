@@ -9,7 +9,6 @@ signal new_scene
 func _ready() -> void:
 	self.change_state(Globals.GameState.MAIN_MENU)
 
-
 func _input(event):
 	if (
 		self.game_state != Globals.GameState.MAIN_MENU \

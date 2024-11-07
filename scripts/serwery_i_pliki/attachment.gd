@@ -14,5 +14,5 @@ func _on_pressed():
 		parent_message.visible = false
 	
 	# Ładowanie i dodawanie instancji sceny `install_permission.tscn`
-	var install_permission = load("res://scenes/install_permission.tscn")
+	var install_permission = load("res://scenes/serwery_i_pliki/install_permission.tscn")
 	get_tree().root.add_child(install_permission.instantiate())  # Dodanie instancji do głównej sceny (nakładka)

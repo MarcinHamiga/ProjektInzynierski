@@ -3,9 +3,13 @@ var num_records := 4
 var records = []  # Lista przechowująca wszystkie wygenerowane rekordy
 
 func _ready() -> void:
-	load_and_generate_records()  # Załaduj dane i wygeneruj rekordy
+	load_and_generate_records()  # Załaduj dane i wygeneruj rekordy, jeśli są potrzebne
 
 func load_and_generate_records():
+	# Sprawdzamy, czy lista `records` jest pusta. Jeśli nie jest, nie generujemy danych ponownie
+	if records.size() > 0:
+		return  # Jeśli `records` już istnieje, zakończ funkcję i nie generuj nowych danych
+
 	var data_file_path = "res://Dane/data_2.json"  # Ścieżka do pliku JSON
 	var itemData = load_json_file(data_file_path)  # Wczytaj dane z pliku JSON
 

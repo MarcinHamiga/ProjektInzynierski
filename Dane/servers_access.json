@@ -1,0 +1,31 @@
+{
+	"Młodszy administrator": {
+	  "access_type": "tylko odczyt",
+	  "access_location": [
+		"/produkcja/projekt1/plik24.exe",
+		"/archiwum/dane/backup2023.zip"
+	  ]
+	},
+	"Starszy programista": {
+	  "access_type": "odczyt i zapis",
+	  "access_location": [
+		"/produkcja/projekt1/plik24.exe",
+		"/testy/projekt5/dokumentacja.pdf"
+	  ]
+	},
+	"Menedżer IT": {
+	  "access_type": "pełny dostęp",
+	  "access_location": [
+		"/produkcja/projekt1/plik24.exe",
+		"/archiwum/dane/backup2023.zip",
+		"/testy/projekt5/dokumentacja.pdf"
+	  ]
+	},
+	"Analityk danych": {
+	  "access_type": "tylko odczyt",
+	  "access_location": [
+		"/data/raporty_sprzedaży",
+		"/data/analityka/2023"
+	  ]
+	}
+}

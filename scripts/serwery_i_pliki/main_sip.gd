@@ -10,7 +10,7 @@ func load_and_generate_records():
 	if records.size() > 0:
 		return  # Jeśli `records` już istnieje, zakończ funkcję i nie generuj nowych danych
 
-	var data_file_path = "res://Dane/data_2.json"  # Ścieżka do pliku JSON
+	var data_file_path = "res://Dane/employee.json"  # Ścieżka do pliku JSON
 	var itemData = load_json_file(data_file_path)  # Wczytaj dane z pliku JSON
 
 	# Uzupełnienie list imion, nazwisk, tematów oraz typów z itemData

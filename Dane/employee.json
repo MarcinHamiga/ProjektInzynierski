@@ -39,5 +39,16 @@
 	"types": [
 		"Dostęp do serwera",
 		"Instalacja oprogramowania"
+	],
+	"email": [
+		"@project.com",
+		"@company.com",
+		"@game.com"
+	],
+	"access": [
+		"A",
+		"B",
+		"C",
+		"D"
 	]
 }

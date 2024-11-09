@@ -1,0 +1,66 @@
+{
+	"name": [
+			"Instrukcja Obsługi",
+			"Wiadomość Powitalna",
+			"Dokumentacja Techniczna",
+			"Pytania Egzaminacyjne",
+			"Prezentacja",
+			"Instalator Gry",
+			"Skrypt Automatyzacji",
+			"Wtyczka Systemowa",
+			"Raport Finansowy - Makro",
+			"Nieznany Plik Systemowy"
+	],
+	"creator": {
+		"safe": [
+			"Producent ABC",
+			"System",
+			"Dział Dokumentacji",
+			"Marketing",
+			"Uczelnia"
+		],
+		"notsafe": [
+			"Nieznany",
+			"GameStudio",
+			"IT Department",
+			"Firma XYZ - Skrypt",
+			"Zewnętrzny Deweloper"
+		]
+	},
+	"extension": {
+		"safe": [
+			{
+				"plik tekstowy": ".txt"
+			},
+			{
+				"arkusz": ".xls"
+			},
+			{
+				"dokument pdf": ".pdf"
+			},
+			{
+				"dokument word": ".docx"
+			},
+			{
+				"prezentacja": ".pptx"
+			}
+		],
+		"notsafe": [
+			{
+				"aplikacja": ".exe"
+			},
+			{
+				"plik skryptowy": ".sh"
+			},
+			{
+				"plik binarny": ".bin"
+			},
+			{
+				"plik cookie": ".cookie"
+			},
+			{
+				"aplikacja makro": ".xlsm"
+			}
+		]
+	}
+}

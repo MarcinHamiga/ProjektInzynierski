@@ -15,6 +15,8 @@ var minute: int
 
 signal change_state
 signal update_datetime
+signal intro
+signal intro_end
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +25,7 @@ func _ready() -> void:
 	self.tick_timer = $Tick
 	self.tick_timer.wait_time = self.tickrate
 	self.strike_time = $StrikeTimer
+	intro.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

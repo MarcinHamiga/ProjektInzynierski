@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=13 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_i4jwi"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_d61ba"]
+[ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_g4gfh"]
 [ext_resource type="Script" path="res://scripts/scene_manager.gd" id="3_vc6jq"]
 [ext_resource type="PackedScene" uid="uid://buhyma3thhvsr" path="res://scenes/main_menu.tscn" id="4_7s5e3"]
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="4_ua4k7"]
 [ext_resource type="PackedScene" uid="uid://bewnwvp14pvsh" path="res://scenes/game_screen.tscn" id="7_48ec3"]
 [ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="8_u02o4"]
-[ext_resource type="PackedScene" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
+[ext_resource type="PackedScene" uid="uid://cvldgsjh7nl1c" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
 [ext_resource type="PackedScene" uid="uid://cnu33pet08tkr" path="res://scenes/acceptance_component.tscn" id="8_wvxwk"]
 [ext_resource type="VideoStream" path="res://videos/gameintro.ogv" id="10_a1ree"]
 
@@ -23,6 +24,7 @@ timerate = 5
 script = ExtResource("2_d61ba")
 
 [node name="TaskManager" type="Node" parent="."]
+script = ExtResource("3_g4gfh")
 
 [node name="TaskTimeLeft" type="Timer" parent="TaskManager"]
 

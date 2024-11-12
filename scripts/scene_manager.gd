@@ -5,6 +5,7 @@ var scene_tree: Array[Node]
 var game_scenes: CanvasLayer
 var ui: CanvasLayer
 var datetime_label: RichTextLabel
+var intro: VideoStreamPlayer
 
 signal scene_changed
 signal scene_hidden
@@ -15,6 +16,7 @@ func _ready() -> void:
 	self.scene_tree = self.game_scenes.get_children()
 	self.ui = $UI
 	self.datetime_label = $UI/TaskBarContainer/TaskBarIcons/DateTime
+	self.intro = $Intro
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -53,12 +55,21 @@ func _on_state_manager_new_scene(scene_name: String) -> void:
 func _on_game_update_datetime(day: int, hour: int, minute: int) -> void:
 	self.datetime_label.text = "[center]Dzień %d, %02d:%02d[/center]" % [day, hour, minute]
 
+
 func hide_ui():
 	self.ui.visible = 0
+
 
 func show_ui():
 	self.ui.visible = 1
 
+
+func hide_game_scenes():
+	self.game_scenes.visible = 0
+	
+	
+func show_game_scenes():
+	self.game_scenes.visible = 1
 
 func _on_state_manager_request_hide_ui() -> void:
 	self.hide_ui()
@@ -66,3 +77,14 @@ func _on_state_manager_request_hide_ui() -> void:
 
 func _on_state_manager_request_show_ui() -> void:
 	self.show_ui()
+
+
+func _on_game_intro() -> void:
+	self.hide_ui()
+	self.hide_game_scenes()
+	self.intro.play()
+	
+
+
+func _on_intro_finished() -> void:
+	self.show_game_scenes()

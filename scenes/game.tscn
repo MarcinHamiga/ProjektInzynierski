@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=12 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_i4jwi"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_d61ba"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="8_u02o4"]
 [ext_resource type="PackedScene" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
 [ext_resource type="PackedScene" uid="uid://cnu33pet08tkr" path="res://scenes/acceptance_component.tscn" id="8_wvxwk"]
+[ext_resource type="VideoStream" path="res://videos/gameintro.ogv" id="10_a1ree"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3kk3"]
 texture = ExtResource("4_ua4k7")
@@ -121,11 +122,20 @@ bbcode_enabled = true
 text = "[center]Day 1 00:00[/center]"
 fit_content = true
 
+[node name="Intro" type="VideoStreamPlayer" parent="SceneManager"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("10_a1ree")
+
 [node name="Tick" type="Timer" parent="."]
 
 [node name="StrikeTimer" type="Timer" parent="."]
 
 [connection signal="change_state" from="." to="StateManager" method="_on_game_change_state"]
+[connection signal="intro" from="." to="SceneManager" method="_on_game_intro"]
 [connection signal="update_datetime" from="." to="SceneManager" method="_on_game_update_datetime"]
 [connection signal="new_scene" from="StateManager" to="SceneManager" method="_on_state_manager_new_scene"]
 [connection signal="request_hide_ui" from="StateManager" to="SceneManager" method="_on_state_manager_request_hide_ui"]
@@ -140,4 +150,5 @@ fit_content = true
 [connection signal="exit_to_menu_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_exit_to_menu_button_pressed"]
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_settings_button_pressed"]
 [connection signal="pressed" from="SceneManager/UI/TaskBarContainer/TaskBarIcons/OSButton" to="." method="_on_os_button_pressed"]
+[connection signal="finished" from="SceneManager/Intro" to="SceneManager" method="_on_intro_finished"]
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

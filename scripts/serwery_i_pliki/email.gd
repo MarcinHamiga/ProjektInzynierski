@@ -7,6 +7,14 @@ var type_label: Label
 
 func _ready() -> void:
 	# Odbieramy przekazane ID z metadanych
+	
+	#Test
+	var Test = preload("res://scripts/serwery_i_pliki/file_task_generator.gd")
+	var test = Test.new()
+	test._ready()
+	print("Generator files:")
+	print(test.addFileTask())
+	
 	record_id = get_meta("record_id", -1)
 	print("Przekazane record_id:", record_id)  # Dodajemy print, aby zobaczyć, jakie ID jest przekazywane
 	if record_id != -1:
@@ -23,11 +31,13 @@ func _ready() -> void:
 			var name_label = $Message/Name  # Odwołanie do Label "Name"
 			var topic_label = $Message/Topic  # Odwołanie do Label "Topic"
 			var type_label = $Message/Type  # Odwołanie do Label "Type"
+			var email_label = $Message/Email
 
 			# Dodajemy printy do sprawdzenia, czy etykiety istnieją
 			print("Name Label:", name_label)
 			print("Topic Label:", topic_label)
 			print("Type Label:", type_label)
+			print("Email Label:", email_label)
 
 			# Ustawienie tekstu w labelach
 			if name_label != null:
@@ -36,6 +46,8 @@ func _ready() -> void:
 				topic_label.text = record["topic"]
 			if type_label != null:
 				type_label.text = record["type"]
+			if email_label != null:
+				email_label.text = record["email"]
 
 func get_record_by_id(record_id: int, record_list: Array) -> Dictionary:
 	# Zwróć rekord o danym ID

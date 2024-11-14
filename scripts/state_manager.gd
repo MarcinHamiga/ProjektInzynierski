@@ -1,6 +1,8 @@
 extends Node
 
 @export var game_state: Globals.GameState
+var first_click_slot: Node
+var second_click_slot: Node
  
 signal state_changed
 signal new_scene
@@ -8,6 +10,10 @@ signal request_hide_ui
 signal request_show_ui
 signal request_pause_ticks
 signal request_resume_ticks
+signal lawful_accept
+signal wrong_accept
+signal unlawful_decline
+signal correct_decline
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

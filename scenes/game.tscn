@@ -17,16 +17,21 @@ texture = ExtResource("4_ua4k7")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_i4jwi")
-tickrate = 2.5
+tickrate = 1.5
 timerate = 5
 
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("2_d61ba")
 
-[node name="TaskManager" type="Node" parent="."]
+[node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("task_time_left_timer", "next_task_timer")]
 script = ExtResource("3_g4gfh")
+task_time_left_timer = NodePath("TaskTimeLeftTimer")
+next_task_timer = NodePath("NextTaskTimer")
+current_password_rule = "PAS2"
 
-[node name="TaskTimeLeft" type="Timer" parent="TaskManager"]
+[node name="TaskTimeLeftTimer" type="Timer" parent="TaskManager"]
+
+[node name="NextTaskTimer" type="Timer" parent="TaskManager"]
 
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("3_vc6jq")

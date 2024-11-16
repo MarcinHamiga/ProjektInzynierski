@@ -9,11 +9,21 @@ func _ready() -> void:
 	# Odbieramy przekazane ID z metadanych
 	
 	#Test
-	var Test = preload("res://scripts/serwery_i_pliki/file_task_generator.gd")
-	var test = Test.new()
-	test._ready()
+	var Test_file = preload("res://scripts/serwery_i_pliki/file_task_generator.gd")
+	var test_file = Test_file.new()
+	test_file._ready()
+	print("")
 	print("Generator files:")
-	print(test.addFileTask())
+	print(test_file.add_file_task())
+	print("")
+	
+	var Test_server = preload("res://scripts/serwery_i_pliki/server_task_generator.gd")
+	var test_server = Test_server.new()
+	test_server._ready()
+	print("")
+	print("Generator servers:")
+	print(test_server.add_server_task())
+	print("")
 	
 	record_id = get_meta("record_id", -1)
 	print("Przekazane record_id:", record_id)  # Dodajemy print, aby zobaczyć, jakie ID jest przekazywane

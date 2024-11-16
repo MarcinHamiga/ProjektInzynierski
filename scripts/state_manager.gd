@@ -10,6 +10,10 @@ signal request_hide_ui
 signal request_show_ui
 signal request_pause_ticks
 signal request_resume_ticks
+signal request_activate_control_buttons
+signal request_disable_control_buttons
+signal pause_game
+signal unpause_game
 signal lawful_accept
 signal wrong_accept
 signal unlawful_decline
@@ -26,12 +30,14 @@ func _input(event):
 		and event.is_action_pressed("MainMenuKey")
 	):
 		self.change_state(Globals.GameState.INGAME_MENU)
+		pause_game.emit()
 
 	elif (
 		self.game_state == Globals.GameState.INGAME_MENU \
 		and event.is_action_pressed("MainMenuKey")
 	):
 		self.change_state(Globals.GameState.GAME)
+		unpause_game.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,14 +62,19 @@ func handle_state_change():
 			new_scene.emit("MainMenuMargin")
 			request_pause_ticks.emit()
 			request_hide_ui.emit()
+			pause_game.emit()
 		Globals.GameState.GAME:
 			new_scene.emit("GameScreen")
 			request_show_ui.emit()
 			request_resume_ticks.emit()
+			unpause_game.emit()
 		Globals.GameState.INGAME_MENU:
 			new_scene.emit("IngameMenu")
 			request_pause_ticks.emit()
 			request_hide_ui.emit()
+			pause_game.emit()
+		Globals.GameState.INGAME_TASK:
+			request_activate_control_buttons.emit()
 
 
 func get_state() -> Globals.GameState:
@@ -73,3 +84,12 @@ func get_state() -> Globals.GameState:
 func _on_game_change_state(new_state: Globals.GameState) -> void:
 	self.change_state(new_state)
 	print("State changed to: %s" % [new_state])
+
+
+func _on_task_manager_new_task() -> void:
+	print("New task")
+	self.change_state(Globals.GameState.INGAME_TASK)
+
+
+func _on_task_manager_task_complete() -> void:
+	self.change_state(Globals.GameState.GAME)

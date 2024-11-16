@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=14 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_i4jwi"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_d61ba"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="8_u02o4"]
 [ext_resource type="PackedScene" uid="uid://cvldgsjh7nl1c" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
 [ext_resource type="PackedScene" uid="uid://cnu33pet08tkr" path="res://scenes/acceptance_component.tscn" id="8_wvxwk"]
+[ext_resource type="PackedScene" uid="uid://dv6uht3s2mdrb" path="res://scenes/login_data.tscn" id="9_vg3k3"]
 [ext_resource type="VideoStream" path="res://videos/gameintro.ogv" id="10_a1ree"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3kk3"]
@@ -23,11 +24,9 @@ timerate = 5
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("2_d61ba")
 
-[node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("task_time_left_timer", "next_task_timer")]
+[node name="TaskManager" type="Node" parent="."]
 script = ExtResource("3_g4gfh")
-task_time_left_timer = NodePath("TaskTimeLeftTimer")
-next_task_timer = NodePath("NextTaskTimer")
-current_password_rule = "PAS2"
+time_until_next_task = 2.0
 
 [node name="TaskTimeLeftTimer" type="Timer" parent="TaskManager"]
 
@@ -83,6 +82,13 @@ theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
+
+[node name="LoginData" parent="SceneManager/GameScenes" instance=ExtResource("9_vg3k3")]
+visible = false
+offset_left = 121.0
+offset_top = 98.0
+offset_right = 683.0
+offset_bottom = 439.0
 
 [node name="UI" type="CanvasLayer" parent="SceneManager"]
 visible = false
@@ -143,12 +149,25 @@ stream = ExtResource("10_a1ree")
 
 [connection signal="change_state" from="." to="StateManager" method="_on_game_change_state"]
 [connection signal="intro" from="." to="SceneManager" method="_on_game_intro"]
+[connection signal="start_new_game" from="." to="TaskManager" method="_on_game_start_new_game"]
 [connection signal="update_datetime" from="." to="SceneManager" method="_on_game_update_datetime"]
 [connection signal="new_scene" from="StateManager" to="SceneManager" method="_on_state_manager_new_scene"]
+[connection signal="pause_game" from="StateManager" to="TaskManager" method="_on_state_manager_pause_game"]
+[connection signal="request_activate_control_buttons" from="StateManager" to="SceneManager" method="_on_state_manager_request_activate_control_buttons"]
+[connection signal="request_disable_control_buttons" from="StateManager" to="SceneManager" method="_on_state_manager_request_disable_control_buttons"]
 [connection signal="request_hide_ui" from="StateManager" to="SceneManager" method="_on_state_manager_request_hide_ui"]
 [connection signal="request_pause_ticks" from="StateManager" to="." method="_on_state_manager_request_pause_ticks"]
 [connection signal="request_resume_ticks" from="StateManager" to="." method="_on_state_manager_request_resume_ticks"]
 [connection signal="request_show_ui" from="StateManager" to="SceneManager" method="_on_state_manager_request_show_ui"]
+[connection signal="unpause_game" from="StateManager" to="TaskManager" method="_on_state_manager_unpause_game"]
+[connection signal="add_strike" from="TaskManager" to="." method="_on_task_manager_add_strike"]
+[connection signal="new_task" from="TaskManager" to="StateManager" method="_on_task_manager_new_task"]
+[connection signal="new_task" from="TaskManager" to="SceneManager" method="_on_task_manager_new_task"]
+[connection signal="ready_login_screen" from="TaskManager" to="SceneManager" method="_on_task_manager_ready_login_screen"]
+[connection signal="task_complete" from="TaskManager" to="StateManager" method="_on_task_manager_task_complete"]
+[connection signal="task_complete" from="TaskManager" to="SceneManager" method="_on_task_manager_task_complete"]
+[connection signal="timeout" from="TaskManager/TaskTimeLeftTimer" to="TaskManager" method="_on_task_time_left_timer_timeout"]
+[connection signal="timeout" from="TaskManager/NextTaskTimer" to="TaskManager" method="_on_next_task_timer_timeout"]
 [connection signal="exit_button_pressed" from="SceneManager/GameScenes/MainMenuMargin/MainMenu" to="." method="_on_main_menu_exit_button_pressed"]
 [connection signal="new_game_button_pressed" from="SceneManager/GameScenes/MainMenuMargin/MainMenu" to="." method="_on_main_menu_new_game_button_pressed"]
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/MainMenuMargin/MainMenu" to="." method="_on_main_menu_settings_button_pressed"]
@@ -156,6 +175,9 @@ stream = ExtResource("10_a1ree")
 [connection signal="exit_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_exit_button_pressed"]
 [connection signal="exit_to_menu_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_exit_to_menu_button_pressed"]
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_settings_button_pressed"]
+[connection signal="accept_pressed" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_accept_pressed"]
+[connection signal="decline_pressed" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_decline_pressed"]
 [connection signal="pressed" from="SceneManager/UI/TaskBarContainer/TaskBarIcons/OSButton" to="." method="_on_os_button_pressed"]
 [connection signal="finished" from="SceneManager/Intro" to="SceneManager" method="_on_intro_finished"]
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]
+[connection signal="timeout" from="StrikeTimer" to="." method="_on_strike_timer_timeout"]

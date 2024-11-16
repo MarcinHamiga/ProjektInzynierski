@@ -3,11 +3,13 @@ extends Node
 
 @export var tickrate: float = 30.0
 @export var timerate: int = 30
+@export var strike_fade_rate: float = 210.0
 var state_manager: Node
 var scene_manager: Node
+var task_manager: Node
 var game_state_enum
 var tick_timer: Timer
-var strike_time: Timer
+var strike_timer: Timer
 var strikes: int
 var day: int
 var hour: int
@@ -15,6 +17,7 @@ var minute: int
 
 signal change_state
 signal update_datetime
+signal start_new_game
 signal intro
 signal intro_end
 
@@ -22,9 +25,10 @@ signal intro_end
 func _ready() -> void:
 	self.state_manager = $StateManager
 	self.scene_manager = $SceneManager
+	self.task_manager = $TaskManager
 	self.tick_timer = $Tick
 	self.tick_timer.wait_time = self.tickrate
-	self.strike_time = $StrikeTimer
+	self.strike_timer = $StrikeTimer
 	intro.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,8 +42,8 @@ func new_game():
 	self.hour = 8
 	self.minute = 0
 	update_datetime.emit(self.day, self.hour, self.minute)
+	start_new_game.emit()
 	self.tick_timer.start()
-	
 
 
 func _on_main_menu_exit_button_pressed() -> void:
@@ -79,11 +83,13 @@ func _on_tick_timeout() -> void:
 	
 
 func pause_ticks():
-	self.tick_timer.stop()
+	self.tick_timer.paused = true
+	self.strike_timer.paused = true
 
 
 func resume_ticks():
-	self.tick_timer.start()
+	self.tick_timer.paused = false
+	self.strike_timer.paused = false
 
 
 func _on_state_manager_request_pause_ticks() -> void:
@@ -100,3 +106,17 @@ func _on_os_button_pressed() -> void:
 
 func _on_ingame_menu_exit_to_menu_button_pressed() -> void:
 	change_state.emit(Globals.GameState.MAIN_MENU)
+
+
+func _on_task_manager_add_strike() -> void:
+	self.strikes += 1
+	if self.strike_timer.is_stopped():
+		self.strike_timer.start()
+	if self.strikes > 3:
+		pass
+
+
+func _on_strike_timer_timeout() -> void:
+	self.strikes -= 1
+	if self.strikes > 0:
+		self.strike_timer.start()

@@ -18,6 +18,8 @@ func load_and_generate_records():
 	var surnames = itemData["surnames"]
 	var topics = itemData["topics"]
 	var types = itemData["types"]
+	var email = itemData["email"]
+	var access = itemData["access"]
 
 	# Generowanie rekordów
 	records.clear()  # Wyczyść poprzednią listę przed generowaniem nowych
@@ -27,13 +29,17 @@ func load_and_generate_records():
 		var surname_index = randi() % surnames.size()
 		var topic_index = randi() % topics.size()
 		var type_index = randi() % types.size()
+		var email_index = randi() % email.size()
+		var access_index = randi() % access.size()
 
 		# Tworzenie unikalnego ID oraz rekordu
 		var record = {
 			"id": i + 1,  # Unikalne ID
 			"name": names[name_index] + " " + surnames[surname_index],  # Losowane imię i nazwisko
 			"topic": topics[topic_index],
-			"type": types[type_index]
+			"type": types[type_index],
+			"email": names[name_index] + "." + surnames[surname_index] + email[email_index],
+			"access": access[access_index]
 		}
 
 		# Dodanie rekordu do listy

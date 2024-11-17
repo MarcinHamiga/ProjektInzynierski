@@ -5,10 +5,10 @@
 [ext_resource type="Script" path="res://scripts/scene_manager.gd" id="3_vc6jq"]
 [ext_resource type="PackedScene" uid="uid://buhyma3thhvsr" path="res://scenes/main_menu.tscn" id="4_7s5e3"]
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="4_ua4k7"]
-[ext_resource type="PackedScene" path="res://scenes/game_screen.tscn" id="7_48ec3"]
+[ext_resource type="PackedScene" uid="uid://bhm57v0kmapoq" path="res://scenes/game_screen.tscn" id="7_48ec3"]
 [ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="8_u02o4"]
-[ext_resource type="PackedScene" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
-[ext_resource type="PackedScene" uid="uid://cnu33pet08tkr" path="res://scenes/acceptance_component.tscn" id="8_wvxwk"]
+[ext_resource type="PackedScene" uid="uid://cvldgsjh7nl1c" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
+[ext_resource type="PackedScene" path="res://scenes/acceptance_component.tscn" id="8_wvxwk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3kk3"]
 texture = ExtResource("4_ua4k7")

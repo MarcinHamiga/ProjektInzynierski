@@ -55,6 +55,9 @@ layout_mode = 2
 [node name="Type" type="Label" parent="Message"]
 layout_mode = 2
 
+[node name="Email" type="Label" parent="Message"]
+layout_mode = 2
+
 [node name="ProblemMessage" type="Label" parent="Message"]
 layout_mode = 2
 

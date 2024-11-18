@@ -29,9 +29,7 @@ func _ready() -> void:
 	print("Przekazane record_id:", record_id)  # Dodajemy print, aby zobaczyć, jakie ID jest przekazywane
 	if record_id != -1:
 		# Uzyskujemy dostęp do głównego skryptu (MainSIP) i pobieramy listę rekordów
-		var main_sip = get_node("/root/MainSIP")  # Uzyskujemy dostęp do MainSIP
 		var record_list = main_sip.get_records()  # Pobieramy rekordy z MainSIP
-
 		# Szukamy rekordu na podstawie ID
 		var record = get_record_by_id(record_id, record_list)
 

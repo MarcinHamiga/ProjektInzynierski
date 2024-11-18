@@ -1,7 +1,7 @@
 extends Node
 
-enum GameState { MAIN_MENU, GAME, MENU_SETTINGS, INGAME_MENU }
-enum Tasks { LOGIN_CHECK }
+enum GameState { MAIN_MENU, GAME, MENU_SETTINGS, INGAME_MENU, INGAME_TASK }
+enum Tasks { NONE, LOGIN_CHECK }
 
 func load_json(file_path: String):
 	var file = FileAccess.open(file_path, FileAccess.ModeFlags.READ)

@@ -86,10 +86,10 @@ func _on_game_change_state(new_state: Globals.GameState) -> void:
 	print("State changed to: %s" % [new_state])
 
 
-func _on_task_manager_new_task() -> void:
+func _on_task_manager_new_task(task: Globals.Tasks) -> void:
 	print("New task")
 	self.change_state(Globals.GameState.INGAME_TASK)
 
 
-func _on_task_manager_task_complete() -> void:
+func _on_task_manager_task_complete(correct_answer: bool) -> void:
 	self.change_state(Globals.GameState.GAME)

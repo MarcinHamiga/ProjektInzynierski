@@ -85,17 +85,20 @@ layout_mode = 2
 [node name="Spacer1" type="Control" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
 
 [node name="MatchInfo" type="RichTextLabel" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_bnni6")
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "[center]"
 fit_content = true
 
 [node name="Spacer2" type="Control" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
 
 [node name="ButtonContainer" type="PanelContainer" parent="MainContainer"]
 layout_mode = 2
@@ -127,3 +130,4 @@ text = "Odrzuć"
 
 [connection signal="pressed" from="MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing/AcceptButton" to="." method="_on_accept_button_pressed"]
 [connection signal="pressed" from="MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing/DeclineButton" to="." method="_on_decline_button_pressed"]
+[connection signal="timeout" from="MatchInfoDisappearTimer" to="." method="_on_match_info_disappear_timer_timeout"]

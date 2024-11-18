@@ -9,7 +9,6 @@ extends Node
 signal ready_login_screen
 signal add_strike
 signal task_complete
-signal task_failed
 signal new_task
 
 var task_time_left_timer: Timer
@@ -38,18 +37,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _get_tfa_status(day: int) -> bool:
+func _get_tfa_status() -> bool:
 	var roll = randi_range(1, 100)
-	if day < 25:
-		return true
-	elif day > 25 and day < 50:
-		if roll <= 25:
-			return false
-		return true
-	else:
-		if roll <= 35:
-			return false
-		return true
+	match self.current_password_rule:
+		"PAS1", "PAS2", "PAS3":
+			return true
+		"PAS4", "PAS5":
+			if roll <= 25:
+				return false
+			return true
+		"PAS6", "PAS7":
+			if roll <= 35:
+				return false
+			return true
+		_:
+			return true
 
 
 func _get_password_status() -> bool:
@@ -131,6 +133,8 @@ func get_login_screen_data() -> void:
 		data['is_password_correct'] = false
 
 	data['password'] = password
+	
+	self.is_tfa_correct = self._get_tfa_status()
 
 	print(data)
 	ready_login_screen.emit(data)
@@ -142,9 +146,9 @@ func _on_acceptance_component_accept_pressed() -> void:
 			pass
 		Globals.Tasks.LOGIN_CHECK:
 			if self.is_password_correct and self.is_tfa_correct:
-				task_complete.emit()
+				task_complete.emit(true)
 			else:
-				task_complete.emit()
+				task_complete.emit(false)
 				add_strike.emit()
 	self.next_task_timer.start()
 	self.task_time_left_timer.stop()
@@ -157,15 +161,16 @@ func _on_acceptance_component_decline_pressed() -> void:
 		Globals.Tasks.LOGIN_CHECK:
 			if self.is_password_correct and self.is_tfa_correct:
 				add_strike.emit()
-				task_complete.emit()
+				task_complete.emit(false)
 			else:
-				task_complete.emit()
+				task_complete.emit(true)
+	self.next_task_timer.start()
 	self.task_time_left_timer.stop()
 
 
 func _on_task_time_left_timer_timeout() -> void:
 	add_strike.emit()
-	task_complete.emit()
+	task_complete.emit(false)
 	self.current_task = Globals.Tasks.NONE
 	self.next_task_timer.start()
 

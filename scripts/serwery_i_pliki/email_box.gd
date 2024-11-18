@@ -7,8 +7,8 @@ func _ready() -> void:
 	vbox = $MessList/VBoxContainer
 	
 	# Ładowanie danych i generowanie rekordów za pomocą MainSIP
-	MainSIP.load_and_generate_records()  # Wczytanie danych i generowanie rekordów
-	record_list = MainSIP.get_records()  # Pobieramy wygenerowane rekordy
+	main_sip.load_and_generate_records()  # Wczytanie danych i generowanie rekordów
+	record_list = main_sip.get_records()  # Pobieramy wygenerowane rekordy
 	
 	display_all_records()  # Wyświetlamy wszystkie rekordy
 

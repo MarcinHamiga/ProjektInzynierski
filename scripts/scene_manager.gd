@@ -110,7 +110,6 @@ func _on_state_manager_request_disable_control_buttons() -> void:
 func _on_task_manager_new_task(task: Globals.Tasks) -> void:
 	print("New task")
 	if task == Globals.Tasks.LOGIN_CHECK:
-		print("Correctly checked the condition")
 		self.set_current_scene("LoginData")
 		enable_buttons.emit()
 

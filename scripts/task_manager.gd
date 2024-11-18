@@ -9,6 +9,7 @@ extends Node
 signal ready_login_screen
 signal add_strike
 signal task_complete
+signal task_failed
 signal new_task
 
 var task_time_left_timer: Timer
@@ -142,10 +143,10 @@ func _on_acceptance_component_accept_pressed() -> void:
 		Globals.Tasks.LOGIN_CHECK:
 			if self.is_password_correct and self.is_tfa_correct:
 				task_complete.emit()
-				self.next_task_timer.start()
 			else:
 				task_complete.emit()
 				add_strike.emit()
+	self.next_task_timer.start()
 	self.task_time_left_timer.stop()
 
 
@@ -154,12 +155,19 @@ func _on_acceptance_component_decline_pressed() -> void:
 		Globals.Tasks.NONE:
 			pass
 		Globals.Tasks.LOGIN_CHECK:
-			pass
+			if self.is_password_correct and self.is_tfa_correct:
+				add_strike.emit()
+				task_complete.emit()
+			else:
+				task_complete.emit()
 	self.task_time_left_timer.stop()
 
 
 func _on_task_time_left_timer_timeout() -> void:
 	add_strike.emit()
+	task_complete.emit()
+	self.current_task = Globals.Tasks.NONE
+	self.next_task_timer.start()
 
 
 func _on_game_start_new_game() -> void:

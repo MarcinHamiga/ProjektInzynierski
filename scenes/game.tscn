@@ -26,7 +26,8 @@ script = ExtResource("2_d61ba")
 
 [node name="TaskManager" type="Node" parent="."]
 script = ExtResource("3_g4gfh")
-time_until_next_task = 2.0
+time_until_next_task = 5.0
+time_until_task_expires = 30.0
 
 [node name="TaskTimeLeftTimer" type="Timer" parent="TaskManager"]
 

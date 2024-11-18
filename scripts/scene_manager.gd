@@ -15,6 +15,7 @@ signal enable_buttons
 signal disable_buttons
 signal pause_game
 signal unpause_game
+signal write_to_match_info
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _ready() -> void:
 	self.login_scene = $GameScenes/LoginData
 	enable_buttons.connect(self.controls.enable_buttons)
 	disable_buttons.connect(self.controls.disable_buttons)
+	write_to_match_info.connect(self.controls.write_to_match_info)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -114,8 +116,13 @@ func _on_task_manager_new_task(task: Globals.Tasks) -> void:
 		enable_buttons.emit()
 
 
-func _on_task_manager_task_complete() -> void:
+func _on_task_manager_task_complete(correct_answer: bool) -> void:
 	self.set_current_scene("GameScreen")
+	print("Answer: " + str(correct_answer))
+	if correct_answer:
+		write_to_match_info.emit("[center][color=green]Dobrze[/color][/center]")
+	else:
+		write_to_match_info.emit("[center][color=red]Źle[/color][/center]")
 	disable_buttons.emit()
 
 

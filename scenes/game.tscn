@@ -99,6 +99,7 @@ offset_left = 1460.0
 offset_top = 60.0
 offset_right = 1860.0
 offset_bottom = 360.0
+match_info_disappearance_time = 3.0
 
 [node name="TaskBarContainer" type="PanelContainer" parent="SceneManager/UI"]
 offset_left = 60.0

@@ -41,7 +41,6 @@ func load_and_generate_records():
 			"email": names[name_index] + "." + surnames[surname_index] + email[email_index],
 			"access": access[access_index]
 		}
-
 		# Dodanie rekordu do listy
 		records.append(record)
 

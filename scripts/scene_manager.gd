@@ -4,10 +4,18 @@ var current_scene: Node
 var scene_tree: Array[Node]
 var game_scenes: CanvasLayer
 var ui: CanvasLayer
+var login_scene: MarginContainer
 var datetime_label: RichTextLabel
+var intro: VideoStreamPlayer
+var controls: MarginContainer
 
 signal scene_changed
 signal scene_hidden
+signal enable_buttons
+signal disable_buttons
+signal pause_game
+signal unpause_game
+signal write_to_match_info
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +23,12 @@ func _ready() -> void:
 	self.scene_tree = self.game_scenes.get_children()
 	self.ui = $UI
 	self.datetime_label = $UI/TaskBarContainer/TaskBarIcons/DateTime
+	self.intro = $Intro
+	self.controls = $UI/AcceptanceComponent
+	self.login_scene = $GameScenes/LoginData
+	enable_buttons.connect(self.controls.enable_buttons)
+	disable_buttons.connect(self.controls.disable_buttons)
+	write_to_match_info.connect(self.controls.write_to_match_info)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -53,12 +67,21 @@ func _on_state_manager_new_scene(scene_name: String) -> void:
 func _on_game_update_datetime(day: int, hour: int, minute: int) -> void:
 	self.datetime_label.text = "[center]Dzień %d, %02d:%02d[/center]" % [day, hour, minute]
 
+
 func hide_ui():
 	self.ui.visible = 0
+
 
 func show_ui():
 	self.ui.visible = 1
 
+
+func hide_game_scenes():
+	self.game_scenes.visible = 0
+	
+	
+func show_game_scenes():
+	self.game_scenes.visible = 1
 
 func _on_state_manager_request_hide_ui() -> void:
 	self.hide_ui()
@@ -66,3 +89,43 @@ func _on_state_manager_request_hide_ui() -> void:
 
 func _on_state_manager_request_show_ui() -> void:
 	self.show_ui()
+
+
+func _on_game_intro() -> void:
+	self.hide_ui()
+	self.hide_game_scenes()
+	self.intro.play()
+
+
+func _on_intro_finished() -> void:
+	self.show_game_scenes()
+
+
+func _on_state_manager_request_activate_control_buttons() -> void:
+	enable_buttons.emit()
+
+
+func _on_state_manager_request_disable_control_buttons() -> void:
+	disable_buttons.emit()
+
+
+func _on_task_manager_new_task(task: Globals.Tasks) -> void:
+	print("New task")
+	if task == Globals.Tasks.LOGIN_CHECK:
+		self.set_current_scene("LoginData")
+		enable_buttons.emit()
+
+
+func _on_task_manager_task_complete(correct_answer: bool) -> void:
+	self.set_current_scene("GameScreen")
+	print("Answer: " + str(correct_answer))
+	if correct_answer:
+		write_to_match_info.emit("[center][color=green]Dobrze[/color][/center]")
+	else:
+		write_to_match_info.emit("[center][color=red]Źle[/color][/center]")
+	disable_buttons.emit()
+
+
+func _on_task_manager_ready_login_screen(data: Dictionary) -> void:
+	self.login_scene.set_login(data['login'])
+	self.login_scene.set_password(data['password'])

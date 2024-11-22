@@ -21,7 +21,6 @@ signal start_new_game
 signal new_day
 signal update_strikes
 signal intro
-signal intro_end
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,11 +35,6 @@ func _ready() -> void:
 	self.strike_timer.autostart = false
 	self.strike_timer.one_shot = true
 	intro.emit()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func new_game():
 	self.strikes = 0

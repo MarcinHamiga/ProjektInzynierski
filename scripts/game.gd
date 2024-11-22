@@ -18,6 +18,8 @@ var minute: int
 signal change_state
 signal update_datetime
 signal start_new_game
+signal new_day
+signal update_strikes
 signal intro
 signal intro_end
 
@@ -29,6 +31,10 @@ func _ready() -> void:
 	self.tick_timer = $Tick
 	self.tick_timer.wait_time = self.tickrate
 	self.strike_timer = $StrikeTimer
+	self.strike_timer.stop()
+	self.strike_timer.wait_time = self.strike_fade_rate
+	self.strike_timer.autostart = false
+	self.strike_timer.one_shot = true
 	intro.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,8 +85,8 @@ func _on_tick_timeout() -> void:
 		if self.hour >= 24:
 			self.hour = 0
 			self.day += 1
+			new_day.emit(self.day)
 	update_datetime.emit(day, hour, minute)
-	
 
 func pause_ticks():
 	self.tick_timer.paused = true
@@ -114,9 +120,11 @@ func _on_task_manager_add_strike() -> void:
 		self.strike_timer.start()
 	if self.strikes > 3:
 		pass
+	update_strikes.emit(self.strikes)
 
 
 func _on_strike_timer_timeout() -> void:
 	self.strikes -= 1
 	if self.strikes > 0:
 		self.strike_timer.start()
+	update_strikes.emit(self.strikes)

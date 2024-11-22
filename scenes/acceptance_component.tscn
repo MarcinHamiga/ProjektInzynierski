@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnu33pet08tkr"]
+[gd_scene load_steps=11 format=3 uid="uid://cnu33pet08tkr"]
 
 [ext_resource type="Script" path="res://scripts/acceptance_component.gd" id="1_m6a7p"]
+[ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="2_06c5o"]
 [ext_resource type="Theme" uid="uid://dnfi30vjiygrq" path="res://themes/accept_button.tres" id="2_tv055"]
 [ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="3_bnni6"]
 
@@ -82,10 +83,13 @@ theme_override_constants/margin_bottom = 4
 [node name="MatchInfoSpacing" type="VBoxContainer" parent="MainContainer/MatchInfoContainer/MatchInfoMargin"]
 layout_mode = 2
 
-[node name="Spacer1" type="Control" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
+[node name="Strikes" type="RichTextLabel" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.5
+theme = ExtResource("2_06c5o")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Błędy: 0"
 
 [node name="MatchInfo" type="RichTextLabel" parent="MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing"]
 layout_mode = 2

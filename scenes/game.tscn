@@ -19,7 +19,8 @@ texture = ExtResource("4_ua4k7")
 [node name="Game" type="Node"]
 script = ExtResource("1_i4jwi")
 tickrate = 1.5
-timerate = 5
+timerate = 60
+strike_fade_rate = 10.0
 
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("2_d61ba")
@@ -151,8 +152,10 @@ stream = ExtResource("10_a1ree")
 
 [connection signal="change_state" from="." to="StateManager" method="_on_game_change_state"]
 [connection signal="intro" from="." to="SceneManager" method="_on_game_intro"]
+[connection signal="new_day" from="." to="TaskManager" method="_on_game_new_day"]
 [connection signal="start_new_game" from="." to="TaskManager" method="_on_game_start_new_game"]
 [connection signal="update_datetime" from="." to="SceneManager" method="_on_game_update_datetime"]
+[connection signal="update_strikes" from="." to="SceneManager" method="_on_game_update_strikes"]
 [connection signal="new_scene" from="StateManager" to="SceneManager" method="_on_state_manager_new_scene"]
 [connection signal="pause_game" from="StateManager" to="TaskManager" method="_on_state_manager_pause_game"]
 [connection signal="request_activate_control_buttons" from="StateManager" to="SceneManager" method="_on_state_manager_request_activate_control_buttons"]

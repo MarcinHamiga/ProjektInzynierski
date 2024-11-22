@@ -6,6 +6,7 @@ var match_info: RichTextLabel
 var accept_button: Button
 var decline_button: Button
 var match_info_timer: Timer
+var strikes: RichTextLabel
 
 signal accept_pressed
 signal decline_pressed
@@ -16,6 +17,7 @@ func _ready() -> void:
 	self.accept_button = $MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing/AcceptButton
 	self.decline_button = $MainContainer/ButtonContainer/ButtonMargin/ButtonSpacing/DeclineButton
 	self.match_info_timer = $MatchInfoDisappearTimer
+	self.strikes = $MainContainer/MatchInfoContainer/MatchInfoMargin/MatchInfoSpacing/Strikes
 	self.match_info_timer.wait_time = self.match_info_disappearance_time
 	self.match_info_timer.autostart = false
 	self.match_info_timer.one_shot = true
@@ -39,6 +41,10 @@ func enable_buttons() -> void:
 func write_to_match_info(text: String) -> void:
 	self.match_info.text = text
 	self.match_info_timer.start()
+	
+
+func write_to_strikes(amount: int) -> void:
+	self.strikes.text = "Błędy: %d" % [amount]
 
 func _on_match_info_disappear_timer_timeout() -> void:
 	self.match_info.text = ""

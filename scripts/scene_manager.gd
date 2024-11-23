@@ -129,3 +129,7 @@ func _on_task_manager_task_complete(correct_answer: bool) -> void:
 func _on_task_manager_ready_login_screen(data: Dictionary) -> void:
 	self.login_scene.set_login(data['login'])
 	self.login_scene.set_password(data['password'])
+
+
+func _on_game_update_strikes(strikes: int) -> void:
+	self.controls.write_to_strikes(strikes)

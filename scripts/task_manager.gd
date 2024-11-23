@@ -203,3 +203,22 @@ func _on_next_task_timer_timeout() -> void:
 	self.get_login_screen_data()
 	new_task.emit(self.current_task)
 	self.task_time_left_timer.start()
+
+
+func _on_game_new_day(day: int) -> void:
+	match day:
+		4:
+			self.current_password_rule = Globals.PAS2
+		8:
+			self.current_password_rule = Globals.PAS3
+		12:
+			self.current_password_rule = Globals.PAS4
+		16:
+			self.current_password_rule = Globals.PAS5
+		20:
+			self.current_password_rule = Globals.PAS6
+		24:
+			self.current_password_rule = Globals.PAS7
+		_:
+			pass
+	print(self.current_password_rule)

@@ -8,6 +8,7 @@ var login_scene: MarginContainer
 var datetime_label: RichTextLabel
 var intro: VideoStreamPlayer
 var controls: MarginContainer
+var game_over: MarginContainer
 
 signal scene_changed
 signal scene_hidden
@@ -26,6 +27,7 @@ func _ready() -> void:
 	self.intro = $Intro
 	self.controls = $UI/AcceptanceComponent
 	self.login_scene = $GameScenes/LoginData
+	self.game_over = $GameScenes/GameOver
 	enable_buttons.connect(self.controls.enable_buttons)
 	disable_buttons.connect(self.controls.disable_buttons)
 	write_to_match_info.connect(self.controls.write_to_match_info)
@@ -47,6 +49,7 @@ func set_current_scene(scene_name: String) -> void:
 		self.scene_tree = self.game_scenes.get_children()
 	for scene in self.scene_tree:
 		if scene.name == scene_name:
+			print("Scene name: %s" % [scene.name])
 			self.current_scene = scene
 			self.show_scene(self.current_scene)
 			self.hide_unused_scenes()
@@ -109,15 +112,21 @@ func _on_state_manager_request_disable_control_buttons() -> void:
 	disable_buttons.emit()
 
 
+func show_task(task: Globals.Tasks) -> void:
+	match task:
+		Globals.Tasks.LOGIN_CHECK:
+			self.set_current_scene("LoginData")
+			enable_buttons.emit()
+		_:
+			pass
+
+
 func _on_task_manager_new_task(task: Globals.Tasks) -> void:
 	print("New task")
-	if task == Globals.Tasks.LOGIN_CHECK:
-		self.set_current_scene("LoginData")
-		enable_buttons.emit()
+	self.show_task(task)
 
 
 func _on_task_manager_task_complete(correct_answer: bool) -> void:
-	self.set_current_scene("GameScreen")
 	print("Answer: " + str(correct_answer))
 	if correct_answer:
 		write_to_match_info.emit("[center][color=green]Dobrze[/color][/center]")
@@ -133,3 +142,11 @@ func _on_task_manager_ready_login_screen(data: Dictionary) -> void:
 
 func _on_game_update_strikes(strikes: int) -> void:
 	self.controls.write_to_strikes(strikes)
+
+
+func _on_task_manager_resume_task(task: Globals.Tasks) -> void:
+	self.show_task(task)
+
+
+func _on_game_start_new_game() -> void:
+	self.controls.reset()

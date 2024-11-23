@@ -1,9 +1,10 @@
 extends Node
 
 
-@export var tickrate: float = 30.0
-@export var timerate: int = 30
-@export var strike_fade_rate: float = 210.0
+@export var tickrate: float = 1.25
+@export var timerate: int = 15
+@export var strike_fade_rate: float = 120
+
 var state_manager: Node
 var scene_manager: Node
 var task_manager: Node
@@ -19,6 +20,7 @@ signal change_state
 signal update_datetime
 signal start_new_game
 signal new_day
+signal game_over
 signal update_strikes
 signal intro
 
@@ -51,7 +53,7 @@ func _on_main_menu_exit_button_pressed() -> void:
 
 
 func _on_main_menu_new_game_button_pressed() -> void:
-	await self.new_game()
+	self.new_game()
 	change_state.emit(Globals.GameState.GAME)
 
 
@@ -92,6 +94,11 @@ func resume_ticks():
 	self.strike_timer.paused = false
 
 
+func stop_ticks():
+	self.tick_timer.stop()
+	self.strike_timer.stop()
+
+
 func _on_state_manager_request_pause_ticks() -> void:
 	self.pause_ticks()
 
@@ -113,7 +120,8 @@ func _on_task_manager_add_strike() -> void:
 	if self.strike_timer.is_stopped():
 		self.strike_timer.start()
 	if self.strikes > 3:
-		pass
+		print("Strikes limit exceeded. Game ending")
+		game_over.emit()
 	update_strikes.emit(self.strikes)
 
 

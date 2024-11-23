@@ -1,41 +1,39 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=15 format=3 uid="uid://d2v54xlxhspxn"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_i4jwi"]
-[ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_d61ba"]
-[ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_g4gfh"]
-[ext_resource type="Script" path="res://scripts/scene_manager.gd" id="3_vc6jq"]
-[ext_resource type="PackedScene" uid="uid://buhyma3thhvsr" path="res://scenes/main_menu.tscn" id="4_7s5e3"]
-[ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="4_ua4k7"]
-[ext_resource type="PackedScene" uid="uid://bewnwvp14pvsh" path="res://scenes/game_screen.tscn" id="7_48ec3"]
-[ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="8_u02o4"]
-[ext_resource type="PackedScene" uid="uid://cvldgsjh7nl1c" path="res://scenes/ingame_menu.tscn" id="8_vtu0e"]
-[ext_resource type="PackedScene" uid="uid://cnu33pet08tkr" path="res://scenes/acceptance_component.tscn" id="8_wvxwk"]
-[ext_resource type="PackedScene" uid="uid://dv6uht3s2mdrb" path="res://scenes/login_data.tscn" id="9_vg3k3"]
-[ext_resource type="VideoStream" path="res://videos/gameintro.ogv" id="10_a1ree"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_uckyl"]
+[ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_7r3s5"]
+[ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_5h744"]
+[ext_resource type="Script" path="res://scripts/scene_manager.gd" id="4_nthw3"]
+[ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="5_13g4r"]
+[ext_resource type="PackedScene" uid="uid://buhyma3thhvsr" path="res://scenes/game/main_menu.tscn" id="6_uexxm"]
+[ext_resource type="PackedScene" uid="uid://bewnwvp14pvsh" path="res://scenes/game/game_screen.tscn" id="7_plp0g"]
+[ext_resource type="PackedScene" uid="uid://cvldgsjh7nl1c" path="res://scenes/game/ingame_menu.tscn" id="8_s2br5"]
+[ext_resource type="PackedScene" uid="uid://dv6uht3s2mdrb" path="res://scenes/login/login_data.tscn" id="9_7atw0"]
+[ext_resource type="PackedScene" uid="uid://cnu33pet08tkr" path="res://scenes/game/acceptance_component.tscn" id="10_gyxay"]
+[ext_resource type="PackedScene" uid="uid://b4vcava3hvsx2" path="res://scenes/game/game_over.tscn" id="10_y5txm"]
+[ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="11_il6a7"]
+[ext_resource type="VideoStream" path="res://videos/gameintro.ogv" id="12_ss6wg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3kk3"]
-texture = ExtResource("4_ua4k7")
+texture = ExtResource("5_13g4r")
 
 [node name="Game" type="Node"]
-script = ExtResource("1_i4jwi")
-tickrate = 1.25
-timerate = 15
-strike_fade_rate = 120.0
+script = ExtResource("1_uckyl")
 
 [node name="StateManager" type="Node" parent="."]
-script = ExtResource("2_d61ba")
+script = ExtResource("2_7r3s5")
 
 [node name="TaskManager" type="Node" parent="."]
-script = ExtResource("3_g4gfh")
-time_until_next_task = 5.0
-time_until_task_expires = 30.0
+script = ExtResource("3_5h744")
+time_until_next_task = 1.0
+time_until_task_expires = 1.0
 
 [node name="TaskTimeLeftTimer" type="Timer" parent="TaskManager"]
 
 [node name="NextTaskTimer" type="Timer" parent="TaskManager"]
 
 [node name="SceneManager" type="Node" parent="."]
-script = ExtResource("3_vc6jq")
+script = ExtResource("4_nthw3")
 
 [node name="GameScenes" type="CanvasLayer" parent="SceneManager"]
 
@@ -60,10 +58,10 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="MainMenu" parent="SceneManager/GameScenes/MainMenuMargin" instance=ExtResource("4_7s5e3")]
+[node name="MainMenu" parent="SceneManager/GameScenes/MainMenuMargin" instance=ExtResource("6_uexxm")]
 layout_mode = 2
 
-[node name="GameScreen" parent="SceneManager/GameScenes" instance=ExtResource("7_48ec3")]
+[node name="GameScreen" parent="SceneManager/GameScenes" instance=ExtResource("7_plp0g")]
 visible = false
 anchors_preset = 0
 anchor_right = 0.0
@@ -78,24 +76,27 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="IngameMenu" parent="SceneManager/GameScenes" instance=ExtResource("8_vtu0e")]
+[node name="IngameMenu" parent="SceneManager/GameScenes" instance=ExtResource("8_s2br5")]
 visible = false
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="LoginData" parent="SceneManager/GameScenes" instance=ExtResource("9_vg3k3")]
+[node name="LoginData" parent="SceneManager/GameScenes" instance=ExtResource("9_7atw0")]
 visible = false
 offset_left = 121.0
 offset_top = 98.0
 offset_right = 683.0
 offset_bottom = 439.0
 
+[node name="GameOver" parent="SceneManager/GameScenes" instance=ExtResource("10_y5txm")]
+visible = false
+
 [node name="UI" type="CanvasLayer" parent="SceneManager"]
 visible = false
 
-[node name="AcceptanceComponent" parent="SceneManager/UI" instance=ExtResource("8_wvxwk")]
+[node name="AcceptanceComponent" parent="SceneManager/UI" instance=ExtResource("10_gyxay")]
 offset_left = 1460.0
 offset_top = 60.0
 offset_right = 1860.0
@@ -114,7 +115,7 @@ layout_mode = 2
 [node name="OSButton" type="Button" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("8_u02o4")
+theme_override_fonts/font = ExtResource("11_il6a7")
 theme_override_font_sizes/font_size = 48
 text = "LLOS"
 
@@ -128,7 +129,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 2.0
-theme_override_fonts/normal_font = ExtResource("8_u02o4")
+theme_override_fonts/normal_font = ExtResource("11_il6a7")
 theme_override_font_sizes/bold_italics_font_size = 32
 theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
@@ -144,31 +145,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = ExtResource("10_a1ree")
+stream = ExtResource("12_ss6wg")
 
 [node name="Tick" type="Timer" parent="."]
 
 [node name="StrikeTimer" type="Timer" parent="."]
 
 [connection signal="change_state" from="." to="StateManager" method="_on_game_change_state"]
+[connection signal="game_over" from="." to="StateManager" method="_on_game_game_over"]
+[connection signal="game_over" from="." to="TaskManager" method="_on_game_game_over"]
 [connection signal="intro" from="." to="SceneManager" method="_on_game_intro"]
 [connection signal="new_day" from="." to="TaskManager" method="_on_game_new_day"]
 [connection signal="start_new_game" from="." to="TaskManager" method="_on_game_start_new_game"]
+[connection signal="start_new_game" from="." to="SceneManager" method="_on_game_start_new_game"]
 [connection signal="update_datetime" from="." to="SceneManager" method="_on_game_update_datetime"]
 [connection signal="update_strikes" from="." to="SceneManager" method="_on_game_update_strikes"]
 [connection signal="new_scene" from="StateManager" to="SceneManager" method="_on_state_manager_new_scene"]
-[connection signal="pause_game" from="StateManager" to="TaskManager" method="_on_state_manager_pause_game"]
 [connection signal="request_activate_control_buttons" from="StateManager" to="SceneManager" method="_on_state_manager_request_activate_control_buttons"]
-[connection signal="request_disable_control_buttons" from="StateManager" to="SceneManager" method="_on_state_manager_request_disable_control_buttons"]
 [connection signal="request_hide_ui" from="StateManager" to="SceneManager" method="_on_state_manager_request_hide_ui"]
 [connection signal="request_pause_ticks" from="StateManager" to="." method="_on_state_manager_request_pause_ticks"]
+[connection signal="request_pause_ticks" from="StateManager" to="TaskManager" method="_on_state_manager_request_pause_ticks"]
 [connection signal="request_resume_ticks" from="StateManager" to="." method="_on_state_manager_request_resume_ticks"]
+[connection signal="request_resume_ticks" from="StateManager" to="TaskManager" method="_on_state_manager_request_resume_ticks"]
 [connection signal="request_show_ui" from="StateManager" to="SceneManager" method="_on_state_manager_request_show_ui"]
-[connection signal="unpause_game" from="StateManager" to="TaskManager" method="_on_state_manager_unpause_game"]
+[connection signal="resume_task" from="StateManager" to="TaskManager" method="_on_state_manager_resume_task"]
 [connection signal="add_strike" from="TaskManager" to="." method="_on_task_manager_add_strike"]
 [connection signal="new_task" from="TaskManager" to="StateManager" method="_on_task_manager_new_task"]
 [connection signal="new_task" from="TaskManager" to="SceneManager" method="_on_task_manager_new_task"]
 [connection signal="ready_login_screen" from="TaskManager" to="SceneManager" method="_on_task_manager_ready_login_screen"]
+[connection signal="resume_task" from="TaskManager" to="SceneManager" method="_on_task_manager_resume_task"]
 [connection signal="task_complete" from="TaskManager" to="StateManager" method="_on_task_manager_task_complete"]
 [connection signal="task_complete" from="TaskManager" to="SceneManager" method="_on_task_manager_task_complete"]
 [connection signal="timeout" from="TaskManager/TaskTimeLeftTimer" to="TaskManager" method="_on_task_time_left_timer_timeout"]
@@ -180,6 +185,8 @@ stream = ExtResource("10_a1ree")
 [connection signal="exit_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_exit_button_pressed"]
 [connection signal="exit_to_menu_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_exit_to_menu_button_pressed"]
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_settings_button_pressed"]
+[connection signal="exit_button_pressed" from="SceneManager/GameScenes/GameOver" to="." method="_on_ingame_menu_exit_button_pressed"]
+[connection signal="menu_button_pressed" from="SceneManager/GameScenes/GameOver" to="." method="_on_ingame_menu_exit_to_menu_button_pressed"]
 [connection signal="accept_pressed" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_accept_pressed"]
 [connection signal="decline_pressed" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_decline_pressed"]
 [connection signal="pressed" from="SceneManager/UI/TaskBarContainer/TaskBarIcons/OSButton" to="." method="_on_os_button_pressed"]

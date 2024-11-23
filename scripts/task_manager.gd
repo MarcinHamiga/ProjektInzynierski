@@ -3,13 +3,14 @@ extends Node
 
 @export var password_rules_filepath: String = "res://rules/password_rules.json"
 @export var current_password_rule: String = "PAS1"
-@export var time_until_next_task: float = 15
-@export var time_until_task_expires: float = 180
+@export var time_until_next_task: float = 5
+@export var time_until_task_expires: float = 120
 
 signal ready_login_screen
 signal add_strike
 signal task_complete
 signal new_task
+signal resume_task
 
 var task_time_left_timer: Timer
 var next_task_timer: Timer
@@ -189,12 +190,9 @@ func unpause_timers() -> void:
 	self.task_time_left_timer.paused = false
 
 
-func _on_state_manager_pause_game() -> void:
-	self.pause_timers()
-
-
-func _on_state_manager_unpause_game() -> void:
-	self.unpause_timers()
+func stop_timers() -> void:
+	self.next_task_timer.stop()
+	self.task_time_left_timer.stop()
 
 
 func _on_next_task_timer_timeout() -> void:
@@ -222,3 +220,20 @@ func _on_game_new_day(day: int) -> void:
 		_:
 			pass
 	print(self.current_password_rule)
+
+
+func _on_game_game_over() -> void:
+	self.stop_timers()
+	self.current_task = Globals.Tasks.NONE
+
+
+func _on_state_manager_request_pause_ticks() -> void:
+	self.pause_timers()
+
+
+func _on_state_manager_request_resume_ticks() -> void:
+	self.unpause_timers()
+
+
+func _on_state_manager_resume_task() -> void:
+	resume_task.emit(self.current_task)

@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4vcava3hvsx2"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_8lxxf"]
+[ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="2_7klyv"]
+
+[node name="GameOverMargin" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+script = ExtResource("1_8lxxf")
+
+[node name="GameOverVBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Spacer1" type="Control" parent="GameOverVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="GameOverText" type="RichTextLabel" parent="GameOverVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource("2_7klyv")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/normal_font_size = 280
+bbcode_enabled = true
+text = "[center] Koniec Gry [/center]"
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="GameOverVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="MenuButton" type="Button" parent="GameOverVBox/ButtonsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_7klyv")
+text = "Menu Główne"
+
+[node name="ExitButton" type="Button" parent="GameOverVBox/ButtonsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_7klyv")
+text = "Wyjdź do pulpitu"
+
+[connection signal="pressed" from="GameOverVBox/ButtonsHBox/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="GameOverVBox/ButtonsHBox/ExitButton" to="." method="_on_exit_button_pressed"]

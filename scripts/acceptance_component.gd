@@ -48,3 +48,9 @@ func write_to_strikes(amount: int) -> void:
 
 func _on_match_info_disappear_timer_timeout() -> void:
 	self.match_info.text = ""
+	
+	
+func reset():
+	self.strikes.text = "Błędy: 0"
+	self.match_info.text = ""
+	self.disable_buttons()

@@ -40,6 +40,7 @@ func add_server_task():
 		}
 		if not object_exists(new_server):
 			servers_list.append(new_server)
+			#print("Wygenerowano zadanie serwera:", new_server)
 			return new_server
 
 func object_exists(obj) -> bool:

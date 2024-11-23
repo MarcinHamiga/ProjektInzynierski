@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://07ykdi28puh7"]
 
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="1_7cgll"]
-[ext_resource type="Script" path="res://scripts/close_install_permission.gd" id="2_btt0q"]
+[ext_resource type="Script" path="res://scripts/serwery_i_pliki/close_install_permission.gd" id="2_btt0q"]
 
 [node name="Install_permission" type="Control"]
 layout_mode = 3

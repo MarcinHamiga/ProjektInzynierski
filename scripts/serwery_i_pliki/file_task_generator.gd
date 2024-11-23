@@ -59,6 +59,7 @@ func not_safe():
 		}
 		if not object_exists(new_file):
 			files_list.append(new_file)
+			#print("Wygenerowano bezpieczny plik:", new_file)
 			return new_file
 	
 

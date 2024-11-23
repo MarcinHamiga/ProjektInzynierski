@@ -9,7 +9,7 @@ func _process(delta: float) -> void:
 
 func _on_pressed():
 	# Znalezienie elementu nadrzędnego `Message` i jego ukrycie
-	var parent_message = get_parent().get_node("Message")
+	var parent_message = get_parent().get_node("Email")
 	if parent_message:
 		parent_message.visible = false
 	

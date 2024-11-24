@@ -3,7 +3,7 @@ extends Control
 var vbox: VBoxContainer
 var record_list = []  # Lista pracowników
 var task_list = []    # Lista zadań
-
+var file_tasks = []
 func _ready() -> void:
 	vbox = $MessList/VBoxContainer
 	
@@ -11,7 +11,7 @@ func _ready() -> void:
 	main_sip.load_and_generate_records()  # Wczytanie danych i generowanie rekordów
 	record_list = main_sip.get_records()  # Pobieramy listę pracowników
 	task_list = main_sip.get_tasks()      # Pobieramy listę zadań
-	
+	file_tasks = main_sip.get_file_tasks()
 	display_all_records()  # Wyświetlamy wszystkie rekordy
 
 func display_all_records() -> void:
@@ -64,7 +64,11 @@ func get_task_for_employee(employee_id: int) -> Dictionary:
 			return task
 	return {}  # Zwracamy pusty słownik, jeśli nie znaleziono zadania
 
+# email_box.gd
 func _on_button_pressed(record_id: int) -> void:
+	# Ustawiamy aktualne ID w main_sip
+	main_sip.set_current_id(record_id)
+	
+	# Możemy teraz wczytać dane z głównej sceny, np. wyświetlić dane w etykietach
 	var email_scene = load("res://scenes/serwery_i_pliki/email.tscn").instantiate()
-	email_scene.set_meta("record_id", record_id)
 	get_tree().current_scene.add_child(email_scene)

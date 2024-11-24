@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://07ykdi28puh7"]
+[gd_scene load_steps=4 format=3 uid="uid://07ykdi28puh7"]
 
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="1_7cgll"]
+[ext_resource type="Script" path="res://scripts/serwery_i_pliki/install_permission.gd" id="1_nqdm1"]
 [ext_resource type="Script" path="res://scripts/serwery_i_pliki/close_install_permission.gd" id="2_btt0q"]
 
 [node name="Install_permission" type="Control"]
@@ -16,6 +17,7 @@ offset_right = 512.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nqdm1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -31,22 +33,22 @@ offset_top = 95.0
 offset_right = 196.0
 offset_bottom = 118.0
 
-[node name="FileType" type="Label" parent="."]
+[node name="Name" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.085
 anchor_bottom = 0.085
-offset_left = 157.0
-offset_top = 94.0
-offset_right = 159.05
-offset_bottom = 93.88
+offset_left = 337.0
+offset_top = 93.0
+offset_right = 339.05
+offset_bottom = 92.88
 
 [node name="Creator" type="Label" parent="."]
 layout_mode = 0
-offset_left = 167.0
-offset_top = 90.0
-offset_right = 207.0
-offset_bottom = 113.0
+offset_left = 157.0
+offset_top = 159.0
+offset_right = 197.0
+offset_bottom = 182.0
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 1

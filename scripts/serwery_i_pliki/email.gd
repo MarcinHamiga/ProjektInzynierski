@@ -13,7 +13,7 @@ var access_rank_label: Label
 
 func _ready() -> void:
 	# Odbieramy przekazane ID z metadanych
-	record_id = get_meta("record_id", -1)
+	record_id = main_sip.get_current_id()
 	print("Przekazane record_id:", record_id)
 
 	# Pobieramy rekord pracownika
@@ -56,16 +56,15 @@ func _ready() -> void:
 	# Sprawdzamy, czy zadanie to "Dostęp do serwera"
 	if task["type"] == "Dostęp do serwera":
 		print("Wywołuję funkcję dla zadania typu 'Dostęp do serwera'")
-		handle_server_task(record, task)
-		# Ustawiamy odpowiednie wartości w etykietach dla dostępu do serwera
+		# Obsługuje zadanie typu "Dostęp do serwera"
 		var server_task = handle_server_task(record, task)
 		access_type_label.text = server_task["access_type"]
 		access_location_label.text = server_task["access_location"]
 		access_rank_label.text = server_task["access_rank"]
 		# Ukrywamy przycisk Attachment, bo nie jest potrzebny przy zadaniach serwerowych
 		attachment_button.hide()
-	# Dla innych zadań (np. pliki), przycisk Attachment będzie widoczny
 	else:
+		# Dla innych zadań (np. pliki), przycisk Attachment będzie widoczny
 		attachment_button.show()
 		# Obsługuje zadanie związane z plikami
 		handle_file_task(record, task)
@@ -75,14 +74,14 @@ func get_record_by_id(record_id: int, record_list: Array) -> Dictionary:
 	for record in record_list:
 		if record["id"] == record_id:
 			return record
-	return {}  # Ten przypadek nie powinien wystąpić
+	return {}  # Jeśli nie znaleziono rekordu, zwróci pusty słownik
 
 # Funkcja do pobrania zadania przypisanego do pracownika
 func get_task_for_employee(employee_id: int, task_list: Array) -> Dictionary:
 	for task in task_list:
 		if task["employee_id"] == employee_id:
 			return task
-	return {}  # Ten przypadek nie powinien wystąpić
+	return {}  # Jeśli nie znaleziono zadania, zwróci pusty słownik
 
 # Funkcja obsługująca zadania związane z serwerami
 func handle_server_task(record: Dictionary, task: Dictionary) -> Dictionary:
@@ -96,11 +95,16 @@ func handle_server_task(record: Dictionary, task: Dictionary) -> Dictionary:
 	return server_task  # Zwracamy wygenerowane zadanie
 
 # Funkcja obsługująca zadania związane z plikami
-func handle_file_task(record: Dictionary, task: Dictionary) -> void:
-	print("Obsługuje zadanie plików dla:", record["name"])
-	# Ładowanie generatora zadań plików
+func handle_file_task(record: Dictionary, task: Dictionary):
+	# Tworzymy instancję generatora
 	var file_task_generator = preload("res://scripts/serwery_i_pliki/file_task_generator.gd").new()
-	file_task_generator._ready()  # Inicjalizacja generatora (jeśli wymaga)
-
-	# Wywołanie funkcji specyficznej dla zadania
-	file_task_generator.add_file_task()  
+	
+	# Generujemy losowe dane
+	var random_data = file_task_generator.generate_random_data()
+	
+	# Sprawdzamy, czy dane zostały poprawnie wygenerowane
+	if random_data.size() > 0:
+		var files = random_data[0]  # Pobieramy pierwszy słownik
+		print(files)  # Wypisujemy wynik
+	else:
+		print("Brak danych do wyświetlenia.")

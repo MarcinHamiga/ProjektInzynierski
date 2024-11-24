@@ -114,8 +114,8 @@ func _on_state_manager_request_disable_control_buttons() -> void:
 
 func show_task(task: Globals.Tasks) -> void:
 	match task:
-		Globals.Tasks.LOGIN_CHECK:
-			self.set_current_scene("LoginData")
+		Globals.Tasks.S_P:
+			self.set_current_scene("EmailBox")
 			enable_buttons.emit()
 		_:
 			pass

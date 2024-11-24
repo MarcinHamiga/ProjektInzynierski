@@ -1,48 +1,130 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsghr27gb43s4"]
+[gd_scene load_steps=5 format=3 uid="uid://dsghr27gb43s4"]
 
 [ext_resource type="Script" path="res://scripts/serwery_i_pliki/attachment.gd" id="1_s2pmx"]
-
-[sub_resource type="GDScript" id="GDScript_0o23r"]
+[ext_resource type="Script" path="res://scripts/serwery_i_pliki/email.gd" id="1_vfhw2"]
+[ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="2_ucuro"]
+[ext_resource type="Script" path="res://scenes/serwery_i_pliki/powrót.gd" id="4_pe25t"]
 
 [node name="Email" type="Control"]
 layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_vfhw2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_0o23r")
+texture = ExtResource("2_ucuro")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Message" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 494.0
-offset_top = 467.0
-offset_right = 1050.0
-offset_bottom = 951.0
-
-[node name="AddressIP" type="Label" parent="Message"]
+[node name="Attachment" type="Button" parent="."]
 layout_mode = 2
+offset_left = 209.0
+offset_top = 509.0
+offset_right = 397.0
+offset_bottom = 570.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Attachment"
+script = ExtResource("1_s2pmx")
 
-[node name="AddressEmail" type="Label" parent="Message"]
-layout_mode = 2
-text = "email
+[node name="Accept" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -21.0
+offset_right = -31.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Akceptuj zgłoszenie
 "
 
+[node name="NotAccept" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = 30.0
+offset_right = -33.0
+offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Odrzuć zgłoszenie
+"
+
+[node name="Powrót" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.5
+offset_top = -70.0
+offset_right = 68.5
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+text = "Powrót
+"
+script = ExtResource("4_pe25t")
+
+[node name="Message" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 24.0
+offset_right = 337.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Message"]
+layout_mode = 2
+
 [node name="Topic" type="Label" parent="Message"]
+layout_mode = 2
+
+[node name="Type" type="Label" parent="Message"]
+layout_mode = 2
+
+[node name="Email" type="Label" parent="Message"]
 layout_mode = 2
 
 [node name="ProblemMessage" type="Label" parent="Message"]
 layout_mode = 2
 
-[node name="Attachment" type="Button" parent="Message"]
-layout_mode = 2
-text = "Attachment"
-script = ExtResource("1_s2pmx")
-
-[node name="Accept" type="Button" parent="Message"]
+[node name="AccessType" type="Label" parent="Message"]
 layout_mode = 2
 
-[node name="NotAccept" type="Button" parent="Message"]
+[node name="AccessLocation" type="Label" parent="Message"]
 layout_mode = 2
 
-[connection signal="pressed" from="Message/Attachment" to="Message/Attachment" method="_on_pressed"]
+[node name="AccessRank" type="Label" parent="Message"]
+layout_mode = 2
+
+[connection signal="pressed" from="Attachment" to="Attachment" method="_on_pressed"]

@@ -4,6 +4,7 @@ extends Node
 @export var tickrate: float = 1.25
 @export var timerate: int = 15
 @export var strike_fade_rate: float = 120
+@export var _intro: bool = true
 
 var state_manager: Node
 var scene_manager: Node
@@ -36,7 +37,8 @@ func _ready() -> void:
 	self.strike_timer.wait_time = self.strike_fade_rate
 	self.strike_timer.autostart = false
 	self.strike_timer.one_shot = true
-	intro.emit()
+	if self._intro:
+		intro.emit()
 
 func new_game():
 	self.strikes = 0

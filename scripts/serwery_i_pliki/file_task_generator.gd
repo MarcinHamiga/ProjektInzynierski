@@ -1,75 +1,74 @@
 extends Node
 
-var itemData: Dictionary
-var files_list := []
-var next_id := 0
+# Ścieżka do pliku JSON
+var file_path = "res://Dane/files.json"
 
-func load_json_file(file_path: String) -> Dictionary:
-	if FileAccess.file_exists(file_path):
-		var data_file = FileAccess.open(file_path, FileAccess.READ)
-		var parsed_result = JSON.parse_string(data_file.get_as_text())
-		data_file.close()
-		if parsed_result is Dictionary:
-			return parsed_result
+# Funkcja do generowania danych
+func generate_random_data() -> Array:
+	# Otwieramy plik
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	
+	if file:
+		var json_data = file.get_as_text()  # Odczytanie pliku jako tekst
+		var json_parser = JSON.new()
+		var result = json_parser.parse(json_data)  # Parsowanie tekstu do formatu JSON
+		
+		if result == OK:
+			var json_object = json_parser.get_data()  # Pobranie sparsowanych danych
+			
+			# Losowanie, czy będzie safe czy notsafe
+			var is_safe = randi() % 2 == 0  # Losowanie 0 lub 1 (safe = true, notsafe = false)
+			
+			# Losowanie jednego rekordu
+			var name_random = get_random_name(json_object["name"])
+			var creator_random = ""
+			if is_safe:
+				creator_random = get_random_creator(json_object["creator"]["safe"])
+			else:
+				creator_random = get_random_creator(json_object["creator"]["notsafe"])
+
+			var ext_random = ""
+			if is_safe:
+				ext_random = get_random_extension(json_object["extension"]["safe"])
+			else:
+				ext_random = get_random_extension(json_object["extension"]["notsafe"])
+
+			# Tworzymy słownik z wynikiem
+			var record = {
+				"name": name_random,
+				"creator": creator_random,
+				"extension": ext_random
+			}
+
+			# Zwracamy wynik w postaci listy z jednym słownikiem
+			return [record]
 		else:
-			print("Błąd podczas odczytu pliku:", parsed_result)
+			print("Błąd parsowania JSON:", json_parser.get_error_message())
+			return []  # W przypadku błędu zwracamy pustą listę
 	else:
-		print("Plik nie istnieje!")
-	return {}
-	
-func _ready() -> void:
-	itemData = load_json_file("res://Dane/files.json")  # Wczytaj dane z pliku JSON
-	
-func generate_unique_id() -> int:
-	var id = next_id
-	next_id += 1
-	return id
-	
-func remove_from_list(id: int) -> void:
-	for element in files_list:
-		if element.id == id:
-			files_list.erase(element)
-	
-func add_file_task():
-	var probability = 0.5
-	if randf() < probability:
-		return not_safe()
+		print("Błąd otwarcia pliku:", file_path)
+		return []  # W przypadku błędu otwarcia pliku zwracamy pustą listę
+
+# Funkcja pomocnicza do losowania nazwy pliku
+func get_random_name(names: Array) -> String:
+	if names.size() > 0:
+		return names[randi() % names.size()]  # Losowanie elementu
 	else:
-		return safe()
+		return "Brak danych"  # Zwracamy domyślną wartość, jeśli nie ma danych
 
-func safe():
-	while true:
-		var new_file = {
-			"id": generate_unique_id(),
-			"name": itemData["name"].pick_random(),
-			"creator": itemData["creator"]["safe"].pick_random(),
-			"extension": itemData["extension"]["safe"].pick_random(),
-		}
-		if not object_exists(new_file):
-			files_list.append(new_file)
-			return new_file
+# Funkcja pomocnicza do losowania twórcy (safe/notsafe)
+func get_random_creator(creator_list: Array) -> String:
+	if creator_list != null and creator_list.size() > 0:
+		return creator_list[randi() % creator_list.size()]  # Losowanie twórcy
+	else:
+		return "Brak twórców"  # Zwracamy domyślną wartość, jeśli brak twórców
 
-func not_safe():
-	while true:
-		var new_file = {
-			"id": generate_unique_id(),
-			"name": itemData["name"].pick_random(),
-			"creator": itemData["creator"]["notsafe"].pick_random(),
-			"extension": itemData["extension"]["notsafe"].pick_random(),
-		}
-		if not object_exists(new_file):
-			files_list.append(new_file)
-			#print("Wygenerowano bezpieczny plik:", new_file)
-			return new_file
-	
-
-func object_exists(obj) -> bool:
-	for file in files_list:
-		if file["name"] == obj["name"] and file["creator"] == obj["creator"] and file["extension"] == obj["extension"]:
-			return true
-	return false
-
-func get_task(id):
-	for file in files_list:
-		if file["id"] == id:
-			return file
+# Funkcja pomocnicza do losowania rozszerzenia (safe/notsafe)
+func get_random_extension(extension_list: Array) -> String:
+	if extension_list.size() > 0:
+		# Losowanie rozszerzenia z listy
+		var ext = extension_list[randi() % extension_list.size()]
+		# Zwrócenie typu aplikacji oraz rozszerzenia
+		return ext["app_type"] + ": " + ext["extension"]
+	else:
+		return "Brak rozszerzeń"  # Zwracamy domyślną wartość, jeśli brak rozszerzeń

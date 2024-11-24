@@ -1,66 +1,76 @@
 {
-	"name": [
-			"Instrukcja Obsługi",
-			"Wiadomość Powitalna",
-			"Dokumentacja Techniczna",
-			"Pytania Egzaminacyjne",
-			"Prezentacja",
-			"Instalator Gry",
-			"Skrypt Automatyzacji",
-			"Wtyczka Systemowa",
-			"Raport Finansowy - Makro",
-			"Nieznany Plik Systemowy"
+  "name": [
+	"Instrukcja Obsługi",
+	"Wiadomość Powitalna",
+	"Dokumentacja Techniczna",
+	"Pytania Egzaminacyjne",
+	"Prezentacja",
+	"Instalator Gry",
+	"Skrypt Automatyzacji",
+	"Wtyczka Systemowa",
+	"Raport Finansowy - Makro",
+	"Nieznany Plik Systemowy"
+  ],
+  "creator": {
+	"safe": [
+	  "Producent ABC",
+	  "System",
+	  "Dział Dokumentacji",
+	  "Marketing",
+	  "Uczelnia"
 	],
-	"creator": {
-		"safe": [
-			"Producent ABC",
-			"System",
-			"Dział Dokumentacji",
-			"Marketing",
-			"Uczelnia"
-		],
-		"notsafe": [
-			"Nieznany",
-			"GameStudio",
-			"IT Department",
-			"Firma XYZ - Skrypt",
-			"Zewnętrzny Deweloper"
-		]
-	},
-	"extension": {
-		"safe": [
-			{
-				"plik tekstowy": ".txt"
-			},
-			{
-				"arkusz": ".xls"
-			},
-			{
-				"dokument pdf": ".pdf"
-			},
-			{
-				"dokument word": ".docx"
-			},
-			{
-				"prezentacja": ".pptx"
-			}
-		],
-		"notsafe": [
-			{
-				"aplikacja": ".exe"
-			},
-			{
-				"plik skryptowy": ".sh"
-			},
-			{
-				"plik binarny": ".bin"
-			},
-			{
-				"plik cookie": ".cookie"
-			},
-			{
-				"aplikacja makro": ".xlsm"
-			}
-		]
-	}
+	"notsafe": [
+	  "Nieznany",
+	  "GameStudio",
+	  "IT Department",
+	  "Firma XYZ - Skrypt",
+	  "Zewnętrzny Deweloper"
+	]
+  },
+  "extension": {
+	"safe": [
+	  {
+		"app_type": "plik tekstowy",
+		"extension": ".txt"
+	  },
+	  {
+		"app_type": "arkusz",
+		"extension": ".xls"
+	  },
+	  {
+		"app_type": "dokument pdf",
+		"extension": ".pdf"
+	  },
+	  {
+		"app_type": "dokument word",
+		"extension": ".docx"
+	  },
+	  {
+		"app_type": "prezentacja",
+		"extension": ".pptx"
+	  }
+	],
+	"notsafe": [
+	  {
+		"app_type": "aplikacja",
+		"extension": ".exe"
+	  },
+	  {
+		"app_type": "plik skryptowy",
+		"extension": ".sh"
+	  },
+	  {
+		"app_type": "plik binarny",
+		"extension": ".bin"
+	  },
+	  {
+		"app_type": "plik cookie",
+		"extension": ".cookie"
+	  },
+	  {
+		"app_type": "aplikacja makro",
+		"extension": ".xlsm"
+	  }
+	]
+  }
 }

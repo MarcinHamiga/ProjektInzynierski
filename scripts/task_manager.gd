@@ -197,7 +197,7 @@ func stop_timers() -> void:
 
 func _on_next_task_timer_timeout() -> void:
 	print("New Task emitted")
-	self.current_task = Globals.Tasks.LOGIN_CHECK
+	self.current_task = Globals.Tasks.S_P
 	self.get_login_screen_data()
 	new_task.emit(self.current_task)
 	self.task_time_left_timer.start()

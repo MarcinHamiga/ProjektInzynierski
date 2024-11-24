@@ -1,110 +1,83 @@
 extends Control
 
-var record_id: int = -1  # ID rekordu
+var record_id: int = -1
 var name_label: Label
 var topic_label: Label
 var type_label: Label
 var email_label: Label
-var attachment_button: Button  # Przycisk Attachment
+var attachment_button: Button  
 
 var access_type_label: Label
 var access_location_label: Label
 var access_rank_label: Label
 
 func _ready() -> void:
-	# Odbieramy przekazane ID z metadanych
 	record_id = main_sip.get_current_id()
 	print("Przekazane record_id:", record_id)
 
-	# Pobieramy rekord pracownika
 	var record = get_record_by_id(record_id, main_sip.get_records())
-	# Pobieramy zadanie przypisane do pracownika
 	var task = get_task_for_employee(record_id, main_sip.get_tasks())
 
-	# Sprawdzamy, czy rekord i zadanie istnieją
-	if record == {}:
-		print("Nie znaleziono rekordu dla ID:", record_id)
-		return
-	if task == {}:
-		print("Nie znaleziono zadania dla pracownika ID:", record_id)
-		return
-
-	# Sprawdzamy dane przed wyświetleniem
-	print("Dane pracownika:")
-	print(record)  # Drukujemy rekord pracownika
-	print("Dane zadania przypisanego do pracownika:")
-	print(task)  # Drukujemy zadanie przypisane do pracownika
-
-	# Odwołanie do etykiet w scenie
 	name_label = $Message/Name
 	topic_label = $Message/Topic
 	type_label = $Message/Type
 	email_label = $Message/Email
 	attachment_button = $Attachment
 	
-	# Etykiety dla AccessType, AccessLocation, AccessRank
 	access_type_label = $Message/AccessType
 	access_location_label = $Message/AccessLocation
 	access_rank_label = $Message/AccessRank
 
-	# Aktualizacja tekstu w etykietach
 	name_label.text = record["name"]
 	email_label.text = record["email"]
 	topic_label.text = task["topic"]
 	type_label.text = task["type"]
 
-	# Sprawdzamy, czy zadanie to "Dostęp do serwera"
 	if task["type"] == "Dostęp do serwera":
 		print("Wywołuję funkcję dla zadania typu 'Dostęp do serwera'")
-		# Obsługuje zadanie typu "Dostęp do serwera"
-		var server_task = handle_server_task(record, task)
-		access_type_label.text = server_task["access_type"]
-		access_location_label.text = server_task["access_location"]
-		access_rank_label.text = server_task["access_rank"]
-		# Ukrywamy przycisk Attachment, bo nie jest potrzebny przy zadaniach serwerowych
-		attachment_button.hide()
+		var server_task = get_server_task(record_id)
+		if server_task != {}:
+			access_type_label.text = server_task["access_type"]
+			access_location_label.text = server_task["access_location"]
+			access_rank_label.text = server_task["access_rank"]
+			attachment_button.hide()
 	else:
-		# Dla innych zadań (np. pliki), przycisk Attachment będzie widoczny
 		attachment_button.show()
-		# Obsługuje zadanie związane z plikami
 		handle_file_task(record, task)
 
-# Funkcja do pobrania rekordu pracownika na podstawie ID
 func get_record_by_id(record_id: int, record_list: Array) -> Dictionary:
 	for record in record_list:
 		if record["id"] == record_id:
 			return record
-	return {}  # Jeśli nie znaleziono rekordu, zwróci pusty słownik
-
-# Funkcja do pobrania zadania przypisanego do pracownika
+	return {} 
+	
 func get_task_for_employee(employee_id: int, task_list: Array) -> Dictionary:
 	for task in task_list:
 		if task["employee_id"] == employee_id:
 			return task
-	return {}  # Jeśli nie znaleziono zadania, zwróci pusty słownik
+	return {} 
 
-# Funkcja obsługująca zadania związane z serwerami
-func handle_server_task(record: Dictionary, task: Dictionary) -> Dictionary:
+func handle_server_task(record: Dictionary, task: Dictionary):
 	print("Obsługuje zadanie serwera dla:", record["name"])
-	# Ładowanie generatora zadań serwera
-	var server_task_generator = preload("res://scripts/serwery_i_pliki/server_task_generator.gd").new()
-	server_task_generator._ready()  # Inicjalizacja generatora (jeśli wymaga)
+	var server_task = preload("res://scripts/serwery_i_pliki/server_task_generator.gd").new()
+	server_task.generate_random_server_task()  
 
-	# Wywołanie funkcji specyficznej dla zadania
-	var server_task = server_task_generator.add_server_task()
-	return server_task  # Zwracamy wygenerowane zadanie
-
-# Funkcja obsługująca zadania związane z plikami
+	return server_task 
+	
+	
+func get_server_task(employee_id: int) -> Dictionary:
+	var server_tasks = main_sip.get_server_tasks()
+	for server_task in server_tasks:
+		if server_task["id"] == employee_id:
+			return server_task
+	return {} 
+	
 func handle_file_task(record: Dictionary, task: Dictionary):
-	# Tworzymy instancję generatora
 	var file_task_generator = preload("res://scripts/serwery_i_pliki/file_task_generator.gd").new()
 	
-	# Generujemy losowe dane
 	var random_data = file_task_generator.generate_random_data()
-	
-	# Sprawdzamy, czy dane zostały poprawnie wygenerowane
 	if random_data.size() > 0:
-		var files = random_data[0]  # Pobieramy pierwszy słownik
-		print(files)  # Wypisujemy wynik
+		var files = random_data[0] 
+		print(files) 
 	else:
 		print("Brak danych do wyświetlenia.")

@@ -24,8 +24,10 @@ func generate_random_data() -> Array:
 			var creator_random = ""
 			if is_safe:
 				creator_random = get_random_creator(json_object["creator"]["safe"])
+				main_sip.set_answer(true)
 			else:
 				creator_random = get_random_creator(json_object["creator"]["notsafe"])
+				main_sip.set_answer(false)
 
 			var ext_random = ""
 			if is_safe:

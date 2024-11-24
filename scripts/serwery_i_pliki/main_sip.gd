@@ -1,7 +1,7 @@
 extends Node
 
 # Liczba rekordów
-var num_records := 4  
+var num_records := 1  
 var records = []      
 var task_list = []    
 var file_tasks = []
@@ -12,6 +12,7 @@ var current_record_id: int = -1
 func _ready() -> void:
 	load_and_generate_records()  # Załaduj dane i wygeneruj rekordy
 	process_tasks()  # Procesujemy zadania po załadowaniu danych
+
 
 # Funkcja ładująca dane i generująca rekordy
 func load_and_generate_records():
@@ -60,29 +61,34 @@ func load_and_generate_records():
 
 # Funkcja przetwarzająca zadania
 func process_tasks():
-	# Przechodzimy przez wszystkie zadania
+	var file_task_generator = preload("res://scripts/serwery_i_pliki/file_task_generator.gd").new()
+
+	# Przechodzimy przez wszystkie zadania w task_list
 	for task in task_list:
 		if task["type"] == "Instalacja oprogramowania":
-			# Generowanie zadania dla instalacji oprogramowania
-			var generated_task = generate_installation_task(task["employee_id"])
-			# Dodanie wygenerowanego zadania do file_tasks
-			file_tasks.append(generated_task)
+			# Generowanie losowych danych z file_task_generator
+			var random_data = file_task_generator.generate_random_data()
 
-# Funkcja generująca zadanie dla instalacji oprogramowania
-func generate_installation_task(employee_id: int) -> Dictionary:
-	# Inkrementacja ID
-	var task_id = current_id
-	current_id += 1  # Zwiększamy ID o 1
+			if random_data.size() > 0:
+				var file_info = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
 
-	var installation_task = {
-		"employee_id": employee_id,
-		"topic": "Instalacja oprogramowania",
-		"type": "Instalacja oprogramowania",
-		"details": "Zainstalowanie nowego oprogramowania na serwerze",
-		"status": "W toku",
-		"id": task_id,
-	}
-	return installation_task
+				# Tworzymy nowy słownik dla file_tasks z ID z task_list
+				var installation_task = {
+					"id": task["employee_id"],  # Używamy ID z odpowiedniego zadania w task_list
+					"file_name": file_info["name"],
+					"file_creator": file_info["creator"],
+					"file_extension": file_info["extension"],
+				}
+
+				# Dodajemy słownik do file_tasks
+				file_tasks.append(installation_task)
+			else:
+				print("Nie udało się wygenerować danych pliku dla zadania instalacji.")
+
+	# Po przetworzeniu wszystkich zadań resetujemy current_id
+	current_id = -1
+
+
 
 # Funkcja ustawiająca ID
 func set_current_id(record_id: int) -> void:
@@ -114,3 +120,4 @@ func get_tasks() -> Array:
 # Funkcja zwracająca listę zadań związanych z instalacją oprogramowania
 func get_file_tasks() -> Array:
 	return file_tasks
+	

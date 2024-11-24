@@ -101,6 +101,7 @@ offset_left = 25.0
 offset_top = 24.0
 offset_right = 337.0
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Name" type="Label" parent="Message"]
 layout_mode = 2

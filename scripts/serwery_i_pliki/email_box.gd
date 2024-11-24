@@ -10,7 +10,11 @@ func _ready() -> void:
 	record_list = main_sip.get_records()
 	task_list = main_sip.get_tasks() 
 	file_tasks = main_sip.get_file_tasks()
-	new_record.emit()
+	
+	#flaga dla wysłania danych do sprawdzenia
+	new_record.emit(main_sip.get_answer())
+	print(main_sip.get_answer())
+	
 	display_all_records()
 
 func display_all_records() -> void:

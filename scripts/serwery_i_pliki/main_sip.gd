@@ -4,9 +4,11 @@ extends Node
 var num_records := 1  
 var records = []      
 var task_list = []    
-var file_tasks = []
+var file_tasks = []  # Zadania plikowe
+var server_tasks = []  # Zadania serwerowe
 var current_id := 1   
 var current_record_id: int = -1  
+var required_answer = false
 
 # Funkcja _ready - inicjalizacja
 func _ready() -> void:
@@ -61,11 +63,10 @@ func load_and_generate_records():
 
 # Funkcja przetwarzająca zadania
 func process_tasks():
-	var file_task_generator = preload("res://scripts/serwery_i_pliki/file_task_generator.gd").new()
-
 	# Przechodzimy przez wszystkie zadania w task_list
 	for task in task_list:
 		if task["type"] == "Instalacja oprogramowania":
+			var file_task_generator = preload("res://scripts/serwery_i_pliki/file_task_generator.gd").new()
 			# Generowanie losowych danych z file_task_generator
 			var random_data = file_task_generator.generate_random_data()
 
@@ -85,9 +86,29 @@ func process_tasks():
 			else:
 				print("Nie udało się wygenerować danych pliku dla zadania instalacji.")
 
+		elif task["type"] == "Dostęp do serwera":
+			var server_task_generator = preload("res://scripts/serwery_i_pliki/server_task_generator.gd").new()
+			# Generowanie losowych danych z server_task_generator
+			var random_data = server_task_generator.generate_random_server_task()
+
+			if random_data.size() > 0:
+				var server_info = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
+
+				# Tworzymy nowy słownik dla server_tasks z ID z task_list
+				var server_access_task = {
+					"id": task["employee_id"],  # Używamy ID z odpowiedniego zadania w task_list
+					"access_rank": server_info["access_rank"],
+					"access_location": server_info["access_location"],
+					"access_type": server_info["access_type"],
+				}
+
+				# Dodajemy słownik do server_tasks
+				server_tasks.append(server_access_task)
+			else:
+				print("Nie udało się wygenerować danych serwera dla zadania dostępu.")
+
 	# Po przetworzeniu wszystkich zadań resetujemy current_id
 	current_id = -1
-
 
 
 # Funkcja ustawiająca ID
@@ -109,6 +130,12 @@ func load_json_file(file_path: String) -> Dictionary:
 			return parsed_result
 	return {}
 
+func set_answer(answer):
+	required_answer = answer
+
+func get_answer() -> bool:
+	return required_answer
+
 # Funkcja zwracająca listę pracowników
 func get_records() -> Array:
 	return records
@@ -120,4 +147,7 @@ func get_tasks() -> Array:
 # Funkcja zwracająca listę zadań związanych z instalacją oprogramowania
 func get_file_tasks() -> Array:
 	return file_tasks
-	
+
+# Funkcja zwracająca listę zadań związanych z dostępem do serwera
+func get_server_tasks() -> Array:
+	return server_tasks

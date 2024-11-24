@@ -6,13 +6,12 @@ var task_list = []    # Lista zadań
 var file_tasks = []
 func _ready() -> void:
 	vbox = $MessList/VBoxContainer
-	# Ładowanie danych i generowanie rekordów za pomocą MainSIP
-	main_sip.load_and_generate_records()  # Wczytanie danych i generowanie rekordów
-	record_list = main_sip.get_records()  # Pobieramy listę pracowników
-	task_list = main_sip.get_tasks()      # Pobieramy listę zadań
+	main_sip.load_and_generate_records()
+	record_list = main_sip.get_records()
+	task_list = main_sip.get_tasks() 
 	file_tasks = main_sip.get_file_tasks()
 	new_record.emit()
-	display_all_records()  # Wyświetlamy wszystkie rekordy
+	display_all_records()
 
 func display_all_records() -> void:
 	for record in record_list:

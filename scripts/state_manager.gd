@@ -1,8 +1,10 @@
 extends Node
 
 @export var game_state: Globals.GameState
+
 var first_click_slot: Node
 var second_click_slot: Node
+var was_doing_task: bool
  
 signal state_changed
 signal new_scene
@@ -11,17 +13,13 @@ signal request_show_ui
 signal request_pause_ticks
 signal request_resume_ticks
 signal request_activate_control_buttons
-signal request_disable_control_buttons
-signal pause_game
-signal unpause_game
-signal lawful_accept
-signal wrong_accept
-signal unlawful_decline
-signal correct_decline
+signal resume_task
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.change_state(Globals.GameState.MAIN_MENU)
+	self.was_doing_task = false
+
 
 func _input(event):
 	if (
@@ -30,14 +28,14 @@ func _input(event):
 		and event.is_action_pressed("MainMenuKey")
 	):
 		self.change_state(Globals.GameState.INGAME_MENU)
-		pause_game.emit()
+		request_pause_ticks.emit()
 
 	elif (
 		self.game_state == Globals.GameState.INGAME_MENU \
 		and event.is_action_pressed("MainMenuKey")
 	):
 		self.change_state(Globals.GameState.GAME)
-		unpause_game.emit()
+		request_resume_ticks.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,31 +48,66 @@ func _process(delta: float) -> void:
 
 
 func change_state(new_state: Globals.GameState): 
-	if game_state != new_state:
-		self.game_state = new_state
+	if game_state != new_state and game_state != Globals.GameState.GAME_OVER:
+		self.handle_state_change(new_state)
 		state_changed.emit(self.game_state)
-		self.handle_state_change()
+	elif new_state == Globals.GameState.MAIN_MENU and game_state == Globals.GameState.GAME_OVER:
+		self.handle_state_change(new_state)
+		state_changed.emit(self.game_state)
+
+func change_state_to_main_menu():
+	self.was_doing_task = false
+	new_scene.emit("MainMenuMargin")
+	request_pause_ticks.emit()
+	request_hide_ui.emit()
+	self.game_state = Globals.GameState.MAIN_MENU
 
 
-func handle_state_change():
-	match self.game_state:
+func change_state_to_game():
+	new_scene.emit("GameScreen")
+	request_show_ui.emit()
+	request_resume_ticks.emit()
+	self.game_state = Globals.GameState.GAME
+
+
+func change_state_to_ingame_menu():
+	if self.game_state == Globals.GameState.INGAME_TASK:
+		self.was_doing_task = true
+	new_scene.emit("IngameMenu")
+	request_pause_ticks.emit()
+	request_hide_ui.emit()
+	self.game_state = Globals.GameState.INGAME_MENU
+
+
+func change_state_to_ingame_task():
+	self.was_doing_task = false
+	request_activate_control_buttons.emit()
+	self.game_state = Globals.GameState.INGAME_TASK
+	resume_task.emit()
+
+
+func change_state_to_game_over():
+	new_scene.emit("GameOver")
+	self.was_doing_task = false
+	request_pause_ticks.emit()
+	request_hide_ui.emit()
+	self.game_state = Globals.GameState.GAME_OVER
+
+
+func handle_state_change(new_state: Globals.GameState):
+	match new_state:
 		Globals.GameState.MAIN_MENU:
-			new_scene.emit("MainMenuMargin")
-			request_pause_ticks.emit()
-			request_hide_ui.emit()
-			pause_game.emit()
+			self.change_state_to_main_menu()
 		Globals.GameState.GAME:
-			new_scene.emit("GameScreen")
-			request_show_ui.emit()
-			request_resume_ticks.emit()
-			unpause_game.emit()
+			self.change_state_to_game()
+			if self.was_doing_task:
+				self.change_state_to_ingame_task()
 		Globals.GameState.INGAME_MENU:
-			new_scene.emit("IngameMenu")
-			request_pause_ticks.emit()
-			request_hide_ui.emit()
-			pause_game.emit()
+			self.change_state_to_ingame_menu()
 		Globals.GameState.INGAME_TASK:
-			request_activate_control_buttons.emit()
+			self.change_state_to_ingame_task()
+		Globals.GameState.GAME_OVER:
+			self.change_state_to_game_over()
 
 
 func get_state() -> Globals.GameState:
@@ -93,3 +126,7 @@ func _on_task_manager_new_task(task: Globals.Tasks) -> void:
 
 func _on_task_manager_task_complete(correct_answer: bool) -> void:
 	self.change_state(Globals.GameState.GAME)
+
+
+func _on_game_game_over() -> void:
+	self.change_state(Globals.GameState.GAME_OVER)

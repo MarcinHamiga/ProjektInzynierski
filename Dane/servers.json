@@ -1,20 +1,46 @@
 {
-  "access_type": [
-	"tylko odczyt",
-	"odczyt i zapis",
-	"pełny dostęp"
+  "safe": [
+	{
+	  "access_rank": "Młodszy administrator",
+	  "access_location": "/produkcja/projekt1/plik24.exe",
+	  "access_type": "tylko odczyt"
+	},
+	{
+	  "access_rank": "Starszy programista",
+	  "access_location": "/testy/projekt5/dokumentacja.pdf",
+	  "access_type": "odczyt i zapis"
+	},
+	{
+	  "access_rank": "Menedżer IT",
+	  "access_location": "/archiwum/dane/backup2023.zip",
+	  "access_type": "pełny dostęp"
+	},
+	{
+	  "access_rank": "Analityk danych",
+	  "access_location": "/data/analityka/2023",
+	  "access_type": "tylko odczyt"
+	}
   ],
-  "access_location": [
-	"/produkcja/projekt1/plik24.exe",
-	"/testy/projekt5/dokumentacja.pdf",
-	"/archiwum/dane/backup2023.zip",
-	"/data/raporty_sprzedaży",
-	"/data/analityka/2023"
-  ],
-  "access_rank": [
-	"Młodszy administrator",
-	"Starszy programista",
-	"Menedżer IT",
-	"Analityk danych"
+  "notsafe": [
+	{
+	  "access_rank": "Młodszy administrator",
+	  "access_location": "/produkcja/projekt1/plik24.exe",
+	  "access_type": "pełny dostęp"
+	},
+	{
+	  "access_rank": "Starszy programista",
+	  "access_location": "/archiwum/dane/backup2023.zip",
+	  "access_type": "tylko odczyt"
+	},
+	{
+	  "access_rank": "Menedżer IT",
+	  "access_location": "/data/analityka/2023",
+	  "access_type": "odczyt i zapis"
+	},
+	{
+	  "access_rank": "Analityk danych",
+	  "access_location": "/testy/projekt5/dokumentacja.pdf",
+	  "access_type": "pełny dostęp"
+	}
   ]
 }

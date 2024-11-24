@@ -1,55 +1,49 @@
 extends Node
 
-var itemData: Dictionary
-var servers_list := []
-var next_id := 0
+# Ścieżka do pliku JSON
+var file_path = "res://Dane/servers.json"
 
-func load_json_file(file_path: String) -> Dictionary:
-	if FileAccess.file_exists(file_path):
-		var data_file = FileAccess.open(file_path, FileAccess.READ)
-		var parsed_result = JSON.parse_string(data_file.get_as_text())
-		data_file.close()
-		if parsed_result is Dictionary:
-			return parsed_result
+func generate_random_server_task() -> Array:
+	# Otwieramy plik JSON
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	
+	if file:
+		var json_data = file.get_as_text()  
+		var json_parser = JSON.new()
+		var result = json_parser.parse(json_data)  
+		
+		if result == OK:
+			var json_object = json_parser.get_data()
+			
+			var is_safe = randi() % 2 == 0 
+			
+			var task = {}
+			if is_safe:
+				task = get_random_task(json_object["safe"])
+				main_sip.set_answer(true)
+			else:
+				task = get_random_task(json_object["notsafe"])
+				main_sip.set_answer(false)
+
+			# Tworzenie zadania
+			var server_task = {
+				"access_rank": task["access_rank"],
+				"access_location": task["access_location"],
+				"access_type": task["access_type"]
+			}
+
+			# Zwracamy wynik jako pojedynczy słownik w liście
+			return [server_task]
 		else:
-			print("Błąd podczas odczytu pliku:", parsed_result)
+			print("Błąd parsowania JSON:", json_parser.get_error_message())
+			return []  # W przypadku błędu zwracamy pustą listę
 	else:
-		print("Plik nie istnieje!")
-	return {}
-	
-func _ready() -> void:
-	itemData = load_json_file("res://Dane/servers.json")  # Wczytaj dane z pliku JSON
-	
-func generate_unique_id() -> int:
-	var id = next_id
-	next_id += 1
-	return id
-	
-func remove_from_list(id: int) -> void:
-	for element in servers_list:
-		if element.id == id:
-			servers_list.erase(element)
-	
-func add_server_task():
-	while true:
-		var new_server = {
-			"id": generate_unique_id(),
-			"access_type": itemData["access_type"].pick_random(),
-			"access_location": itemData["access_location"].pick_random(),
-			"access_rank": itemData["access_rank"].pick_random(),
-		}
-		if not object_exists(new_server):
-			servers_list.append(new_server)
-			#print("Wygenerowano zadanie serwera:", new_server)
-			return new_server
+		print("Błąd otwarcia pliku:", file_path)
+		return []  # W przypadku błędu otwarcia pliku zwracamy pustą listę
 
-func object_exists(obj) -> bool:
-	for file in servers_list:
-		if file["access_type"] == obj["access_type"] and file["access_location"] == obj["access_location"] and file["access_rank"] == obj["access_rank"]:
-			return true
-	return false
-
-func get_task(id):
-	for server in servers_list:
-		if server["id"] == id:
-			return server
+# Funkcja pomocnicza do losowania rekordu z listy
+func get_random_task(task_list: Array) -> Dictionary:
+	if task_list.size() > 0:
+		return task_list[randi() % task_list.size()]  # Losowanie elementu
+	else:
+		return {}  # Zwracamy pusty słownik, jeśli brak danych

@@ -1,17 +1,17 @@
 extends Control
-
+signal new_record
 var vbox: VBoxContainer
 var record_list = []  # Lista pracowników
 var task_list = []    # Lista zadań
 var file_tasks = []
 func _ready() -> void:
 	vbox = $MessList/VBoxContainer
-	
 	# Ładowanie danych i generowanie rekordów za pomocą MainSIP
 	main_sip.load_and_generate_records()  # Wczytanie danych i generowanie rekordów
 	record_list = main_sip.get_records()  # Pobieramy listę pracowników
 	task_list = main_sip.get_tasks()      # Pobieramy listę zadań
 	file_tasks = main_sip.get_file_tasks()
+	new_record.emit()
 	display_all_records()  # Wyświetlamy wszystkie rekordy
 
 func display_all_records() -> void:

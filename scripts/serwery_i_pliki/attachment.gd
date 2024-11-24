@@ -16,11 +16,11 @@ func _on_pressed():
 	var install_permission_instance = install_permission_scene.instantiate()
 
 	# Ustawianie metadanych z przekazanym ID rekordu (z poprzedniej sceny)
-	var record_id = get_meta("record_id", -1)
-	if record_id != -1:
-		install_permission_instance.set_meta("record_id", record_id)
-	else:
-		print("Brak przekazanego record_id w metadanych!")
+	#var record_id = get_meta("record_id", -1)
+	#if record_id != -1:
+		#install_permission_instance.set_meta("record_id", record_id)
+	#else:
+		#print("Brak przekazanego record_id w metadanych!")
 
 	# Dodanie instancji sceny do głównej sceny
 	get_tree().root.add_child(install_permission_instance)

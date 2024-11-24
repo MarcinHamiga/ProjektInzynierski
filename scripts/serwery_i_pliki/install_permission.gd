@@ -28,15 +28,15 @@ func _ready() -> void:
 		creator_label = $Creator
 
 		# Zaktualizuj etykiety danymi
-		name_type_label.text = task["name"]
-		creator_label.text = task["creator"]
-		extension_label.text = task["extension"]
+		name_type_label.text = task["file_name"]
+		creator_label.text = task["file_creator"]
+		extension_label.text = task["file_extension"]
 	else:
 		print("Nieprawidłowe ID rekordu")
 
 # Funkcja do pobrania zadania na podstawie ID pracownika
 func get_task_by_employee_id(employee_id: int) -> Dictionary:
-	for task in main_sip.get_file_tasks():
-		if task["employee_id"] == employee_id:
-			return task
+	for taskk in main_sip.get_file_tasks():
+		if taskk["id"] == employee_id:
+			return taskk
 	return {}  # Jeśli nie znaleziono zadania

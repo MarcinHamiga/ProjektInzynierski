@@ -17,8 +17,9 @@ const SOFTWARE_INSTALL: String = "Instalacja oprogramowania"
 
 # Funkcja _ready - inicjalizacja
 func _ready() -> void:
-	load_and_generate_records()  # Załaduj dane i wygeneruj rekordy
-	process_tasks()  # Procesujemy zadania po załadowaniu danych
+	pass
+	#load_and_generate_records()  # Załaduj dane i wygeneruj rekordy
+	#process_tasks()  # Procesujemy zadania po załadowaniu danych
 
 
 # Funkcja ładująca dane i generująca rekordy
@@ -70,11 +71,13 @@ func process_tasks() -> void:
 	server_tasks.clear()
 	for task in task_list:
 		if task["type"] == self.SOFTWARE_INSTALL:
+			print("if 1")
 			var file_task_generator = preload("res://scripts/serwery_i_pliki/file_task_generator.gd").new()
 			# Generowanie losowych danych z file_task_generator
 			var random_data = file_task_generator.generate_random_data()
 
 			if random_data.size() > 0:
+				print("if1 / if 2")
 				var file_info: Dictionary = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
 
 				# Tworzymy nowy słownik dla file_tasks z ID z task_list
@@ -93,11 +96,13 @@ func process_tasks() -> void:
 				print("Nie udało się wygenerować danych pliku dla zadania instalacji.")
 
 		elif task["type"] == self.SERVER_ACCESS:
+			print("else 1")
 			var server_task_generator = preload("res://scripts/serwery_i_pliki/server_task_generator.gd").new()
 			# Generowanie losowych danych z server_task_generator
 			var random_data = server_task_generator.generate_random_server_task()
 
 			if random_data.size() > 0:
+				print("else 1/ if 1")
 				var server_info = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
 
 				# Tworzymy nowy słownik dla server_tasks z ID z task_list

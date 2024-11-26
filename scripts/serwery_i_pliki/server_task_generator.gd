@@ -3,6 +3,9 @@ extends Node
 # Ścieżka do pliku JSON
 var file_path = "res://Dane/servers.json"
 
+func _ready() -> void:
+	randomize()
+
 func generate_random_server_task() -> Array:
 	# Otwieramy plik JSON
 	var file = FileAccess.open(file_path, FileAccess.READ)
@@ -15,10 +18,10 @@ func generate_random_server_task() -> Array:
 		if result == OK:
 			var json_object = json_parser.get_data()
 			
-			var is_safe = randi() % 2 == 0 
-			
+			var is_safe = randi_range(1, 100)
+			print("is_safe: %d" % [is_safe])
 			var task = {}
-			if is_safe:
+			if is_safe >= 50:
 				task = get_random_task(json_object["safe"])
 				main_sip.set_answer(true)
 			else:

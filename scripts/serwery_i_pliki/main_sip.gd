@@ -1,14 +1,16 @@
 extends Node
 
+signal regenerate
+
 # Liczba rekordów
-var num_records := 1  
-var records = []      
-var task_list = []    
-var file_tasks = []  # Zadania plikowe
-var server_tasks = []  # Zadania serwerowe
-var current_id := 1   
+var num_records: int = 1  
+var records: Array[Dictionary] = []      
+var task_list: Array[Dictionary] = []
+var file_tasks: Array[Dictionary] = []  # Zadania plikowe
+var server_tasks: Array[Dictionary] = []  # Zadania serwerowe
+var current_id: int = 1   
 var current_record_id: int = -1  
-var required_answer = false
+var required_answer: bool = false
 
 # Funkcja _ready - inicjalizacja
 func _ready() -> void:
@@ -17,10 +19,7 @@ func _ready() -> void:
 
 
 # Funkcja ładująca dane i generująca rekordy
-func load_and_generate_records():
-	if records.size() > 0:
-		return  # Nie generuj ponownie, jeśli dane już istnieją
-
+func load_and_generate_records() -> void:
 	# Ścieżka do pliku JSON
 	var data_file_path = "res://Dane/employee.json"  
 	var itemData = load_json_file(data_file_path)
@@ -62,7 +61,7 @@ func load_and_generate_records():
 		task_list.append(task)
 
 # Funkcja przetwarzająca zadania
-func process_tasks():
+func process_tasks() -> void:
 	# Przechodzimy przez wszystkie zadania w task_list
 	for task in task_list:
 		if task["type"] == "Instalacja oprogramowania":
@@ -130,24 +129,24 @@ func load_json_file(file_path: String) -> Dictionary:
 			return parsed_result
 	return {}
 
-func set_answer(answer):
+func set_answer(answer) -> void:
 	required_answer = answer
 
 func get_answer() -> bool:
 	return required_answer
 
 # Funkcja zwracająca listę pracowników
-func get_records() -> Array:
+func get_records() -> Array[Dictionary]:
 	return records
 
 # Funkcja zwracająca listę zadań
-func get_tasks() -> Array:
+func get_tasks() -> Array[Dictionary]:
 	return task_list
 
 # Funkcja zwracająca listę zadań związanych z instalacją oprogramowania
-func get_file_tasks() -> Array:
+func get_file_tasks() -> Array[Dictionary]:
 	return file_tasks
 
 # Funkcja zwracająca listę zadań związanych z dostępem do serwera
-func get_server_tasks() -> Array:
+func get_server_tasks() -> Array[Dictionary]:
 	return server_tasks

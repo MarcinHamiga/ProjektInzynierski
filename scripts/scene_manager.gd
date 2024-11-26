@@ -108,15 +108,14 @@ func _on_state_manager_request_activate_control_buttons() -> void:
 	enable_buttons.emit()
 
 
-func _on_state_manager_request_disable_control_buttons() -> void:
-	disable_buttons.emit()
-
-
 func show_task(task: Globals.Tasks) -> void:
 	match task:
+		Globals.Tasks.LOGIN_CHECK:
+			self.set_current_scene("LoginData")
+			enable_buttons.emit()
 		Globals.Tasks.S_P:
 			self.set_current_scene("EmailBox")
-			enable_buttons.emit()
+			disable_buttons.emit()
 		_:
 			pass
 
@@ -150,3 +149,7 @@ func _on_task_manager_resume_task(task: Globals.Tasks) -> void:
 
 func _on_game_start_new_game() -> void:
 	self.controls.reset()
+
+
+func _on_task_manager_request_enable_controls() -> void:
+	enable_buttons.emit()

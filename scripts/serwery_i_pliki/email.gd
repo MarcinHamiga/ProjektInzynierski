@@ -17,7 +17,6 @@ var attachment_scene: Node
 
 func _ready() -> void:
 	record_id = main_sip.get_current_id()
-	print("Przekazane record_id:", record_id)
 
 	var record = get_record_by_id(record_id, main_sip.get_records())
 	var task = get_task_for_employee(record_id, main_sip.get_tasks())
@@ -37,7 +36,7 @@ func _ready() -> void:
 	topic_label.text = task["topic"]
 	type_label.text = task["type"]
 	
-	print("emailDEBUG: " + task["type"])
+	#print("emailDEBUG: " + task["type"])
 
 	if task["type"] == "Dostęp do serwera":
 		print("Wywołuję funkcję dla zadania typu 'Dostęp do serwera'")
@@ -87,7 +86,6 @@ func handle_file_task(record: Dictionary, task: Dictionary):
 	var random_data = file_task_generator.generate_random_data()
 	if random_data.size() > 0:
 		var files = random_data[0] 
-		print(files) 
 	else:
 		print("Brak danych do wyświetlenia.")
 

@@ -17,11 +17,12 @@ func generate_new_record() -> void:
 	for child in self.vbox.get_children():
 		self.vbox.remove_child(child)
 	main_sip.load_and_generate_records()
+	main_sip.process_tasks()
 	record_list = main_sip.get_records()
 	task_list = main_sip.get_tasks()
 	file_tasks = main_sip.get_file_tasks()
 	
-	print(main_sip.get_answer)
+	#print(main_sip.get_answer)
 	
 	display_all_records()
 

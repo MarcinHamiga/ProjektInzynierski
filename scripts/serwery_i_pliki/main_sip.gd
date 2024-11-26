@@ -12,6 +12,9 @@ var current_id: int = 1
 var current_record_id: int = -1  
 var required_answer: bool = false
 
+const SERVER_ACCESS: String = "Dostęp do serwera"
+const SOFTWARE_INSTALL: String = "Instalacja oprogramowania"
+
 # Funkcja _ready - inicjalizacja
 func _ready() -> void:
 	load_and_generate_records()  # Załaduj dane i wygeneruj rekordy
@@ -63,17 +66,19 @@ func load_and_generate_records() -> void:
 # Funkcja przetwarzająca zadania
 func process_tasks() -> void:
 	# Przechodzimy przez wszystkie zadania w task_list
+	file_tasks.clear()
+	server_tasks.clear()
 	for task in task_list:
-		if task["type"] == "Instalacja oprogramowania":
+		if task["type"] == self.SOFTWARE_INSTALL:
 			var file_task_generator = preload("res://scripts/serwery_i_pliki/file_task_generator.gd").new()
 			# Generowanie losowych danych z file_task_generator
 			var random_data = file_task_generator.generate_random_data()
 
 			if random_data.size() > 0:
-				var file_info = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
+				var file_info: Dictionary = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
 
 				# Tworzymy nowy słownik dla file_tasks z ID z task_list
-				var installation_task = {
+				var installation_task: Dictionary = {
 					"id": task["employee_id"],  # Używamy ID z odpowiedniego zadania w task_list
 					"file_name": file_info["name"],
 					"file_creator": file_info["creator"],
@@ -82,10 +87,12 @@ func process_tasks() -> void:
 
 				# Dodajemy słownik do file_tasks
 				file_tasks.append(installation_task)
+				print("file_tasks")
+				print(file_tasks)
 			else:
 				print("Nie udało się wygenerować danych pliku dla zadania instalacji.")
 
-		elif task["type"] == "Dostęp do serwera":
+		elif task["type"] == self.SERVER_ACCESS:
 			var server_task_generator = preload("res://scripts/serwery_i_pliki/server_task_generator.gd").new()
 			# Generowanie losowych danych z server_task_generator
 			var random_data = server_task_generator.generate_random_server_task()
@@ -94,7 +101,7 @@ func process_tasks() -> void:
 				var server_info = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
 
 				# Tworzymy nowy słownik dla server_tasks z ID z task_list
-				var server_access_task = {
+				var server_access_task: Dictionary = {
 					"id": task["employee_id"],  # Używamy ID z odpowiedniego zadania w task_list
 					"access_rank": server_info["access_rank"],
 					"access_location": server_info["access_location"],
@@ -103,6 +110,8 @@ func process_tasks() -> void:
 
 				# Dodajemy słownik do server_tasks
 				server_tasks.append(server_access_task)
+				print("server_tasks")
+				print(server_tasks)
 			else:
 				print("Nie udało się wygenerować danych serwera dla zadania dostępu.")
 

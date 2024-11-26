@@ -36,6 +36,8 @@ func _ready() -> void:
 	email_label.text = record["email"]
 	topic_label.text = task["topic"]
 	type_label.text = task["type"]
+	
+	print("emailDEBUG: " + task["type"])
 
 	if task["type"] == "Dostęp do serwera":
 		print("Wywołuję funkcję dla zadania typu 'Dostęp do serwera'")

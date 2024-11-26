@@ -3,6 +3,9 @@ extends Node
 # Ścieżka do pliku JSON
 var file_path = "res://Dane/files.json"
 
+func _ready() -> void:
+	randomize()
+
 # Funkcja do generowania danych
 func generate_random_data() -> Array:
 	# Otwieramy plik
@@ -17,12 +20,14 @@ func generate_random_data() -> Array:
 			var json_object = json_parser.get_data()  # Pobranie sparsowanych danych
 			
 			# Losowanie, czy będzie safe czy notsafe
-			var is_safe = randi() % 2 == 0  # Losowanie 0 lub 1 (safe = true, notsafe = false)
+			var is_safe = randi_range(1, 100)
+			
+			print("is_safe: %d" % [is_safe])
 			
 			# Losowanie jednego rekordu
 			var name_random = get_random_name(json_object["name"])
 			var creator_random = ""
-			if is_safe:
+			if is_safe >= 50:
 				creator_random = get_random_creator(json_object["creator"]["safe"])
 				main_sip.set_answer(true)
 			else:

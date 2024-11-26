@@ -12,10 +12,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
+offset_left = -760.0
+offset_top = -490.0
+offset_right = 36.0
+offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -34,10 +34,10 @@ stretch_mode = 6
 
 [node name="Attachment" type="Button" parent="."]
 layout_mode = 2
-offset_left = 209.0
-offset_top = 509.0
-offset_right = 397.0
-offset_bottom = 570.0
+offset_left = 49.0
+offset_top = 258.0
+offset_right = 237.0
+offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Attachment"
@@ -75,7 +75,7 @@ grow_vertical = 2
 text = "Odrzuć zgłoszenie
 "
 
-[node name="Powrót" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -127,4 +127,6 @@ layout_mode = 2
 [node name="AccessRank" type="Label" parent="Message"]
 layout_mode = 2
 
+[connection signal="pressed" from="Attachment" to="." method="_on_attachment_pressed"]
 [connection signal="pressed" from="Attachment" to="Attachment" method="_on_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

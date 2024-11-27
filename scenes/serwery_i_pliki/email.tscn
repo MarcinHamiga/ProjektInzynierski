@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsghr27gb43s4"]
+[gd_scene load_steps=3 format=3 uid="uid://dsghr27gb43s4"]
 
-[ext_resource type="Script" path="res://scripts/serwery_i_pliki/attachment.gd" id="1_s2pmx"]
 [ext_resource type="Script" path="res://scripts/serwery_i_pliki/email.gd" id="1_vfhw2"]
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="2_ucuro"]
-[ext_resource type="Script" path="res://scenes/serwery_i_pliki/powrót.gd" id="4_pe25t"]
 
 [node name="Email" type="Control"]
 layout_mode = 3
@@ -42,7 +40,6 @@ offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Attachment"
-script = ExtResource("1_s2pmx")
 
 [node name="Accept" type="Button" parent="."]
 layout_mode = 1
@@ -92,7 +89,6 @@ grow_vertical = 0
 size_flags_vertical = 8
 text = "Powrót
 "
-script = ExtResource("4_pe25t")
 
 [node name="Message" type="VBoxContainer" parent="."]
 layout_mode = 1

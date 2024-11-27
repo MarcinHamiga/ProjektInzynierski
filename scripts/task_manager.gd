@@ -212,7 +212,7 @@ func stop_timers() -> void:
 
 func _on_next_task_timer_timeout() -> void:
 	print("New Task emitted")
-	var roll = randi_range(51, 100)
+	var roll = randi_range(1, 100)
 	if (roll <= 50):
 		self.current_task = Globals.Tasks.LOGIN_CHECK
 		self.get_login_screen_data()

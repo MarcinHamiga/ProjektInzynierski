@@ -97,10 +97,10 @@ visible = false
 
 [node name="EmailBox" parent="SceneManager/GameScenes" instance=ExtResource("11_sv30a")]
 visible = false
-offset_left = -931.0
-offset_top = -417.0
-offset_right = 895.0
-offset_bottom = 536.0
+offset_left = -928.0
+offset_top = -94.0
+offset_right = 834.0
+offset_bottom = 899.0
 
 [node name="UI" type="CanvasLayer" parent="SceneManager"]
 visible = false
@@ -183,6 +183,7 @@ stream = ExtResource("12_ss6wg")
 [connection signal="new_task" from="TaskManager" to="StateManager" method="_on_task_manager_new_task"]
 [connection signal="new_task" from="TaskManager" to="SceneManager" method="_on_task_manager_new_task"]
 [connection signal="ready_login_screen" from="TaskManager" to="SceneManager" method="_on_task_manager_ready_login_screen"]
+[connection signal="request_enable_controls" from="TaskManager" to="SceneManager" method="_on_task_manager_request_enable_controls"]
 [connection signal="resume_task" from="TaskManager" to="SceneManager" method="_on_task_manager_resume_task"]
 [connection signal="task_complete" from="TaskManager" to="StateManager" method="_on_task_manager_task_complete"]
 [connection signal="task_complete" from="TaskManager" to="SceneManager" method="_on_task_manager_task_complete"]
@@ -197,6 +198,7 @@ stream = ExtResource("12_ss6wg")
 [connection signal="settings_button_pressed" from="SceneManager/GameScenes/IngameMenu" to="." method="_on_ingame_menu_settings_button_pressed"]
 [connection signal="exit_button_pressed" from="SceneManager/GameScenes/GameOver" to="." method="_on_ingame_menu_exit_button_pressed"]
 [connection signal="menu_button_pressed" from="SceneManager/GameScenes/GameOver" to="." method="_on_ingame_menu_exit_to_menu_button_pressed"]
+[connection signal="new_record" from="SceneManager/GameScenes/EmailBox" to="TaskManager" method="_on_email_box_new_record"]
 [connection signal="accept_pressed" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_accept_pressed"]
 [connection signal="decline_pressed" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_decline_pressed"]
 [connection signal="pressed" from="SceneManager/UI/TaskBarContainer/TaskBarIcons/OSButton" to="." method="_on_os_button_pressed"]

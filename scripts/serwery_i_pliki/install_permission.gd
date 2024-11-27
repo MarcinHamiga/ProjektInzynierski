@@ -1,6 +1,8 @@
 extends Control
 
-var task = {}  # Słownik przechowujący zadanie
+signal back
+
+var _task = {}  # Słownik przechowujący zadanie
 var record = {}  # Słownik przechowujący dane pracownika
 
 var extension_label: Label
@@ -16,9 +18,9 @@ func _ready() -> void:
 		#record = main_sip.get_record_by_id(record_id, main_sip.get_records())
 		
 		# Sprawdzamy, czy zadanie istnieje w tablicy file_tasks
-		task = get_task_by_employee_id(record_id)
+		_task = get_task_by_employee_id(record_id)
 		
-		if task == {}:
+		if _task == {}:
 			print("Nie znaleziono zadania dla pracownika ID:", record_id)
 			return
 		
@@ -28,15 +30,21 @@ func _ready() -> void:
 		creator_label = $Creator
 
 		# Zaktualizuj etykiety danymi
-		name_type_label.text = task["file_name"]
-		creator_label.text = task["file_creator"]
-		extension_label.text = task["file_extension"]
+		name_type_label.text = _task["file_name"]
+		creator_label.text = _task["file_creator"]
+		extension_label.text = _task["file_extension"]
 	else:
 		print("Nieprawidłowe ID rekordu")
 
 # Funkcja do pobrania zadania na podstawie ID pracownika
 func get_task_by_employee_id(employee_id: int) -> Dictionary:
-	for taskk in main_sip.get_file_tasks():
-		if taskk["id"] == employee_id:
-			return taskk
+	for task in main_sip.get_file_tasks():
+		print("Task")
+		print(task)
+		if task["id"] == employee_id:
+			return task
 	return {}  # Jeśli nie znaleziono zadania
+
+
+func _on_close_pressed() -> void:
+	back.emit()

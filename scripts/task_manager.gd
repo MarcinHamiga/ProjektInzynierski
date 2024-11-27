@@ -11,12 +11,15 @@ signal add_strike
 signal task_complete
 signal new_task
 signal resume_task
+signal request_enable_controls
+
 
 var task_time_left_timer: Timer
 var next_task_timer: Timer
 var current_task: Globals.Tasks
 var is_password_correct: bool
 var is_tfa_correct: bool
+var is_record_correct: bool
 var rules_dict: Dictionary
 var current_tfa_rule: String
 
@@ -151,6 +154,12 @@ func _on_acceptance_component_accept_pressed() -> void:
 			else:
 				task_complete.emit(false)
 				add_strike.emit()
+		Globals.Tasks.S_P:
+			if self.is_record_correct:
+				task_complete.emit(true)
+			else:
+				task_complete.emit(false)
+				add_strike.emit()
 	self.next_task_timer.start()
 	self.task_time_left_timer.stop()
 
@@ -161,6 +170,12 @@ func _on_acceptance_component_decline_pressed() -> void:
 			pass
 		Globals.Tasks.LOGIN_CHECK:
 			if self.is_password_correct and self.is_tfa_correct:
+				add_strike.emit()
+				task_complete.emit(false)
+			else:
+				task_complete.emit(true)
+		Globals.Tasks.S_P:
+			if self.is_record_correct:
 				add_strike.emit()
 				task_complete.emit(false)
 			else:
@@ -197,8 +212,14 @@ func stop_timers() -> void:
 
 func _on_next_task_timer_timeout() -> void:
 	print("New Task emitted")
-	self.current_task = Globals.Tasks.S_P
-	self.get_login_screen_data()
+	var roll = randi_range(1, 100)
+	if (roll <= 50):
+		self.current_task = Globals.Tasks.LOGIN_CHECK
+		self.get_login_screen_data()
+	else:
+		self.current_task = Globals.Tasks.S_P
+		main_sip.regenerate.emit()
+	
 	new_task.emit(self.current_task)
 	self.task_time_left_timer.start()
 
@@ -237,3 +258,8 @@ func _on_state_manager_request_resume_ticks() -> void:
 
 func _on_state_manager_resume_task() -> void:
 	resume_task.emit(self.current_task)
+
+
+func _on_email_box_new_record(is_correct: bool) -> void:
+	self.is_record_correct = is_correct
+	request_enable_controls.emit()

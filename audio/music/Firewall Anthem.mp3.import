@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvaydlu16tqym"
+path="res://.godot/imported/Firewall Anthem.mp3-9356ceef188c8ac07188ccad4b22cdc2.mp3str"
+
+[deps]
+
+source_file="res://audio/music/Firewall Anthem.mp3"
+dest_files=["res://.godot/imported/Firewall Anthem.mp3-9356ceef188c8ac07188ccad4b22cdc2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

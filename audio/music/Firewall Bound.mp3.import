@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5551bmjgyrdi"
+path="res://.godot/imported/Firewall Bound.mp3-8907d4a33ed4de6e005dd322f2002051.mp3str"
+
+[deps]
+
+source_file="res://audio/music/Firewall Bound.mp3"
+dest_files=["res://.godot/imported/Firewall Bound.mp3-8907d4a33ed4de6e005dd322f2002051.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

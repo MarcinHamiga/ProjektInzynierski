@@ -145,6 +145,7 @@ func get_login_screen_data() -> void:
 
 
 func _on_acceptance_component_accept_pressed() -> void:
+	Globals.play_sound.emit("click")
 	match self.current_task:
 		Globals.Tasks.NONE:
 			pass
@@ -165,6 +166,7 @@ func _on_acceptance_component_accept_pressed() -> void:
 
 
 func _on_acceptance_component_decline_pressed() -> void:
+	Globals.play_sound.emit("click")
 	match self.current_task:
 		Globals.Tasks.NONE:
 			pass

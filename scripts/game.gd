@@ -51,27 +51,36 @@ func new_game():
 
 
 func _on_main_menu_exit_button_pressed() -> void:
+	Globals.play_sound.emit("click")
+	await get_tree().create_timer(0.5).timeout
 	get_tree().quit()
 
 
 func _on_main_menu_new_game_button_pressed() -> void:
+	Globals.play_sound.emit("click")
+	Globals.play_song.emit("ingame")
 	self.new_game()
 	change_state.emit(Globals.GameState.GAME)
 
 
 func _on_main_menu_settings_button_pressed() -> void:
+	Globals.play_sound.emit("click")
 	change_state.emit(Globals.GameState.MENU_SETTINGS)
 
 
 func _on_ingame_menu_continue_button_pressed() -> void:
+	Globals.play_sound.emit("click")
 	change_state.emit(Globals.GameState.GAME)
 
 
 func _on_ingame_menu_settings_button_pressed() -> void:
+	Globals.play_sound.emit("click")
 	change_state.emit(Globals.GameState.MENU_SETTINGS)
 
 
 func _on_ingame_menu_exit_button_pressed() -> void:
+	Globals.play_sound.emit("click")
+	await get_tree().create_timer(0.5).timeout
 	self.get_tree().quit()
 
 
@@ -110,10 +119,13 @@ func _on_state_manager_request_resume_ticks() -> void:
 
 
 func _on_os_button_pressed() -> void:
+	Globals.play_sound.emit("click")
 	change_state.emit(Globals.GameState.INGAME_MENU)
 
 
 func _on_ingame_menu_exit_to_menu_button_pressed() -> void:
+	Globals.play_sound.emit("click")
+	Globals.play_song.emit("main_menu")
 	change_state.emit(Globals.GameState.MAIN_MENU)
 
 

@@ -102,6 +102,7 @@ func _on_game_intro() -> void:
 
 func _on_intro_finished() -> void:
 	self.show_game_scenes()
+	Globals.play_song.emit("main_menu")
 
 
 func _on_state_manager_request_activate_control_buttons() -> void:

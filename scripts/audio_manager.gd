@@ -13,19 +13,20 @@ func _ready() -> void:
 	Globals.play_song.connect(play_song)
 	Globals.play_sound.connect(play_sound)
 
-func play_song(name: String) -> void:
+
+func play_song(name: String, time: float = 0.0) -> void:
 	if self.music_player.stream == Globals.song_atlas[name]:
-		self.music_player.play()
+		self.music_player.play(time)
 	else:
 		self.music_player.stream = Globals.song_atlas[name]
-		self.music_player.play()
+		self.music_player.play(time)
 
-func play_sound(name: String) -> void:
+func play_sound(name: String, time: float = 0.0) -> void:
 	if self.effect_player.stream == Globals.sound_atlas[name]:
-		self.effect_player.play()
+		self.effect_player.play(time)
 	else:
 		self.effect_player.stream = Globals.sound_atlas[name]
-		self.effect_player.play()
+		self.effect_player.play(time)
 
 
 func _on_music_player_finished() -> void:

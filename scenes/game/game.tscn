@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=17 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_uckyl"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_7r3s5"]
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="2_c7r2k"]
 [ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_5h744"]
 [ext_resource type="Script" path="res://scripts/scene_manager.gd" id="4_nthw3"]
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="5_13g4r"]
@@ -20,7 +21,13 @@ texture = ExtResource("5_13g4r")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_uckyl")
-_intro = false
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("2_c7r2k")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="EffectPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("2_7r3s5")
@@ -149,7 +156,6 @@ text = "[center]Day 1 00:00[/center]"
 fit_content = true
 
 [node name="Intro" type="VideoStreamPlayer" parent="SceneManager"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -170,6 +176,7 @@ stream = ExtResource("12_ss6wg")
 [connection signal="start_new_game" from="." to="SceneManager" method="_on_game_start_new_game"]
 [connection signal="update_datetime" from="." to="SceneManager" method="_on_game_update_datetime"]
 [connection signal="update_strikes" from="." to="SceneManager" method="_on_game_update_strikes"]
+[connection signal="finished" from="AudioManager/MusicPlayer" to="AudioManager" method="_on_music_player_finished"]
 [connection signal="new_scene" from="StateManager" to="SceneManager" method="_on_state_manager_new_scene"]
 [connection signal="request_activate_control_buttons" from="StateManager" to="SceneManager" method="_on_state_manager_request_activate_control_buttons"]
 [connection signal="request_hide_ui" from="StateManager" to="SceneManager" method="_on_state_manager_request_hide_ui"]

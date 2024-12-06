@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=18 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_uckyl"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_7r3s5"]
@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="11_il6a7"]
 [ext_resource type="PackedScene" uid="uid://b1mrpd50t5dir" path="res://scenes/serwery_i_pliki/email_box.tscn" id="11_sv30a"]
 [ext_resource type="VideoStream" path="res://videos/gameintro.ogv" id="12_ss6wg"]
+[ext_resource type="PackedScene" uid="uid://domykhnyxhu3w" path="res://scenes/game/settings.tscn" id="13_5fveu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3kk3"]
 texture = ExtResource("5_13g4r")
@@ -108,6 +109,9 @@ offset_left = -928.0
 offset_top = -94.0
 offset_right = 834.0
 offset_bottom = 899.0
+
+[node name="Settings" parent="SceneManager/GameScenes" instance=ExtResource("13_5fveu")]
+visible = false
 
 [node name="UI" type="CanvasLayer" parent="SceneManager"]
 visible = false

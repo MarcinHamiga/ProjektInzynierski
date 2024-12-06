@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://wtxp6j41b3xl"]
+
+[ext_resource type="Script" path="res://scripts/slider_v_box.gd" id="1_8b2lq"]
+[ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="2_6nhjg"]
+
+[node name="SliderVBox" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8b2lq")
+
+[node name="SliderLabel" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_6nhjg")
+theme_override_font_sizes/font_size = 36
+
+[node name="Slider" type="HSlider" parent="."]
+layout_mode = 2
+
+[connection signal="value_changed" from="Slider" to="." method="_on_slider_value_changed"]

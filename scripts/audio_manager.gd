@@ -31,3 +31,10 @@ func play_sound(name: String, time: float = 0.0) -> void:
 
 func _on_music_player_finished() -> void:
 	self.music_player.play(0)
+
+
+func _on_settings_value_changed(value: float, bus_name: String) -> void:
+	value = linear_to_db(value / 100)
+	var bus_idx = AudioServer.get_bus_index(bus_name)
+	print("Current %s bus volume in db: %d" % [bus_name, value])
+	AudioServer.set_bus_volume_db(bus_idx, value)

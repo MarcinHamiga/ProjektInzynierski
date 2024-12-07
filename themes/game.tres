@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cfxt25d75fpp"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cfxt25d75fpp"]
 
 [ext_resource type="FontFile" uid="uid://bt2bt7raa04xh" path="res://fonts/VT323-Regular.ttf" id="1_druga"]
 
@@ -61,6 +61,13 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egme3"]
+bg_color = Color(0.532519, 0.609554, 0.694359, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -88,6 +95,8 @@ Button/styles/normal = SubResource("StyleBoxFlat_uoq4m")
 Button/styles/pressed = SubResource("StyleBoxFlat_63w04")
 Label/fonts/font = ExtResource("1_druga")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_babxk")
+ProgressBar/styles/background = null
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_egme3")
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/constants/outline_size = 12
 RichTextLabel/fonts/bold_font = ExtResource("1_druga")

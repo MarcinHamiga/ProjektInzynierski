@@ -163,6 +163,7 @@ func _on_acceptance_component_accept_pressed() -> void:
 				add_strike.emit()
 	self.next_task_timer.start()
 	self.task_time_left_timer.stop()
+	self.current_task = Globals.Tasks.NONE
 
 
 func _on_acceptance_component_decline_pressed() -> void:
@@ -184,6 +185,7 @@ func _on_acceptance_component_decline_pressed() -> void:
 				task_complete.emit(true)
 	self.next_task_timer.start()
 	self.task_time_left_timer.stop()
+	self.current_task = Globals.Tasks.NONE
 
 
 func _on_task_time_left_timer_timeout() -> void:
@@ -194,6 +196,7 @@ func _on_task_time_left_timer_timeout() -> void:
 
 
 func _on_game_start_new_game() -> void:
+	self.current_task = Globals.Tasks.NONE
 	self.next_task_timer.start()
 
 
@@ -265,3 +268,19 @@ func _on_state_manager_resume_task() -> void:
 func _on_email_box_new_record(is_correct: bool) -> void:
 	self.is_record_correct = is_correct
 	request_enable_controls.emit()
+
+
+func _on_acceptance_component_get_time_left(update_method: Callable) -> void:
+	if typeof(update_method) == TYPE_CALLABLE:
+		print("Current task: %s" % [self.current_task])
+		if self.current_task != Globals.Tasks.NONE:
+			update_method.call(
+				self.task_time_left_timer.time_left, 
+				self.task_time_left_timer.wait_time
+			)
+		else:
+			update_method.call(
+				self.next_task_timer.time_left,
+				self.next_task_timer.wait_time,
+				true
+			)

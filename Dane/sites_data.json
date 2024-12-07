@@ -1,0 +1,156 @@
+{
+  "safe": {
+	"name": [
+	  "Example Bank",
+	  "Example University",
+	  "Secure Shop",
+	  "News Network",
+	  "Developer Community"
+	],
+	"link": [
+	  "https://example-bank.com",
+	  "https://example-edu.org",
+	  "https://secure-shop.com",
+	  "https://news-network.com",
+	  "https://dev-community.org"
+	],
+	"category": [
+	  "Banking",
+	  "Education",
+	  "E-commerce",
+	  "Media",
+	  "Technology"
+	],
+	"site_data": [
+	  {
+		"reputation_score": 95,
+		"risk_description": "Brak zagrożeń. Oficjalna strona bankowa.",
+		"server_location": "Poland"
+	  },
+	  {
+		"reputation_score": 89,
+		"risk_description": "Portal edukacyjny bez zagrożeń.",
+		"server_location": "Germany"
+	  },
+	  {
+		"reputation_score": 93,
+		"risk_description": "Bezpieczny sklep internetowy.",
+		"server_location": "United States"
+	  },
+	  {
+		"reputation_score": 88,
+		"risk_description": "Znana i bezpieczna strona z wiadomościami.",
+		"server_location": "United Kingdom"
+	  },
+	  {
+		"reputation_score": 92,
+		"risk_description": "Bezpieczne forum dla specjalistów IT.",
+		"server_location": "Canada"
+	  }
+	],
+	"certification": [
+	  {
+		"valid": true,
+		"issuer": "Let's Encrypt",
+		"https": true
+	  },
+	  {
+		"valid": true,
+		"issuer": "DigiCert",
+		"https": true
+	  },
+	  {
+		"valid": true,
+		"issuer": "GlobalSign",
+		"https": true
+	  },
+	  {
+		"valid": true,
+		"issuer": "Sectigo",
+		"https": true
+	  },
+	  {
+		"valid": true,
+		"issuer": "Entrust",
+		"https": true
+	  }
+	]
+  },
+  "notsafe": {
+	"name": [
+	  "Fake Bank Login",
+	  "Free Software Download",
+	  "Scam E-commerce",
+	  "Ad Spam",
+	  "Unsecured Site"
+	],
+	"link": [
+	  "http://fake-bank-login.com",
+	  "http://free-software-download.com",
+	  "http://scam-ecommerce.net",
+	  "http://ad-spam.org",
+	  "http://unsecured-site.com"
+	],
+	"category": [
+	  "Phishing",
+	  "Malware",
+	  "Fraud",
+	  "Adware",
+	  "Unknown"
+	],
+	"site_data": [
+	  {
+		"reputation_score": 15,
+		"risk_description": "Strona wyłudzająca dane logowania do banku.",
+		"server_location": "Russia"
+	  },
+	  {
+		"reputation_score": 20,
+		"risk_description": "Strona zawiera złośliwe oprogramowanie.",
+		"server_location": "China"
+	  },
+	  {
+		"reputation_score": 10,
+		"risk_description": "Podejrzany sklep internetowy. Możliwość oszustwa.",
+		"server_location": "India"
+	  },
+	  {
+		"reputation_score": 12,
+		"risk_description": "Strona generuje niechciane reklamy i może instalować adware.",
+		"server_location": "Brazil"
+	  },
+	  {
+		"reputation_score": 30,
+		"risk_description": "Strona bez zabezpieczeń. Ryzyko zainfekowania komputera.",
+		"server_location": "Vietnam"
+	  }
+	],
+	"certification": [
+	  {
+		"valid": false,
+		"issuer": "Unknown",
+		"https": false
+	  },
+	  {
+		"valid": false,
+		"issuer": "Unknown",
+		"https": false
+	  },
+	  {
+		"valid": false,
+		"issuer": "Unknown",
+		"https": false
+	  },
+	  {
+		"valid": false,
+		"issuer": "Unknown",
+		"https": false
+	  },
+	  {
+		"valid": false,
+		"issuer": "Unknown",
+		"https": false
+	  }
+	]
+  }
+}

@@ -50,6 +50,7 @@ corner_radius_bottom_left = 16
 corner_detail = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_babxk"]
+bg_color = Color(0.6, 0.6, 0.6, 0.501961)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4

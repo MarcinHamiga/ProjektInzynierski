@@ -6,6 +6,15 @@ var first_click_slot: Node
 var second_click_slot: Node
 var was_doing_task: bool
 var was_ingame_menu: bool
+
+var states = {
+	Globals.GameState.GAME: self.change_state_to_game,
+	Globals.GameState.MAIN_MENU: self.change_state_to_main_menu,
+	Globals.GameState.INGAME_MENU: self.change_state_to_ingame_menu,
+	Globals.GameState.MENU_SETTINGS: self.change_state_to_settings,
+	Globals.GameState.INGAME_TASK: self.change_state_to_ingame_task,
+	Globals.GameState.GAME_OVER: self.change_state_to_game_over
+}
  
 signal state_changed
 signal new_scene
@@ -117,21 +126,7 @@ func change_state_to_settings():
 	self.game_state = Globals.GameState.MENU_SETTINGS
 
 func handle_state_change(new_state: Globals.GameState):
-	match new_state:
-		Globals.GameState.MAIN_MENU:
-			self.change_state_to_main_menu()
-		Globals.GameState.GAME:
-			self.change_state_to_game()
-			if self.was_doing_task:
-				self.change_state_to_ingame_task()
-		Globals.GameState.INGAME_MENU:
-			self.change_state_to_ingame_menu()
-		Globals.GameState.INGAME_TASK:
-			self.change_state_to_ingame_task()
-		Globals.GameState.GAME_OVER:
-			self.change_state_to_game_over()
-		Globals.GameState.MENU_SETTINGS:
-			self.change_state_to_settings()
+	self.states[new_state].call()
 
 
 func get_state() -> Globals.GameState:

@@ -5,6 +5,16 @@ extends Node
 var first_click_slot: Node
 var second_click_slot: Node
 var was_doing_task: bool
+var was_ingame_menu: bool
+
+var states = {
+	Globals.GameState.GAME: self.change_state_to_game,
+	Globals.GameState.MAIN_MENU: self.change_state_to_main_menu,
+	Globals.GameState.INGAME_MENU: self.change_state_to_ingame_menu,
+	Globals.GameState.MENU_SETTINGS: self.change_state_to_settings,
+	Globals.GameState.INGAME_TASK: self.change_state_to_ingame_task,
+	Globals.GameState.GAME_OVER: self.change_state_to_game_over
+}
  
 signal state_changed
 signal new_scene
@@ -25,6 +35,7 @@ func _input(event):
 	if (
 		self.game_state != Globals.GameState.MAIN_MENU \
 		and self.game_state != Globals.GameState.INGAME_MENU \
+		and self.game_state != Globals.GameState.MENU_SETTINGS
 		and event.is_action_pressed("MainMenuKey")
 	):
 		self.change_state(Globals.GameState.INGAME_MENU)
@@ -36,8 +47,21 @@ func _input(event):
 	):
 		self.change_state(Globals.GameState.GAME)
 		request_resume_ticks.emit()
-
-
+	
+	elif (
+		self.game_state == Globals.GameState.MENU_SETTINGS \
+		and self.was_ingame_menu
+		and event.is_action_pressed("MainMenuKey")
+	):
+		self.change_state(Globals.GameState.INGAME_MENU)
+	
+	elif (
+		self.game_state == Globals.GameState.MENU_SETTINGS \
+		and not self.was_ingame_menu \
+		and event.is_action_pressed("MainMenuKey")
+	):
+		self.change_state(Globals.GameState.MAIN_MENU)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	match game_state:
@@ -93,21 +117,16 @@ func change_state_to_game_over():
 	request_hide_ui.emit()
 	self.game_state = Globals.GameState.GAME_OVER
 
+func change_state_to_settings():
+	if self.game_state == Globals.GameState.MAIN_MENU:
+		self.was_ingame_menu = false
+	elif self.game_state == Globals.GameState.INGAME_MENU:
+		self.was_ingame_menu = true
+	new_scene.emit("Settings")
+	self.game_state = Globals.GameState.MENU_SETTINGS
 
 func handle_state_change(new_state: Globals.GameState):
-	match new_state:
-		Globals.GameState.MAIN_MENU:
-			self.change_state_to_main_menu()
-		Globals.GameState.GAME:
-			self.change_state_to_game()
-			if self.was_doing_task:
-				self.change_state_to_ingame_task()
-		Globals.GameState.INGAME_MENU:
-			self.change_state_to_ingame_menu()
-		Globals.GameState.INGAME_TASK:
-			self.change_state_to_ingame_task()
-		Globals.GameState.GAME_OVER:
-			self.change_state_to_game_over()
+	self.states[new_state].call()
 
 
 func get_state() -> Globals.GameState:
@@ -130,3 +149,10 @@ func _on_task_manager_task_complete(correct_answer: bool) -> void:
 
 func _on_game_game_over() -> void:
 	self.change_state(Globals.GameState.GAME_OVER)
+
+
+func _on_settings_back_pressed() -> void:
+	if self.was_ingame_menu:
+		self.change_state(Globals.GameState.INGAME_MENU)
+	else:
+		self.change_state(Globals.GameState.MAIN_MENU)

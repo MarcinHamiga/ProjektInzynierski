@@ -35,8 +35,6 @@ script = ExtResource("2_7r3s5")
 
 [node name="TaskManager" type="Node" parent="."]
 script = ExtResource("3_5h744")
-time_until_next_task = 1.0
-time_until_task_expires = 15.0
 
 [node name="TaskTimeLeftTimer" type="Timer" parent="TaskManager"]
 
@@ -210,8 +208,11 @@ stream = ExtResource("12_ss6wg")
 [connection signal="exit_button_pressed" from="SceneManager/GameScenes/GameOver" to="." method="_on_ingame_menu_exit_button_pressed"]
 [connection signal="menu_button_pressed" from="SceneManager/GameScenes/GameOver" to="." method="_on_ingame_menu_exit_to_menu_button_pressed"]
 [connection signal="new_record" from="SceneManager/GameScenes/EmailBox" to="TaskManager" method="_on_email_box_new_record"]
+[connection signal="back_pressed" from="SceneManager/GameScenes/Settings" to="StateManager" method="_on_settings_back_pressed"]
+[connection signal="value_changed" from="SceneManager/GameScenes/Settings" to="AudioManager" method="_on_settings_value_changed"]
 [connection signal="accept_pressed" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_accept_pressed"]
 [connection signal="decline_pressed" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_decline_pressed"]
+[connection signal="get_time_left" from="SceneManager/UI/AcceptanceComponent" to="TaskManager" method="_on_acceptance_component_get_time_left"]
 [connection signal="pressed" from="SceneManager/UI/TaskBarContainer/TaskBarIcons/OSButton" to="." method="_on_os_button_pressed"]
 [connection signal="finished" from="SceneManager/Intro" to="SceneManager" method="_on_intro_finished"]
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

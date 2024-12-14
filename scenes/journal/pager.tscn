@@ -16,7 +16,7 @@ layout_mode = 0
 offset_right = 1195.0
 offset_bottom = 381.0
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 

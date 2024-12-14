@@ -6,7 +6,7 @@ var pages_content = []
 var current_page_index = 0
 var journal_data = {}
 # Odnośniki do elementów interfejsu
-@onready var text_edit = $VBoxContainer/TextEdit
+@onready var text_edit = $VBoxContainer/RichTextLabel
 @onready var prev_button = $VBoxContainer/HBoxContainer/PrevButton
 @onready var next_button = $VBoxContainer/HBoxContainer/NextButton
 

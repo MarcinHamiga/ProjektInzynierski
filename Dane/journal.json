@@ -1,0 +1,34 @@
+{
+  "chapters": [
+	{
+	  "title": "Zakładka 1",
+	  "pages": [
+		{
+		  "title": 1,
+		  "content": "To jest treść strony 1 w zakładce 1."
+		},
+		{
+		  "title": 2,
+		  "content": "To jest treść strony 2 w zakładce 1."
+		}
+	  ]
+	},
+	{
+	  "title": "Zakładka 2",
+	  "pages": [
+		{
+		  "title": 1,
+		  "content": "To jest treść strony 1 w zakładce 2."
+		},
+				{
+		  "title": 2,
+		  "content": "To jest treść strony 2 w zakładce 2."
+		},
+						{
+		  "title": 3,
+		  "content": "To jest treść strony 3 w zakładce 2."
+		}
+	  ]
+	}
+  ]
+}

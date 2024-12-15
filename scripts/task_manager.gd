@@ -272,7 +272,6 @@ func _on_email_box_new_record(is_correct: bool) -> void:
 
 func _on_acceptance_component_get_time_left(update_method: Callable) -> void:
 	if typeof(update_method) == TYPE_CALLABLE:
-		print("Current task: %s" % [self.current_task])
 		if self.current_task != Globals.Tasks.NONE:
 			update_method.call(
 				self.task_time_left_timer.time_left, 

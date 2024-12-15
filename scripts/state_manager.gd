@@ -71,6 +71,7 @@ func change_state(new_state: Globals.GameState):
 		self.handle_state_change(new_state)
 		state_changed.emit(self.game_state)
 
+
 func change_state_to_main_menu():
 	self.was_doing_task = false
 	new_scene.emit("MainMenuMargin")
@@ -114,6 +115,7 @@ func change_state_to_game_over():
 	request_hide_ui.emit()
 	self.game_state = Globals.GameState.GAME_OVER
 
+
 func change_state_to_settings():
 	if self.game_state == Globals.GameState.MAIN_MENU:
 		self.was_ingame_menu = false
@@ -121,6 +123,7 @@ func change_state_to_settings():
 		self.was_ingame_menu = true
 	new_scene.emit("Settings")
 	self.game_state = Globals.GameState.MENU_SETTINGS
+
 
 func handle_state_change(new_state: Globals.GameState):
 	self.states[new_state].call()
@@ -135,12 +138,12 @@ func _on_game_change_state(new_state: Globals.GameState) -> void:
 	print("State changed to: %s" % [new_state])
 
 
-func _on_task_manager_new_task(task: Globals.Tasks) -> void:
+func _on_task_manager_new_task(_task: Globals.Tasks) -> void:
 	print("New task")
 	self.change_state(Globals.GameState.INGAME_TASK)
 
 
-func _on_task_manager_task_complete(correct_answer: bool) -> void:
+func _on_task_manager_task_complete(_correct_answer: bool) -> void:
 	self.change_state(Globals.GameState.GAME)
 
 

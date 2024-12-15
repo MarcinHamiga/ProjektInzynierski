@@ -61,14 +61,6 @@ func _input(event):
 		and event.is_action_pressed("MainMenuKey")
 	):
 		self.change_state(Globals.GameState.MAIN_MENU)
-		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	match game_state:
-		Globals.GameState.MAIN_MENU:
-			pass
-		Globals.GameState.GAME:
-			pass
 
 
 func change_state(new_state: Globals.GameState): 
@@ -88,10 +80,15 @@ func change_state_to_main_menu():
 
 
 func change_state_to_game():
-	new_scene.emit("GameScreen")
+	if was_doing_task:
+		self.game_state = Globals.GameState.INGAME_TASK
+		new_scene.emit("GameScreen")
+		resume_task.emit()
+	else:
+		new_scene.emit("GameScreen")
+		self.game_state = Globals.GameState.GAME
 	request_show_ui.emit()
 	request_resume_ticks.emit()
-	self.game_state = Globals.GameState.GAME
 
 
 func change_state_to_ingame_menu():

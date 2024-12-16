@@ -45,3 +45,8 @@ func load_json(file_path: String):
 		return
 		
 	return json.data
+
+
+func round_to_decimals(x: float, places: int) -> float:
+	var multiplier: int = pow(10, places)
+	return round(x * multiplier) / multiplier

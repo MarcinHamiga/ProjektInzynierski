@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://domykhnyxhu3w"]
 
-[ext_resource type="Script" path="res://scenes/game/settings.gd" id="1_fxynx"]
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_fxynx"]
 [ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="2_6sekj"]
 [ext_resource type="PackedScene" uid="uid://wtxp6j41b3xl" path="res://scenes/game/slider_v_box.tscn" id="3_6ud4l"]
 
@@ -40,22 +40,44 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="SettingsPanelVBox" type="VBoxContainer" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin"]
+[node name="SettingsFieldsAndButtonVBox" type="VBoxContainer" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin"]
 layout_mode = 2
+
+[node name="SettingsPanelVBox" type="VBoxContainer" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.0
 theme_override_constants/separation = 16
 
-[node name="MasterVolume" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsPanelVBox" instance=ExtResource("3_6ud4l")]
+[node name="MasterVolume" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox/SettingsPanelVBox" instance=ExtResource("3_6ud4l")]
 layout_mode = 2
 label_text = "Głośność główna"
+use_start_value = false
+range_min = 0.0
 
-[node name="MusicVolume" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsPanelVBox" instance=ExtResource("3_6ud4l")]
+[node name="MusicVolume" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox/SettingsPanelVBox" instance=ExtResource("3_6ud4l")]
 layout_mode = 2
 label_text = "Głośność muzyki"
+use_start_value = false
+range_min = 0.0
 
-[node name="SoundVolume" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsPanelVBox" instance=ExtResource("3_6ud4l")]
+[node name="EffectVolume" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox/SettingsPanelVBox" instance=ExtResource("3_6ud4l")]
 layout_mode = 2
 label_text = "Głośność dźwięków"
+use_start_value = false
+range_min = 0.0
+
+[node name="Back" type="Button" parent="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Wróć"
 
 [node name="Spacer2" type="Control" parent="SettingsHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="value_changed" from="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox/SettingsPanelVBox/MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox/SettingsPanelVBox/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox/SettingsPanelVBox/EffectVolume" to="." method="_on_effect_volume_value_changed"]
+[connection signal="pressed" from="SettingsHBox/SettingsPanel/SettingsPanelMargin/SettingsFieldsAndButtonVBox/Back" to="." method="_on_back_pressed"]

@@ -1,50 +1,40 @@
 extends Control
+signal answer_sites
+var answer: bool = false
+
 
 var json_file_path = "res://Dane/sites_data.json"
-var sites_data: Array[Dictionary] = []  # Zmienna przechowująca tylko wylosowane dane
+var sites_data: Array[Dictionary] = []
+var vbox: VBoxContainer 
 
 func _ready() -> void:
-	# Wywołanie generowania rekordu po załadowaniu
+	self.vbox = $SitesList/SitesVBox
 	generate_new_record()
 
 func generate_new_record() -> void:
-	print("Teraz generowanie...")
+
 	load_and_generate_records()
-	print("Po generowaniu")
-	print(get_sites_data())
-	print("Teraz generowanie...")
-	load_and_generate_records()
-	print("Po generowaniu")
-	print(get_sites_data())
+	display_all_sites()
+	print(answer)
+
 func load_and_generate_records() -> void:
 	randomize()
 
-	# Wczytanie danych JSON
 	var loaded_data = Globals.load_json(json_file_path)
-
-
-	# Zapisanie danych do zmiennej sites_data
-	# W tym momencie sites_data zawiera tylko wylosowane rekordy
-	sites_data.clear()  # Upewnijmy się, że tablica jest czysta przed dodaniem nowych danych
-	var is_safe = randi_range(1, 100)  # Losowanie, czy strona będzie bezpieczna czy nie
-	print("is_safe: %d" % is_safe)
+	sites_data.clear()
+	var is_safe = randi_range(1, 100)
 	get_random_site(is_safe, loaded_data)
 
-# Funkcja do losowania strony na podstawie jej bezpieczeństwa (safe/notsafe)
 func get_random_site(is_safe: int, loaded_data: Dictionary) -> void:
-	var sites = {}  # Deklaracja słownika dla stron
-
-	# Wybór strony na podstawie wartości is_safe
-	if is_safe <= 50:
-		sites = loaded_data.get("safe", {})  # Bezpieczne strony
+	var sites = {}
+	if is_safe <= 65:
+		sites = loaded_data.get("safe", {})
+		set_answer(true)
 	else:
-		sites = loaded_data.get("notsafe", {})  # Niebezpieczne strony
+		sites = loaded_data.get("notsafe", {})
+		set_answer(false)
 
-	
-	# Losowanie indeksu strony
 	var random_index = randi() % sites["name"].size()
-
-	# Pobranie danych strony
 	var site = {
 		"name": sites["name"][random_index],
 		"link": sites["link"][random_index],
@@ -57,24 +47,62 @@ func get_random_site(is_safe: int, loaded_data: Dictionary) -> void:
 		"https_supported": sites["certification"][random_index]["https"]
 	}
 
-	# Dodajemy wylosowaną stronę do tablicy sites_data
 	sites_data.append(site)
 
-	# Wyświetlenie informacji o stronie
-	print_site_info(site)
+func display_all_sites() -> void:
 
-# Funkcja wyświetlająca informacje o stronie
-func print_site_info(site: Dictionary) -> void:
-	print("Nazwa strony: ", site["name"])
-	print("Link: ", site["link"])
-	print("Kategoria: ", site["category"])
-	print("Reputacja: ", site["reputation_score"])
-	print("Opis ryzyka: ", site["risk_description"])
-	print("Lokalizacja serwera: ", site["server_location"])
-	print("Certyfikat ważny: ", site["certification_valid"])
-	print("Wydawca certyfikatu: ", site["certification_issuer"])
-	print("Obsługiwany HTTPS: ", site["https_supported"])
+	for site in sites_data:
+		var site_vbox: VBoxContainer = VBoxContainer.new()
+		site_vbox.add_theme_constant_override("separation", 10)
+		var separator = HSeparator.new()
+		separator = HSeparator.new()
+		site_vbox.add_child(separator)
+		
+		var name_label: Label = Label.new()
+		name_label.text = "Nazwa strony: " + site["name"]
+		site_vbox.add_child(name_label)
 
-# Funkcja zwracająca wylosowane dane stron
-func get_sites_data() -> Array[Dictionary]:
-	return sites_data
+		var link_label: Label = Label.new()
+		link_label.text = "Link: " + site["link"]
+		site_vbox.add_child(link_label)
+
+		var category_label: Label = Label.new()
+		category_label.text = "Kategoria: " + site["category"]
+		site_vbox.add_child(category_label)
+
+		
+		site_vbox.add_child(separator)
+
+		var reputation_label: Label = Label.new()
+		reputation_label.text = "Reputacja: " + str(site["reputation_score"])
+		site_vbox.add_child(reputation_label)
+
+		var location_label: Label = Label.new()
+		location_label.text = "Lokalizacja serwera: " + site["server_location"]
+		site_vbox.add_child(location_label)
+
+		var risk_label: Label = Label.new()
+		risk_label.text = "Opis ryzyka: " + site["risk_description"]
+		site_vbox.add_child(risk_label)
+
+		separator = HSeparator.new()
+		site_vbox.add_child(separator)
+
+		var cert_valid_label: Label = Label.new()
+		cert_valid_label.text = "Certyfikat ważny: " + ("Tak" if site["certification_valid"] else "Nie")
+		site_vbox.add_child(cert_valid_label)
+
+		var cert_issuer_label: Label = Label.new()
+		cert_issuer_label.text = "Wydawca certyfikatu: " + site["certification_issuer"]
+		site_vbox.add_child(cert_issuer_label)
+
+		var https_label: Label = Label.new()
+		https_label.text = "Obsługiwany HTTPS: " + ("Tak" if site["https_supported"] else "Nie")
+		site_vbox.add_child(https_label)
+
+		vbox.add_child(site_vbox)
+		separator = HSeparator.new()
+		site_vbox.add_child(separator)
+
+func set_answer(answer_temp) -> void:
+	answer = answer_temp

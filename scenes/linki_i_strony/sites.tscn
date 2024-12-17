@@ -13,8 +13,8 @@ script = ExtResource("1_8iep1")
 
 [node name="SitesList" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 757.0
+offset_bottom = 800.0
 
 [node name="SitesVBox" type="VBoxContainer" parent="SitesList"]
 layout_mode = 2

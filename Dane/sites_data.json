@@ -78,18 +78,18 @@
   },
   "notsafe": {
 	"name": [
-	  "Fake Bank Login",
-	  "Free Software Download",
-	  "Scam E-commerce",
-	  "Ad Spam",
-	  "Unsecured Site"
+	  "Exmaple Bank",
+	  "Exmaple University",
+	  "Secure Shop",
+	  "News Netwrk",
+	  "Develper Community"
 	],
 	"link": [
-	  "http://fake-bank-login.com",
-	  "http://free-software-download.com",
-	  "http://scam-ecommerce.net",
-	  "http://ad-spam.org",
-	  "http://unsecured-site.com"
+	  "https://exmaple-bank.com",  
+	  "https://example-edu.org", 
+	  "https://secure-shop.co",  
+	  "https://news-network.net",  
+	  "https://devcommunity.org" 
 	],
 	"category": [
 	  "Phishing",
@@ -100,56 +100,56 @@
 	],
 	"site_data": [
 	  {
-		"reputation_score": 15,
+		"reputation_score": 92, 
 		"risk_description": "Strona wyłudzająca dane logowania do banku.",
 		"server_location": "Russia"
 	  },
 	  {
-		"reputation_score": 20,
+		"reputation_score": 85,  
 		"risk_description": "Strona zawiera złośliwe oprogramowanie.",
 		"server_location": "China"
 	  },
 	  {
-		"reputation_score": 10,
+		"reputation_score": 91,  
 		"risk_description": "Podejrzany sklep internetowy. Możliwość oszustwa.",
 		"server_location": "India"
 	  },
 	  {
-		"reputation_score": 12,
+		"reputation_score": 80, 
 		"risk_description": "Strona generuje niechciane reklamy i może instalować adware.",
 		"server_location": "Brazil"
 	  },
 	  {
-		"reputation_score": 30,
+		"reputation_score": 70, 
 		"risk_description": "Strona bez zabezpieczeń. Ryzyko zainfekowania komputera.",
 		"server_location": "Vietnam"
 	  }
 	],
 	"certification": [
 	  {
-		"valid": false,
-		"issuer": "Unknown",
-		"https": false
+		"valid": false,  
+		"issuer": "Unknown", 
+		"https": true
 	  },
 	  {
-		"valid": false,
-		"issuer": "Unknown",
-		"https": false
+		"valid": true,
+		"issuer": "DigiCert", 
+		"https": false  
 	  },
 	  {
-		"valid": false,
-		"issuer": "Unknown",
-		"https": false
+		"valid": false, 
+		"issuer": "GlobalSign",  
+		"https": false 
 	  },
 	  {
-		"valid": false,
-		"issuer": "Unknown",
-		"https": false
+		"valid": true, 
+		"issuer": "Sectigo",  
+		"https": false  
 	  },
 	  {
-		"valid": false,
-		"issuer": "Unknown",
-		"https": false
+		"valid": true, 
+		"issuer": "Entrust",  
+		"https": true
 	  }
 	]
   }

@@ -9,7 +9,6 @@ var vbox: VBoxContainer
 
 func _ready() -> void:
 	self.vbox = $SitesList/SitesVBox
-	generate_new_record()
 
 func generate_new_record() -> void:
 
@@ -22,6 +21,9 @@ func load_and_generate_records() -> void:
 
 	var loaded_data = Globals.load_json(json_file_path)
 	sites_data.clear()
+	var children = self.vbox.get_children()
+	for child in children:
+		child.queue_free()
 	var is_safe = randi_range(1, 100)
 	get_random_site(is_safe, loaded_data)
 
@@ -106,3 +108,8 @@ func display_all_sites() -> void:
 
 func set_answer(answer_temp) -> void:
 	answer = answer_temp
+	answer_sites.emit(answer)
+
+
+func _on_task_manager_generate_new_sites() -> void:
+	self.generate_new_record()

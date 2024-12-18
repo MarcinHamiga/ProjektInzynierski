@@ -117,6 +117,9 @@ func show_task(task: Globals.Tasks) -> void:
 		Globals.Tasks.S_P:
 			self.set_current_scene("EmailBox")
 			disable_buttons.emit()
+		Globals.Tasks.SITES:
+			self.set_current_scene("Sites")
+			enable_buttons.emit()
 		_:
 			pass
 

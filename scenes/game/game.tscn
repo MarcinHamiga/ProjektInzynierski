@@ -22,6 +22,8 @@ texture = ExtResource("5_13g4r")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_uckyl")
+strike_fade_rate = 150.0
+_intro = false
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_c7r2k")
@@ -35,6 +37,7 @@ script = ExtResource("2_7r3s5")
 
 [node name="TaskManager" type="Node" parent="."]
 script = ExtResource("3_5h744")
+time_until_next_task = 2.0
 
 [node name="TaskTimeLeftTimer" type="Timer" parent="TaskManager"]
 

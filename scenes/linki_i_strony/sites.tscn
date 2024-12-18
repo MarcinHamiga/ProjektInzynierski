@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk2m4a7mmtew5"]
+
+[ext_resource type="Script" path="res://scripts/linki_i_strony/sites.gd" id="1_8iep1"]
+
+[node name="Sites" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8iep1")
+
+[node name="SitesList" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 757.0
+offset_bottom = 800.0
+
+[node name="SitesVBox" type="VBoxContainer" parent="SitesList"]
+layout_mode = 2

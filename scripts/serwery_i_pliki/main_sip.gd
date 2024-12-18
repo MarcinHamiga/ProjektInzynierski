@@ -28,7 +28,6 @@ func load_and_generate_records() -> void:
 	var data_file_path = "res://Dane/employee.json"  
 	var itemData = load_json_file(data_file_path)
 
-	# Uzupełnienie list z pliku JSON
 	var names = itemData["names"]
 	var surnames = itemData["surnames"]
 	var topics = itemData["topics"]
@@ -36,7 +35,6 @@ func load_and_generate_records() -> void:
 	var email = itemData["email"]
 	var access = itemData["access"]
 
-	# Generowanie pracowników
 	records.clear()
 	task_list.clear()
 	for i in range(num_records):

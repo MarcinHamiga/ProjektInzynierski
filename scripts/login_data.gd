@@ -1,7 +1,5 @@
 extends Control
 
-signal coming_next
-
 var _login: Label
 var _password: Label
 var _tfa: Label
@@ -11,10 +9,6 @@ func _ready() -> void:
 	self._login = $UserData/UserDataMargin/UserDataVBox/Login
 	self._password = $UserData/UserDataMargin/UserDataVBox/Password
 	self._tfa = $UserData/UserDataMargin/UserDataVBox/TFA
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func get_login() -> String:
 	return self._login.text

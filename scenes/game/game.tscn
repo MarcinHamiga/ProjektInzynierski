@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=19 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_uckyl"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_7r3s5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_5h744"]
 [ext_resource type="Script" path="res://scripts/scene_manager.gd" id="4_nthw3"]
 [ext_resource type="Texture2D" uid="uid://0scwvypre7xh" path="res://graphics/main_background.svg" id="5_13g4r"]
+[ext_resource type="Script" path="res://scripts/login_manager.gd" id="5_m3t6l"]
 [ext_resource type="PackedScene" uid="uid://buhyma3thhvsr" path="res://scenes/game/main_menu.tscn" id="6_uexxm"]
 [ext_resource type="PackedScene" uid="uid://bewnwvp14pvsh" path="res://scenes/game/game_screen.tscn" id="7_plp0g"]
 [ext_resource type="PackedScene" uid="uid://cvldgsjh7nl1c" path="res://scenes/game/ingame_menu.tscn" id="8_s2br5"]
@@ -22,8 +23,6 @@ texture = ExtResource("5_13g4r")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_uckyl")
-strike_fade_rate = 150.0
-_intro = false
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_c7r2k")
@@ -38,6 +37,10 @@ script = ExtResource("2_7r3s5")
 [node name="TaskManager" type="Node" parent="."]
 script = ExtResource("3_5h744")
 time_until_next_task = 2.0
+
+[node name="LoginManager" type="Node" parent="TaskManager"]
+script = ExtResource("5_m3t6l")
+current_tfa_rule = "TFA3"
 
 [node name="TaskTimeLeftTimer" type="Timer" parent="TaskManager"]
 

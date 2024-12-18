@@ -1,7 +1,7 @@
 extends Node
 
 enum GameState { MAIN_MENU, GAME, MENU_SETTINGS, INGAME_MENU, INGAME_TASK, GAME_OVER }
-enum Tasks { NONE, LOGIN_CHECK, S_P }
+enum Tasks { NONE, LOGIN_CHECK, S_P, SITES }
 
 signal play_sound
 signal play_song

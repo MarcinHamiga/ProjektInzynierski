@@ -11,6 +11,7 @@ signal task_complete
 signal new_task
 signal resume_task
 signal request_enable_controls
+signal generate_new_sites
 
 
 var login_manager: Node
@@ -20,6 +21,7 @@ var current_task: Globals.Tasks
 var is_password_correct: bool
 var is_tfa_correct: bool
 var is_record_correct: bool
+var is_sites_correct: bool
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,8 +37,6 @@ func _ready() -> void:
 	self.login_manager._load_password_regex_from_file()
 
 
-
-
 func _on_acceptance_component_accept_pressed() -> void:
 	Globals.play_sound.emit("click")
 	match self.current_task:
@@ -50,6 +50,12 @@ func _on_acceptance_component_accept_pressed() -> void:
 				add_strike.emit()
 		Globals.Tasks.S_P:
 			if self.is_record_correct:
+				task_complete.emit(true)
+			else:
+				task_complete.emit(false)
+				add_strike.emit()
+		Globals.Tasks.SITES:
+			if self.is_sites_correct:
 				task_complete.emit(true)
 			else:
 				task_complete.emit(false)
@@ -72,6 +78,12 @@ func _on_acceptance_component_decline_pressed() -> void:
 				task_complete.emit(true)
 		Globals.Tasks.S_P:
 			if self.is_record_correct:
+				add_strike.emit()
+				task_complete.emit(false)
+			else:
+				task_complete.emit(true)
+		Globals.Tasks.SITES:
+			if self.is_sites_correct:
 				add_strike.emit()
 				task_complete.emit(false)
 			else:
@@ -111,11 +123,14 @@ func stop_timers() -> void:
 func _on_next_task_timer_timeout() -> void:
 	print("New Task emitted")
 	var roll = randi_range(1, 100)
-	if (roll <= 50):
+	if (roll <= 1):
 		self.current_task = Globals.Tasks.LOGIN_CHECK
 		var data = self.login_manager.get_login_screen_data(ready_login_screen)
 		self.is_password_correct = data['is_password_correct']
 		self.is_tfa_correct = data['is_tfa_correct']
+	elif (roll <= 99):
+		self.current_task = Globals.Tasks.SITES
+		generate_new_sites.emit()
 	else:
 		self.current_task = Globals.Tasks.S_P
 		main_sip.regenerate.emit()
@@ -183,3 +198,7 @@ func _on_acceptance_component_get_time_left(update_method: Callable) -> void:
 				self.next_task_timer.wait_time,
 				true
 			)
+
+
+func _on_sites_answer_sites(answer: bool) -> void:
+	self.is_sites_correct = answer

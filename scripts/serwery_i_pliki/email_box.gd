@@ -26,7 +26,6 @@ func generate_new_record() -> void:
 	
 	display_all_records()
 
-
 func display_all_records() -> void:
 	for record in record_list:
 		var hbox: HBoxContainer = HBoxContainer.new()
@@ -93,7 +92,6 @@ func _on_button_pressed(record_id: int) -> void:
 
 func close_record_window(node: Node) -> void:
 	self.remove_child(node)
-
 
 func _on_visibility_changed() -> void:
 	if self.current_email_scene:

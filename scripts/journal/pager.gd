@@ -6,9 +6,9 @@ var pages_content = []
 var current_page_index = 0
 var journal_data = {}
 # Odnośniki do elementów interfejsu
-@onready var text_edit = $VBoxContainer/RichTextLabel
-@onready var prev_button = $VBoxContainer/HBoxContainer/PrevButton
-@onready var next_button = $VBoxContainer/HBoxContainer/NextButton
+@onready var text_edit = $RichTextLabel
+@onready var prev_button = $HBoxContainer/PrevButton
+@onready var next_button = $HBoxContainer/NextButton
 
 func _ready():
 	journal_data = Globals.load_json("res://Dane/journal.json")
@@ -24,16 +24,20 @@ func display():
 	text_edit.text = pages_content[current_page_index]
 
 func _on_prev_button_pressed() -> void:
+	print("prev_button_clicked")
 	if pages_content.size() == 0:
 		return
+	print("has more than one page")
 	current_page_index -= 1
 	if current_page_index < 0:
 		current_page_index = pages_content.size() - 1
 	display()
 
 func _on_next_button_pressed() -> void:
+	print("next_button_clicked")
 	if pages_content.size() == 0:
 		return
+	print("has more than one page")
 	current_page_index += 1
 	if current_page_index >= pages_content.size():
 		current_page_index = 0

@@ -1,28 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bttkqqeq35oax"]
+[gd_scene load_steps=3 format=3 uid="uid://bttkqqeq35oax"]
 
 [ext_resource type="Script" path="res://scripts/journal/journal.gd" id="1_5bgle"]
+[ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="2_jfm8o"]
 
-[node name="Journal" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 97.0
-offset_top = 31.0
-offset_right = -2.0
-offset_bottom = -54.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Journal" type="VBoxContainer"]
+offset_right = 1013.0
+offset_bottom = 535.0
 script = ExtResource("1_5bgle")
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_jfm8o")
+theme_override_font_sizes/font_size = 36
+text = "Pokaż/Ukryj"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 1754.0
-offset_bottom = 957.0
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.0
+mouse_filter = 2
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 3
 
-[connection signal="tab_changed" from="VBoxContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,7 +1,7 @@
 {
   "chapters": [
 	{
-	  "title": "Mechanika serwerów i plików",
+	  "title": "Serwery i Pliki",
 	  "pages": [
 		{
 		  "title": 1,
@@ -14,7 +14,7 @@
 	  ]
 	},
 	{
-	"title": "Mechanika haseł",
+	"title": "Dane logowania",
 	  "pages": [
 		{
 		  "title": 1,
@@ -31,7 +31,7 @@
 	  ]
 	},
 	{
-	"title": "Mechanika stron internetowych",
+	"title": "Strony internetowe",
 	  "pages": [
 			{
 			  "title": 1,

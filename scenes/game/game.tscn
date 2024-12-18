@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=20 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_uckyl"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_7r3s5"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b1mrpd50t5dir" path="res://scenes/serwery_i_pliki/email_box.tscn" id="11_sv30a"]
 [ext_resource type="VideoStream" path="res://videos/gameintro.ogv" id="12_ss6wg"]
 [ext_resource type="PackedScene" uid="uid://domykhnyxhu3w" path="res://scenes/game/settings.tscn" id="13_5fveu"]
+[ext_resource type="PackedScene" uid="uid://bttkqqeq35oax" path="res://scenes/journal/journal.tscn" id="17_x2agl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3kk3"]
 texture = ExtResource("5_13g4r")
@@ -40,7 +41,6 @@ time_until_next_task = 2.0
 
 [node name="LoginManager" type="Node" parent="TaskManager"]
 script = ExtResource("5_m3t6l")
-current_tfa_rule = "TFA3"
 
 [node name="TaskTimeLeftTimer" type="Timer" parent="TaskManager"]
 
@@ -162,6 +162,13 @@ theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
 text = "[center]Day 1 00:00[/center]"
 fit_content = true
+
+[node name="Journal" parent="SceneManager/UI" instance=ExtResource("17_x2agl")]
+offset_left = 1268.0
+offset_top = 366.0
+offset_right = 1860.0
+offset_bottom = 962.0
+mouse_filter = 2
 
 [node name="Intro" type="VideoStreamPlayer" parent="SceneManager"]
 anchors_preset = 15

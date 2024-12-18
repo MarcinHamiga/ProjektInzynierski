@@ -31,3 +31,7 @@ func _on_tab_container_tab_changed(tab: int) -> void:
 		if pager.name == chapter_name:
 			pager.display()
 			return
+
+
+func _on_button_pressed() -> void:
+	tab_container.visible = not tab_container.visible

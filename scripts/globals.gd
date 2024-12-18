@@ -15,6 +15,12 @@ const PAS5: String = "PAS5"
 const PAS6: String = "PAS6"
 const PAS7: String = "PAS7"
 
+const TFA1: String = "TFA1"
+const TFA2: String = "TFA2"
+const TFA3: String = "TFA3"
+const TFA4: String = "TFA4"
+const TFA5: String = "TFA5"
+
 const main_menu_song: AudioStream = preload("res://audio/music/Firewall Anthem.mp3")
 const ingame_song: AudioStream = preload("res://audio/music/Firewall Bound.mp3")
 const click_sound: AudioStream = preload("res://audio/sounds/switch-20.wav")

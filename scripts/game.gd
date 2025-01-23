@@ -9,13 +9,13 @@ extends Node
 var state_manager: Node
 var scene_manager: Node
 var task_manager: Node
-var game_state_enum
 var tick_timer: Timer
 var strike_timer: Timer
 var strikes: int
 var day: int
 var hour: int
 var minute: int
+var score: int = 0
 
 signal change_state
 signal update_datetime
@@ -24,6 +24,7 @@ signal new_day
 signal game_over
 signal update_strikes
 signal intro
+signal update_score
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +46,7 @@ func new_game():
 	self.day = 1
 	self.hour = 8
 	self.minute = 0
+	self.score = 0
 	update_datetime.emit(self.day, self.hour, self.minute)
 	start_new_game.emit()
 	self.tick_timer.start()
@@ -73,7 +75,7 @@ func _on_ingame_menu_continue_button_pressed() -> void:
 	change_state.emit(Globals.GameState.GAME)
 
 
-func _on_ingame_menu_settings_button_pressed() -> void:
+func _on_ingame_menuv_settings_button_pressed() -> void:
 	Globals.play_sound.emit("click")
 	change_state.emit(Globals.GameState.MENU_SETTINGS)
 
@@ -144,3 +146,9 @@ func _on_strike_timer_timeout() -> void:
 	if self.strikes > 0:
 		self.strike_timer.start()
 	update_strikes.emit(self.strikes)
+
+func add_score() -> int:
+	self.score += 10
+	self.scene_manager.set_score(self.score)
+	return self.score
+	

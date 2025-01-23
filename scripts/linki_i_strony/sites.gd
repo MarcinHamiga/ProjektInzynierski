@@ -72,7 +72,7 @@ func display_all_sites() -> void:
 		category_label.text = "Kategoria: " + site["category"]
 		site_vbox.add_child(category_label)
 
-		
+		separator = HSeparator.new()
 		site_vbox.add_child(separator)
 
 		var reputation_label: Label = Label.new()

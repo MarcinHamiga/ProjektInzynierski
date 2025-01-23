@@ -21,7 +21,7 @@ layout_mode = 2
 [node name="Spacer1" type="Control" parent="GameOverVBox"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 3.0
 
 [node name="GameOverText" type="RichTextLabel" parent="GameOverVBox"]
 layout_mode = 2
@@ -34,6 +34,23 @@ theme_override_constants/outline_size = 24
 theme_override_font_sizes/normal_font_size = 280
 bbcode_enabled = true
 text = "[center] Koniec Gry [/center]"
+
+[node name="Score" type="RichTextLabel" parent="GameOverVBox"]
+custom_minimum_size = Vector2(256, 65)
+layout_mode = 2
+theme = ExtResource("2_7klyv")
+theme_override_font_sizes/bold_italics_font_size = 64
+theme_override_font_sizes/italics_font_size = 64
+theme_override_font_sizes/mono_font_size = 64
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/bold_font_size = 64
+bbcode_enabled = true
+text = "[center]Wynik końcowy: [/center]"
+
+[node name="Spacer2" type="Control" parent="GameOverVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
 
 [node name="ButtonsHBox" type="HBoxContainer" parent="GameOverVBox"]
 layout_mode = 2

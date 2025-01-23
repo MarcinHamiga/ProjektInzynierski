@@ -9,6 +9,7 @@ var datetime_label: RichTextLabel
 var intro: VideoStreamPlayer
 var controls: MarginContainer
 var game_over: MarginContainer
+var score: RichTextLabel
 
 signal scene_changed
 signal scene_hidden
@@ -28,6 +29,7 @@ func _ready() -> void:
 	self.controls = $UI/AcceptanceComponent
 	self.login_scene = $GameScenes/LoginData
 	self.game_over = $GameScenes/GameOver
+	self.score = $UI/TaskBarContainer/TaskBarIcons/Score
 	enable_buttons.connect(self.controls.enable_buttons)
 	disable_buttons.connect(self.controls.disable_buttons)
 	write_to_match_info.connect(self.controls.write_to_match_info)
@@ -158,3 +160,8 @@ func _on_game_start_new_game() -> void:
 
 func _on_task_manager_request_enable_controls() -> void:
 	enable_buttons.emit()
+
+
+func set_score(score: int) -> void:
+	self.score.text = '[center]Wynik: %d[/center]' % [score]
+	self.game_over.set_score(score)

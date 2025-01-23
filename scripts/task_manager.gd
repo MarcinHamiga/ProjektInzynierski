@@ -39,24 +39,28 @@ func _ready() -> void:
 
 func _on_acceptance_component_accept_pressed() -> void:
 	Globals.play_sound.emit("click")
+	var game = get_parent()
 	match self.current_task:
 		Globals.Tasks.NONE:
 			pass
 		Globals.Tasks.LOGIN_CHECK:
 			if self.is_password_correct and self.is_tfa_correct:
 				task_complete.emit(true)
+				game.add_score()
 			else:
 				task_complete.emit(false)
 				add_strike.emit()
 		Globals.Tasks.S_P:
 			if self.is_record_correct:
 				task_complete.emit(true)
+				game.add_score()
 			else:
 				task_complete.emit(false)
 				add_strike.emit()
 		Globals.Tasks.SITES:
 			if self.is_sites_correct:
 				task_complete.emit(true)
+				game.add_score()
 			else:
 				task_complete.emit(false)
 				add_strike.emit()
@@ -67,6 +71,7 @@ func _on_acceptance_component_accept_pressed() -> void:
 
 func _on_acceptance_component_decline_pressed() -> void:
 	Globals.play_sound.emit("click")
+	var game = get_parent()
 	match self.current_task:
 		Globals.Tasks.NONE:
 			pass
@@ -75,18 +80,21 @@ func _on_acceptance_component_decline_pressed() -> void:
 				add_strike.emit()
 				task_complete.emit(false)
 			else:
+				game.add_score()
 				task_complete.emit(true)
 		Globals.Tasks.S_P:
 			if self.is_record_correct:
 				add_strike.emit()
 				task_complete.emit(false)
 			else:
+				game.add_score()
 				task_complete.emit(true)
 		Globals.Tasks.SITES:
 			if self.is_sites_correct:
 				add_strike.emit()
 				task_complete.emit(false)
 			else:
+				game.add_score()
 				task_complete.emit(true)
 	self.next_task_timer.start()
 	self.task_time_left_timer.stop()

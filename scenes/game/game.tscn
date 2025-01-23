@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2v54xlxhspxn"]
+[gd_scene load_steps=22 format=3 uid="uid://d2v54xlxhspxn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_uckyl"]
 [ext_resource type="Script" path="res://scripts/state_manager.gd" id="2_7r3s5"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://domykhnyxhu3w" path="res://scenes/game/settings.tscn" id="13_5fveu"]
 [ext_resource type="PackedScene" uid="uid://bk2m4a7mmtew5" path="res://scenes/linki_i_strony/sites.tscn" id="15_q6h4a"]
 [ext_resource type="PackedScene" uid="uid://bttkqqeq35oax" path="res://scenes/journal/journal.tscn" id="17_x2agl"]
+[ext_resource type="Theme" uid="uid://cfxt25d75fpp" path="res://themes/game.tres" id="18_41h7d"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3kk3"]
 texture = ExtResource("5_13g4r")
@@ -157,9 +158,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 11.0
 
-[node name="DateTime" type="RichTextLabel" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]
+[node name="Score" type="RichTextLabel" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]
+custom_minimum_size = Vector2(256, 34)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("18_41h7d")
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[center]Wynik: 0"
+
+[node name="DateTime" type="RichTextLabel" parent="SceneManager/UI/TaskBarContainer/TaskBarIcons"]
+custom_minimum_size = Vector2(256, 33)
+layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 2.0
 theme_override_fonts/normal_font = ExtResource("11_il6a7")

@@ -40,6 +40,8 @@ func _ready() -> void:
 	self.strike_timer.one_shot = true
 	if self._intro:
 		intro.emit()
+	else:
+		$SceneManager/Intro.finished.emit()
 
 func new_game():
 	self.strikes = 0

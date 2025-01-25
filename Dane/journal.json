@@ -14,19 +14,35 @@
 	  ]
 	},
 	{
-	"title": "Dane logowania",
+  "title": "Dane logowania",
 	  "pages": [
 		{
-		  "title": 1,
-		  "content": "To jest treść strony 1 w zakładce Mechanika haseł."
+		  "title": "Dzień 1-3",
+		  "content": "Hasło musi zawierać: małe litery, minimum 12 znaków długości\nBrak wymaganej metody weryfikacji dwuetapowej."
 		},
-				{
-		  "title": 2,
-		  "content": "To jest treść strony 2 w zakładce Mechanika haseł."
+		{
+		  "title": "Dzień 4-7",
+		  "content": "Hasło musi zawierać: małe litery, duże litery, minimum 12 znaków długości\nBrak wymaganej metody weryfikacji dwuetapowej."
 		},
-						{
-		  "title": 3,
-		  "content": "To jest treść strony 3 w zakładce Mechanika haseł."
+		{
+		  "title": "Dzień 8-11",
+		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, minimum 12 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: SMS."
+		},
+		{
+		  "title": "Dzień 12-15",
+		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 12 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: SMS."
+		},
+		{
+		  "title": "Dzień 16-19",
+		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 15 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Aplikacja."
+		},
+		{
+		  "title": "Dzień 20-23",
+		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 18 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Klucz systemowy."
+		},
+		{
+		  "title": "Dzień 24+",
+		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 21 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Klucz fizyczny."
 		}
 	  ]
 	},

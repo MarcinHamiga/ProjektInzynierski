@@ -15,36 +15,37 @@ var access_rank_label: Label
 
 var attachment_scene: Node
 
+var vbox: VBoxContainer 
+
 func _ready() -> void:
 	record_id = main_sip.get_current_id()
 
 	var record = get_record_by_id(record_id, main_sip.get_records())
 	var task = get_task_for_employee(record_id, main_sip.get_tasks())
-
-	name_label = $Message/Name
-	topic_label = $Message/Topic
-	type_label = $Message/Type
-	email_label = $Message/Email
+	self.vbox = $Access
+	name_label = $Name
+	type_label = $Type
+	topic_label = $Topic
+	email_label = $Email
 	attachment_button = $Attachment
 	
-	access_type_label = $Message/AccessType
-	access_location_label = $Message/AccessLocation
-	access_rank_label = $Message/AccessRank
+	access_type_label = $Access/AccessType
+	access_location_label = $Access/AccessLocation
+	access_rank_label = $Access/AccessRank
 
-	name_label.text = record["name"]
-	email_label.text = record["email"]
-	topic_label.text = task["topic"]
-	type_label.text = task["type"]
+	email_label.text = "Adres E-mail: "+record["email"]
+	name_label.text = "Imię i nazwisko: \n"+record["name"]
+	topic_label.text = "Temat: "+task["topic"]
+	type_label.text = "Typ zadania: "+task["type"]
 	
-	#print("emailDEBUG: " + task["type"])
 
 	if task["type"] == "Dostęp do serwera":
 		print("Wywołuję funkcję dla zadania typu 'Dostęp do serwera'")
 		var server_task = get_server_task(record_id)
 		if server_task != {}:
-			access_type_label.text = server_task["access_type"]
-			access_location_label.text = server_task["access_location"]
-			access_rank_label.text = server_task["access_rank"]
+			access_type_label.text = "Typ dostępu: "+server_task["access_type"]
+			access_location_label.text = "Adres dostępu: " +server_task["access_location"]
+			access_rank_label.text = "INFORMACJE DOSTĘPOWE\nStanowisko pracownika: "+server_task["access_rank"]
 			attachment_button.visible = false
 	else:
 		attachment_button.show()

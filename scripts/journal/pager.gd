@@ -1,16 +1,17 @@
 extends Control
-
 # Zmienna przechowująca treści stron
 var pager_name = ""
 var pages_content = []
 var current_page_index = 0
 var journal_data = {}
 # Odnośniki do elementów interfejsu
-@onready var text_edit = $RichTextLabel
+@onready var text_edit = $MarginContainer/RichTextLabel
 @onready var prev_button = $HBoxContainer/PrevButton
 @onready var next_button = $HBoxContainer/NextButton
+@onready var page_index_text = $HBoxContainer/PageIndex
 
 func _ready():
+	page_index_text.add_theme_font_size_override("normal_font_size", 32)
 	journal_data = Globals.load_json("res://Dane/journal.json")
 
 func add_pages():
@@ -21,6 +22,7 @@ func add_pages():
 			text_edit.text = pages_content[current_page_index]
 
 func display():
+	page_index_text.text = '[center]' + str(current_page_index + 1) + '[/center]'
 	text_edit.text = pages_content[current_page_index]
 
 func _on_prev_button_pressed() -> void:

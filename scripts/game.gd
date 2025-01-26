@@ -77,7 +77,7 @@ func _on_ingame_menu_continue_button_pressed() -> void:
 	change_state.emit(Globals.GameState.GAME)
 
 
-func _on_ingame_menuv_settings_button_pressed() -> void:
+func _on_ingame_menu_settings_button_pressed() -> void:
 	Globals.play_sound.emit("click")
 	change_state.emit(Globals.GameState.MENU_SETTINGS)
 

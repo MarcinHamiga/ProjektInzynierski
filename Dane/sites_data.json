@@ -78,77 +78,142 @@
   },
   "notsafe": {
 	"name": [
-	  "Exmaple Bank",
-	  "Exmaple University",
-	  "Secure Shop",
-	  "News Netwrk",
-	  "Develper Community"
+	  "Example-Bank",
+	  "Exampl3 University",
+	  "SecureShoping",
+	  "News Network PRO",
+	  "Developer Community Plus",
+	  "Example Bank Login",
+	  "University of Example",
+	  "Shop-Secure-Store",
+	  "News-Network Official",
+	  "DevCommunity Premium"
 	],
 	"link": [
-	  "https://exmaple-bank.com",  
-	  "https://example-edu.org", 
-	  "https://secure-shop.co",  
-	  "https://news-network.net",  
-	  "https://devcommunity.org" 
+	  "https://example-bank.net",
+	  "https://example-univ.org",
+	  "https://secure-shoping.com",
+	  "http://news-network-pro.com",
+	  "https://dev-community-plus.org",
+	  "https://examplebank-login.com",
+	  "https://university-example.edu",
+	  "https://shop-secure-store.co",
+	  "https://news-network-offical.com",
+	  "https://devcommunity-premium.net"
 	],
 	"category": [
 	  "Phishing",
 	  "Malware",
 	  "Fraud",
-	  "Adware",
-	  "Unknown"
+	  "Suspicious",
+	  "Suspicious",
+	  "Phishing",
+	  "Suspicious",
+	  "Fraud",
+	  "Suspicious",
+	  "Suspicious"
 	],
 	"site_data": [
 	  {
-		"reputation_score": 92, 
-		"risk_description": "Strona wyłudzająca dane logowania do banku.",
+		"reputation_score": 15,
+		"risk_description": "Oczywista strona phishingowa podszywająca się pod bank.",
+		"server_location": "Nigeria"
+	  },
+	  {
+		"reputation_score": 25,
+		"risk_description": "Strona zawiera złośliwe oprogramowanie ukryte w plikach PDF.",
+		"server_location": "Unknown"
+	  },
+	  {
+		"reputation_score": 20,
+		"risk_description": "Fałszywy sklep wyłudzający dane kart kredytowych.",
 		"server_location": "Russia"
 	  },
 	  {
-		"reputation_score": 85,  
-		"risk_description": "Strona zawiera złośliwe oprogramowanie.",
+		"reputation_score": 65,
+		"risk_description": "Certyfikat SSL wygasł 2 dni temu. Może być potencjalnie niebezpieczne.",
+		"server_location": "United States"
+	  },
+	  {
+		"reputation_score": 72,
+		"risk_description": "Domena zarejestrowana 24h temu. Brak historii.",
+		"server_location": "Netherlands"
+	  },
+	  {
+		"reputation_score": 18,
+		"risk_description": "Kopia strony bankowej z podmienionym formularzem logowania.",
 		"server_location": "China"
 	  },
 	  {
-		"reputation_score": 91,  
-		"risk_description": "Podejrzany sklep internetowy. Możliwość oszustwa.",
-		"server_location": "India"
+		"reputation_score": 68,
+		"risk_description": "Niezgodność między nazwą w certyfikacie a domeną.",
+		"server_location": "Germany"
 	  },
 	  {
-		"reputation_score": 80, 
-		"risk_description": "Strona generuje niechciane reklamy i może instalować adware.",
-		"server_location": "Brazil"
+		"reputation_score": 35,
+		"risk_description": "Sklep z fałszywymi opiniami i nieistniejącym adresem zwrotnym.",
+		"server_location": "Panama"
 	  },
 	  {
-		"reputation_score": 70, 
-		"risk_description": "Strona bez zabezpieczeń. Ryzyko zainfekowania komputera.",
-		"server_location": "Vietnam"
+		"reputation_score": 71,
+		"risk_description": "Przekierowania przez niezabezpieczone domeny.",
+		"server_location": "United States"
+	  },
+	  {
+		"reputation_score": 69,
+		"risk_description": "Certyfikat self-signed. Podejrzane skrypty śledzące.",
+		"server_location": "France"
 	  }
 	],
 	"certification": [
 	  {
-		"valid": false,  
-		"issuer": "Unknown", 
+		"valid": false,
+		"issuer": "Unknown",
 		"https": true
 	  },
 	  {
 		"valid": true,
-		"issuer": "DigiCert", 
-		"https": false  
+		"issuer": "DigiCert",
+		"https": false
 	  },
 	  {
-		"valid": false, 
-		"issuer": "GlobalSign",  
-		"https": false 
+		"valid": true,
+		"issuer": "Let's Encrypt",
+		"https": true
 	  },
 	  {
-		"valid": true, 
-		"issuer": "Sectigo",  
-		"https": false  
+		"valid": false,
+		"issuer": "Sectigo",
+		"https": true
 	  },
 	  {
-		"valid": true, 
-		"issuer": "Entrust",  
+		"valid": true,
+		"issuer": "Let's Encrypt",
+		"https": true
+	  },
+	  {
+		"valid": false,
+		"issuer": "Unknown",
+		"https": true
+	  },
+	  {
+		"valid": true,
+		"issuer": "DigiCert",
+		"https": true
+	  },
+	  {
+		"valid": true,
+		"issuer": "Let's Encrypt",
+		"https": true
+	  },
+	  {
+		"valid": true,
+		"issuer": "GlobalSign",
+		"https": true
+	  },
+	  {
+		"valid": true,
+		"issuer": "Self Signed",
 		"https": true
 	  }
 	]

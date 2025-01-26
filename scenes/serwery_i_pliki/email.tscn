@@ -10,16 +10,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -760.0
-offset_top = -490.0
-offset_right = 36.0
-offset_bottom = -42.0
+offset_left = -601.0
+offset_top = -664.0
+offset_right = 195.0
+offset_bottom = -216.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_vfhw2")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,46 +33,19 @@ stretch_mode = 6
 
 [node name="Attachment" type="Button" parent="."]
 visible = false
-layout_mode = 2
-offset_left = 49.0
-offset_top = 258.0
-offset_right = 237.0
-offset_bottom = 319.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -148.0
+offset_right = 94.0
+offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Attachment"
-
-[node name="Accept" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -191.0
-offset_top = -21.0
-offset_right = -31.0
-offset_bottom = 10.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "Akceptuj zgłoszenie
-"
-
-[node name="NotAccept" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = 30.0
-offset_right = -33.0
-offset_bottom = 61.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "Odrzuć zgłoszenie
-"
+text = "Zobacz załącznik"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 1
@@ -90,39 +64,97 @@ size_flags_vertical = 8
 text = "Powrót
 "
 
-[node name="Message" type="VBoxContainer" parent="."]
+[node name="Topic" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 24.0
-offset_right = 337.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -124.0
+offset_right = 326.0
+offset_bottom = -99.0
 grow_vertical = 2
-mouse_filter = 2
+text = "Temat
+"
 
-[node name="Name" type="Label" parent="Message"]
+[node name="Email" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -154.0
+offset_right = 328.0
+offset_bottom = -131.0
+grow_vertical = 2
+text = "Email:"
+
+[node name="Type" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -99.0
+offset_right = 327.0
+offset_bottom = -76.0
+grow_vertical = 2
+text = "typ
+"
+
+[node name="ProblemMessage" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -24.0
+offset_right = 327.0
+offset_bottom = -1.0
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -150.0
+offset_right = -28.0
+offset_bottom = -127.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "
+"
+
+[node name="Access" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -383.0
+offset_top = -24.0
+offset_right = 85.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccessRank" type="Label" parent="Access"]
 layout_mode = 2
 
-[node name="Topic" type="Label" parent="Message"]
+[node name="AccessLocation" type="Label" parent="Access"]
 layout_mode = 2
 
-[node name="Type" type="Label" parent="Message"]
+[node name="AccessType" type="Label" parent="Access"]
 layout_mode = 2
-
-[node name="Email" type="Label" parent="Message"]
-layout_mode = 2
-
-[node name="ProblemMessage" type="Label" parent="Message"]
-layout_mode = 2
-
-[node name="AccessType" type="Label" parent="Message"]
-layout_mode = 2
-
-[node name="AccessLocation" type="Label" parent="Message"]
-layout_mode = 2
-
-[node name="AccessRank" type="Label" parent="Message"]
-layout_mode = 2
+text = "
+"
 
 [connection signal="pressed" from="Attachment" to="." method="_on_attachment_pressed"]
 [connection signal="pressed" from="Attachment" to="Attachment" method="_on_pressed"]

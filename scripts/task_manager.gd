@@ -131,12 +131,12 @@ func stop_timers() -> void:
 func _on_next_task_timer_timeout() -> void:
 	print("New Task emitted")
 	var roll = randi_range(1, 100)
-	if (roll <= 1):
+	if (roll <= 33):
 		self.current_task = Globals.Tasks.LOGIN_CHECK
 		var data = self.login_manager.get_login_screen_data(ready_login_screen)
 		self.is_password_correct = data['is_password_correct']
 		self.is_tfa_correct = data['is_tfa_correct']
-	elif (roll <= 99):
+	elif (roll <= 66):
 		self.current_task = Globals.Tasks.SITES
 		generate_new_sites.emit()
 	else:

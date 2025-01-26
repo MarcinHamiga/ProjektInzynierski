@@ -2,44 +2,104 @@
   "safe": [
 	{
 	  "access_rank": "Młodszy administrator",
-	  "access_location": "/produkcja/projekt1/plik24.exe",
+	  "access_location": "/produkcja/projekty/aplikacje/projekt1/dokumentacja.pdf",
 	  "access_type": "tylko odczyt"
 	},
 	{
+	  "access_rank": "Starszy administrator",
+	  "access_location": "/produkcja/projekty/aplikacje/projekt1",
+	  "access_type": "odczyt i zapis"
+	},
+	{
 	  "access_rank": "Starszy programista",
-	  "access_location": "/testy/projekt5/dokumentacja.pdf",
+	  "access_location": "/testy/projekty/web/dokumentacja_api.pdf",
 	  "access_type": "odczyt i zapis"
 	},
 	{
 	  "access_rank": "Menedżer IT",
-	  "access_location": "/archiwum/dane/backup2023.zip",
+	  "access_location": "/archiwum/backup/2024/Q1",
 	  "access_type": "pełny dostęp"
 	},
 	{
 	  "access_rank": "Analityk danych",
-	  "access_location": "/data/analityka/2023",
+	  "access_location": "/data/raporty/sprzedaz/2024",
+	  "access_type": "tylko odczyt"
+	},
+	{
+	  "access_rank": "Inżynier DevOps",
+	  "access_location": "/infrastruktura/config/production",
+	  "access_type": "odczyt i zapis"
+	},
+	{
+	  "access_rank": "Tester",
+	  "access_location": "/testy/środowisko/qa",
+	  "access_type": "odczyt i zapis"
+	},
+	{
+	  "access_rank": "Audytor bezpieczeństwa",
+	  "access_location": "/security/logi/system",
+	  "access_type": "tylko odczyt"
+	},
+	{
+	  "access_rank": "Administrator baz danych",
+	  "access_location": "/data/backup/databases",
+	  "access_type": "pełny dostęp"
+	},
+	{
+	  "access_rank": "Praktykant IT",
+	  "access_location": "/projekty/dokumentacja/publiczna",
 	  "access_type": "tylko odczyt"
 	}
   ],
   "notsafe": [
 	{
-	  "access_rank": "Młodszy administrator",
-	  "access_location": "/produkcja/projekt1/plik24.exe",
+	  "access_rank": "Sprzątaczka",
+	  "access_location": "/security/kamery/monitoring",
 	  "access_type": "pełny dostęp"
 	},
 	{
-	  "access_rank": "Starszy programista",
-	  "access_location": "/archiwum/dane/backup2023.zip",
-	  "access_type": "tylko odczyt"
+	  "access_rank": "Praktykant IT",
+	  "access_location": "/security/certificates/private",
+	  "access_type": "pełny dostęp"
 	},
 	{
-	  "access_rank": "Menedżer IT",
-	  "access_location": "/data/analityka/2023",
-	  "access_type": "odczyt i zapis"
+	  "access_rank": "Gość systemu",
+	  "access_location": "/produkcja/aplikacje/główne",
+	  "access_type": "pełny dostęp"
 	},
 	{
 	  "access_rank": "Analityk danych",
-	  "access_location": "/testy/projekt5/dokumentacja.pdf",
+	  "access_location": "/security/hasła/system",
+	  "access_type": "odczyt i zapis"
+	},
+	{
+	  "access_rank": "Nowy Administrator",
+	  "access_location": "/",
+	  "access_type": "pełny dostęp"
+	},
+	{
+	  "access_rank": "Zewnętrzny konsultant",
+	  "access_location": "/security/firewalls/rules",
+	  "access_type": "pełny dostęp"
+	},
+	{
+	  "access_rank": "Administrator baz danych",
+	  "access_location": "/security/backdoor",
+	  "access_type": "pełny dostęp"
+	},
+	{
+	  "access_rank": "System",
+	  "access_location": "/etc/shadow",
+	  "access_type": "odczyt i zapis"
+	},
+	{
+	  "access_rank": "Stażysta Security",
+	  "access_location": "/root",
+	  "access_type": "pełny dostęp"
+	},
+	{
+	  "access_rank": "Konto tymczasowe",
+	  "access_location": "/var/www/html",
 	  "access_type": "pełny dostęp"
 	}
   ]

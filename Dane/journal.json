@@ -4,17 +4,21 @@
 	  "title": "Serwery i Pliki",
 	  "pages": [
 		{
-		  "title": 1,
-		  "content": "To jest treść strony 1 w zakładce Mechanika serwerów i plików."
+		  "title": "Bezpieczne rozszerzenia plików",
+		  "content": "Lista bezpiecznych rozszerzeń plików:\n\n1. .pdf - dokumentacja bezpieczeństwa\n2. .xlsx - arkusz danych\n3. .docx - dokument tekstowy\n4. .pptx - prezentacja firmowa\n5. .config - plik konfiguracyjny\n6. .bak - backup danych\n7. .txt - plik tekstowy\n8. .zip - archiwum"
 		},
 		{
-		  "title": 2,
-		  "content": "To jest treść strony 2 w zakładce Mechanika serwerów i plików."
+		  "title": "Zaufani twórcy plików",
+		  "content": "Lista zaufanych twórców:\n\n1. Dział Bezpieczeństwa IT\n2. System Windows Update\n3. Zespół Dokumentacji Technicznej\n4. Dział Marketingu i Komunikacji\n5. Komisja Egzaminacyjna\n6. Administrator Systemu\n7. Centrum Certyfikacji\n8. Dział Rozwoju Oprogramowania\n9. Audyt Wewnętrzny\n10. Microsoft Corporation"
+		},
+		{
+		  "title": "Uprawnienia dostępu",
+		  "content": "Lista standardowych uprawnień:\n\n1. Młodszy administrator \n- /produkcja/projekty/aplikacje/projekt1/dokumentacja.pdf \n- (tylko odczyt)\n\n2. Starszy administrator \n- /produkcja/projekty/aplikacje/projekt1 \n- (odczyt i zapis)\n\n3. Starszy programista \n- /testy/projekty/web/dokumentacja_api.pdf \n- (odczyt i zapis)\n\n4. Menedżer IT \n- /archiwum/backup/2024/Q1 \n- (pełny dostęp)\n\n5. Analityk danych \n- /data/raporty/sprzedaz/2024 \n- (tylko odczyt)\n\n6. Inżynier DevOps \n- /infrastruktura/config/production \n- (odczyt i zapis)\n\n7. Tester \n- /testy/środowisko/qa \n- (odczyt i zapis)\n\n8. Audytor bezpieczeństwa \n- /security/logi/system (tylko odczyt)\n\n9. Administrator baz danych \n- /data/backup/databases \n- (pełny dostęp)\n\n10. Praktykant IT \n- /projekty/dokumentacja/publiczna \n- (tylko odczyt)"
 		}
 	  ]
 	},
 	{
-  "title": "Dane logowania",
+	  "title": "Dane logowania",
 	  "pages": [
 		{
 		  "title": "Dzień 1-3",
@@ -47,20 +51,20 @@
 	  ]
 	},
 	{
-	"title": "Strony internetowe",
+	  "title": "Strony internetowe",
 	  "pages": [
-			{
-			  "title": 1,
-			  "content": "To jest treść strony 1 w zakładce Mechanika stron internetowych."
-			},
-					{
-			  "title": 2,
-			  "content": "To jest treść strony 2 w zakładce Mechanika stron internetowych."
-			},
-							{
-			  "title": 3,
-			  "content": "To jest treść strony 3 w zakładce Mechanika stron internetowych."
-			}
+		{
+		  "title": "Zaufane strony",
+		  "content": "Lista zweryfikowanych i bezpiecznych stron:\n\n1. Example Bank (https://example-bank.com)\n- Oficjalna strona bankowa\n- Certyfikat: Let's Encrypt\n- Ocena bezpieczeństwa: 95/100\n\n2. Example University (https://example-edu.org)\n- Portal edukacyjny\n- Certyfikat: DigiCert\n- Ocena bezpieczeństwa: 89/100\n\n3. Secure Shop (https://secure-shop.com)\n- Bezpieczny sklep internetowy\n- Certyfikat: GlobalSign\n- Ocena bezpieczeństwa: 93/100\n\n4. News Network (https://news-network.com)\n- Platforma informacyjna\n- Certyfikat: Sectigo\n- Ocena bezpieczeństwa: 88/100\n\n5. Developer Community (https://dev-community.org)\n- Forum programistyczne\n- Certyfikat: Entrust\n- Ocena bezpieczeństwa: 92/100"
+		},
+		{
+		  "title": "Cechy bezpiecznej strony",
+		  "content": "Jak rozpoznać bezpieczną stronę:\n\n1. Poprawny protokół HTTPS\n2. Ważny certyfikat SSL od zaufanego wystawcy\n3. Dokładny adres URL bez literówek\n4. Wysoka ocena bezpieczeństwa (>85/100)\n5. Lokalizacja serwera w kraju o silnych regulacjach cyberbezpieczeństwa"
+		},
+		{
+		  "title": "Certyfikaty bezpieczeństwa",
+		  "content": "Zaufani wystawcy certyfikatów SSL:\n- Let's Encrypt\n- DigiCert\n- GlobalSign\n- Sectigo\n- Entrust\n\nKażdy certyfikat powinien być:\n- Aktualny (nieprzeterminowany)\n- Wystawiony dla dokładnej nazwy domeny\n- Możliwy do zweryfikowania"
+		}
 	  ]
 	}
   ]

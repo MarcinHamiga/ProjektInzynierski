@@ -1,62 +1,89 @@
 {
   "name": [
-	"Instrukcja Obsługi",
-	"Wiadomość Powitalna",
-	"Dokumentacja Techniczna",
-	"Pytania Egzaminacyjne",
-	"Prezentacja",
-	"Instalator Gry",
-	"Skrypt Automatyzacji",
-	"Wtyczka Systemowa",
-	"Raport Finansowy - Makro",
-	"Nieznany Plik Systemowy"
+	"Instrukcja Bezpieczeństwa Systemu v2.1",
+	"Wiadomość Powitalna - Aktualizacja Kwartalna",
+	"Dokumentacja Techniczna - Moduł Płatności",
+	"Pytania Egzaminacyjne - Cyberbezpieczeństwo 2024",
+	"Prezentacja - Strategia Rozwoju Q2",
+	"Instalator Steam_games_bundle_2024",
+	"Skrypt Automatyzacji Backupu_v3",
+	"Wtyczka Systemowa - Enhanced Performance",
+	"Raport Finansowy Q1 2024 - Makro Enabled",
+	"system32.dll_update.exe",
+	"Protokół Bezpieczeństwa - Wersja Końcowa",
+	"Konfiguracja VPN - Instrukcja",
+	"Raport z Audytu Bezpieczeństwa 2024",
+	"Aktualizacja Antywirusa v12.5",
+	"Kopia zapasowa bazy danych - auto"
   ],
   "creator": {
 	"safe": [
-	  "Producent ABC",
-	  "System",
-	  "Dział Dokumentacji",
-	  "Marketing",
-	  "Uczelnia"
+	  "Dział Bezpieczeństwa IT",
+	  "System Windows Update",
+	  "Zespół Dokumentacji Technicznej",
+	  "Dział Marketingu i Komunikacji",
+	  "Komisja Egzaminacyjna",
+	  "Administrator Systemu",
+	  "Centrum Certyfikacji",
+	  "Dział Rozwoju Oprogramowania",
+	  "Audyt Wewnętrzny",
+	  "Microsoft Corporation"
 	],
 	"notsafe": [
-	  "Nieznany",
-	  "GameStudio",
-	  "IT Department",
-	  "Firma XYZ - Skrypt",
-	  "Zewnętrzny Deweloper"
+	  "Unknown_Developer_2024",
+	  "GameStudio_RU",
+	  "IT_Department_External",
+	  "System_Updater_Service",
+	  "Dev_Team_Anonymous",
+	  "Best_Games_Ltd",
+	  "Security_Tools_Pro",
+	  "Cloud_Service_Bot",
+	  "Update_Manager_247",
+	  "Automated_System_Inc"
 	]
   },
   "extension": {
 	"safe": [
 	  {
+		"app_type": "dokumentacja bezpieczeństwa",
+		"extension": ".pdf"
+	  },
+	  {
+		"app_type": "arkusz danych",
+		"extension": ".xlsx"
+	  },
+	  {
+		"app_type": "dokument tekstowy",
+		"extension": ".docx"
+	  },
+	  {
+		"app_type": "prezentacja firmowa",
+		"extension": ".pptx"
+	  },
+	  {
+		"app_type": "plik konfiguracyjny",
+		"extension": ".config"
+	  },
+	  {
+		"app_type": "backup danych",
+		"extension": ".bak"
+	  },
+	  {
 		"app_type": "plik tekstowy",
 		"extension": ".txt"
 	  },
 	  {
-		"app_type": "arkusz",
-		"extension": ".xls"
-	  },
-	  {
-		"app_type": "dokument pdf",
-		"extension": ".pdf"
-	  },
-	  {
-		"app_type": "dokument word",
-		"extension": ".docx"
-	  },
-	  {
-		"app_type": "prezentacja",
-		"extension": ".pptx"
+		"app_type": "archiwum",
+		"extension": ".zip"
 	  }
 	],
 	"notsafe": [
 	  {
-		"app_type": "aplikacja",
+		"app_type": "aplikacja executable",
 		"extension": ".exe"
 	  },
 	  {
-		"app_type": "plik skryptowy",
+		"app_type": "skrypt powłoki",
 		"extension": ".sh"
 	  },
 	  {
@@ -64,12 +91,24 @@
 		"extension": ".bin"
 	  },
 	  {
-		"app_type": "plik cookie",
-		"extension": ".cookie"
+		"app_type": "makro excel",
+		"extension": ".xlsm"
 	  },
 	  {
-		"app_type": "aplikacja makro",
-		"extension": ".xlsm"
+		"app_type": "skrypt wsadowy",
+		"extension": ".bat"
+	  },
+	  {
+		"app_type": "biblioteka dll",
+		"extension": ".dll"
+	  },
+	  {
+		"app_type": "skrypt powershell",
+		"extension": ".ps1"
+	  },
+	  {
+		"app_type": "plik tymczasowy",
+		"extension": ".tmp"
 	  }
 	]
   }

@@ -36,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MessVBox" type="VBoxContainer" parent="MessList"]
-custom_minimum_size = Vector2(1600, 800)
+custom_minimum_size = Vector2(900, 800)
 layout_mode = 2
 size_flags_vertical = 0
 

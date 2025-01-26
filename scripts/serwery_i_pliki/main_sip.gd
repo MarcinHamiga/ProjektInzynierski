@@ -2,7 +2,6 @@ extends Node
 
 signal regenerate
 
-# Liczba rekordów
 var num_records: int = 1  
 var records: Array[Dictionary] = []      
 var task_list: Array[Dictionary] = []
@@ -15,16 +14,10 @@ var required_answer: bool = false
 const SERVER_ACCESS: String = "Dostęp do serwera"
 const SOFTWARE_INSTALL: String = "Instalacja oprogramowania"
 
-# Funkcja _ready - inicjalizacja
 func _ready() -> void:
 	pass
-	#load_and_generate_records()  # Załaduj dane i wygeneruj rekordy
-	#process_tasks()  # Procesujemy zadania po załadowaniu danych
 
-
-# Funkcja ładująca dane i generująca rekordy
 func load_and_generate_records() -> void:
-	# Ścieżka do pliku JSON
 	var data_file_path = "res://Dane/employee.json"  
 	var itemData = load_json_file(data_file_path)
 
@@ -43,7 +36,6 @@ func load_and_generate_records() -> void:
 		var email_index = randi() % email.size()
 		var access_index = randi() % access.size()
 
-		# Dodanie pracownika do listy
 		var record = {
 			"id": i + 1,
 			"name": names[name_index] + " " + surnames[surname_index],
@@ -52,7 +44,6 @@ func load_and_generate_records() -> void:
 		}
 		records.append(record)
 
-		# Losowanie zadania dla pracownika
 		var topic_index = randi() % topics.size()
 		var type_index = randi() % types.size()
 		var task = {
@@ -62,31 +53,26 @@ func load_and_generate_records() -> void:
 		}
 		task_list.append(task)
 
-# Funkcja przetwarzająca zadania
 func process_tasks() -> void:
-	# Przechodzimy przez wszystkie zadania w task_list
 	file_tasks.clear()
 	server_tasks.clear()
 	for task in task_list:
 		if task["type"] == self.SOFTWARE_INSTALL:
 			print("if 1")
 			var file_task_generator = preload("res://scripts/serwery_i_pliki/file_task_generator.gd").new()
-			# Generowanie losowych danych z file_task_generator
 			var random_data = file_task_generator.generate_random_data()
 
 			if random_data.size() > 0:
 				print("if1 / if 2")
-				var file_info: Dictionary = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
+				var file_info: Dictionary = random_data[0]  
 
-				# Tworzymy nowy słownik dla file_tasks z ID z task_list
 				var installation_task: Dictionary = {
-					"id": task["employee_id"],  # Używamy ID z odpowiedniego zadania w task_list
+					"id": task["employee_id"],  
 					"file_name": file_info["name"],
 					"file_creator": file_info["creator"],
 					"file_extension": file_info["extension"],
 				}
 
-				# Dodajemy słownik do file_tasks
 				file_tasks.append(installation_task)
 				print("file_tasks")
 				print(file_tasks)
@@ -96,42 +82,35 @@ func process_tasks() -> void:
 		elif task["type"] == self.SERVER_ACCESS:
 			print("else 1")
 			var server_task_generator = preload("res://scripts/serwery_i_pliki/server_task_generator.gd").new()
-			# Generowanie losowych danych z server_task_generator
 			var random_data = server_task_generator.generate_random_server_task()
 
 			if random_data.size() > 0:
 				print("else 1/ if 1")
-				var server_info = random_data[0]  # Pobieramy pierwszy (i jedyny) element z listy
+				var server_info = random_data[0]  
 
-				# Tworzymy nowy słownik dla server_tasks z ID z task_list
 				var server_access_task: Dictionary = {
-					"id": task["employee_id"],  # Używamy ID z odpowiedniego zadania w task_list
+					"id": task["employee_id"],  
 					"access_rank": server_info["access_rank"],
 					"access_location": server_info["access_location"],
 					"access_type": server_info["access_type"],
 				}
 
-				# Dodajemy słownik do server_tasks
 				server_tasks.append(server_access_task)
 				print("server_tasks")
 				print(server_tasks)
 			else:
 				print("Nie udało się wygenerować danych serwera dla zadania dostępu.")
 
-	# Po przetworzeniu wszystkich zadań resetujemy current_id
 	current_id = -1
 
 
-# Funkcja ustawiająca ID
 func set_current_id(record_id: int) -> void:
 	current_record_id = record_id
-	print("Ustawiono current_record_id na:", current_record_id)
+	#print("Ustawiono current_record_id na:", current_record_id)
 
-# Funkcja do pobierania aktualnego ID
 func get_current_id() -> int:
 	return current_record_id
 
-# Funkcja wczytująca plik JSON
 func load_json_file(file_path: String) -> Dictionary:
 	if FileAccess.file_exists(file_path):
 		var data_file = FileAccess.open(file_path, FileAccess.READ)
@@ -147,18 +126,14 @@ func set_answer(answer) -> void:
 func get_answer() -> bool:
 	return required_answer
 
-# Funkcja zwracająca listę pracowników
 func get_records() -> Array[Dictionary]:
 	return records
 
-# Funkcja zwracająca listę zadań
 func get_tasks() -> Array[Dictionary]:
 	return task_list
 
-# Funkcja zwracająca listę zadań związanych z instalacją oprogramowania
 func get_file_tasks() -> Array[Dictionary]:
 	return file_tasks
 
-# Funkcja zwracająca listę zadań związanych z dostępem do serwera
 func get_server_tasks() -> Array[Dictionary]:
 	return server_tasks

@@ -21,6 +21,7 @@ script = ExtResource("2_r5ap7")
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.0
+bbcode_enabled = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

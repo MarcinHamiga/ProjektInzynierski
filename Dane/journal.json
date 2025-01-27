@@ -22,31 +22,31 @@
 	  "pages": [
 		{
 		  "title": "Dzień 1-3",
-		  "content": "Hasło musi zawierać: małe litery, minimum 12 znaków długości\nBrak wymaganej metody weryfikacji dwuetapowej."
+		  "content": "[center][b]Dzień 1-3[/b][/center]\nHasło musi zawierać: małe litery, minimum 12 znaków długości\nBrak wymaganej metody weryfikacji dwuetapowej."
 		},
 		{
 		  "title": "Dzień 4-7",
-		  "content": "Hasło musi zawierać: małe litery, duże litery, minimum 12 znaków długości\nBrak wymaganej metody weryfikacji dwuetapowej."
+		  "content": "[center][b]Dzień 4-7[/b][/center]\nHasło musi zawierać: małe litery, duże litery, minimum 12 znaków długości\nBrak wymaganej metody weryfikacji dwuetapowej."
 		},
 		{
 		  "title": "Dzień 8-11",
-		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, minimum 12 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: SMS."
+		  "content": "[center][b]Dzień 8-11[/b][/center]\nHasło musi zawierać: małe litery, duże litery, cyfry, minimum 12 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: SMS."
 		},
 		{
 		  "title": "Dzień 12-15",
-		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 12 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: SMS."
+		  "content": "[center][b]Dzień 12-15[/b][/center]\nHasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 12 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: SMS."
 		},
 		{
 		  "title": "Dzień 16-19",
-		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 15 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Aplikacja."
+		  "content": "[center][b]Dzień 16-19[/b][/center]\nHasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 15 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Aplikacja."
 		},
 		{
 		  "title": "Dzień 20-23",
-		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 18 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Klucz systemowy."
+		  "content": "[center][b]Dzień 20-23[/b][/center]\nHasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 18 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Klucz systemowy."
 		},
 		{
 		  "title": "Dzień 24+",
-		  "content": "Hasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 21 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Klucz fizyczny."
+		  "content": "[center][b]Dzień 24+[/b][/center]\nHasło musi zawierać: małe litery, duże litery, cyfry, znaki specjalne, minimum 21 znaków długości.\nWymagana metoda weryfikacji dwuetapowej: Klucz fizyczny."
 		}
 	  ]
 	},

@@ -92,10 +92,12 @@ func handle_file_task(record: Dictionary, task: Dictionary):
 
 
 func _on_back_pressed() -> void:
+	Globals.play_sound.emit("click")
 	close_record_window.emit(self)
 
 
 func _on_attachment_pressed() -> void:
+	Globals.play_sound.emit("click")
 	var install_permission_scene = load("res://scenes/serwery_i_pliki/install_permission.tscn").instantiate()
 	install_permission_scene.back.connect(self.remove_attachment_scene)
 	self.add_child(install_permission_scene)

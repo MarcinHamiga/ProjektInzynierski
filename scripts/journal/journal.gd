@@ -34,4 +34,5 @@ func _on_tab_container_tab_changed(tab: int) -> void:
 
 
 func _on_button_pressed() -> void:
+	Globals.play_sound.emit("click")
 	tab_container.visible = not tab_container.visible

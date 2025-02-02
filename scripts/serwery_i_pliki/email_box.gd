@@ -69,6 +69,7 @@ func get_task_for_employee(employee_id: int) -> Dictionary:
 	return {}  
 
 func _on_button_pressed(record_id: int) -> void:
+	Globals.play_sound.emit("click")
 	main_sip.set_current_id(record_id)
 	
 	var email_scene = load("res://scenes/serwery_i_pliki/email.tscn").instantiate()

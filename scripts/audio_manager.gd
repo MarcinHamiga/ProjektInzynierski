@@ -22,6 +22,8 @@ func play_song(name: String, time: float = 0.0) -> void:
 		self.music_player.play(time)
 
 func play_sound(name: String, time: float = 0.0) -> void:
+	self.effect_player.pitch_scale = randf_range(0.98, 1.02)	
+	# Play the sound
 	if self.effect_player.stream == Globals.sound_atlas[name]:
 		self.effect_player.play(time)
 	else:

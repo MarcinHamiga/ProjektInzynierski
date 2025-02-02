@@ -23,16 +23,19 @@ const TFA5: String = "TFA5"
 
 const main_menu_song: AudioStream = preload("res://audio/music/Firewall Anthem.mp3")
 const ingame_song: AudioStream = preload("res://audio/music/Firewall Bound.mp3")
-const click_sound: AudioStream = preload("res://audio/sounds/switch-20.wav")
+const click_sound: AudioStream = preload("res://audio/sounds/click.wav")
+
 
 const song_atlas: Dictionary = {
 	"main_menu": main_menu_song,
 	"ingame": ingame_song
 }
 
+
 const sound_atlas: Dictionary = {
 	"click": click_sound
 }
+
 
 func load_json(file_path: String):
 	var file = FileAccess.open(file_path, FileAccess.ModeFlags.READ)

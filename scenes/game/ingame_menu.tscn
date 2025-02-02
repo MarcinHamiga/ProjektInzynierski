@@ -27,7 +27,12 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
-text = "[b][i][center][font_size=64]Projekt Inżynierski[/font_size][/center][/i][/b]"
+text = "
+
+
+
+
+[center][b][i][font_size=64]Check-it[/font_size][/i][/b][/center]"
 fit_content = true
 scroll_active = false
 

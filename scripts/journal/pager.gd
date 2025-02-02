@@ -26,6 +26,7 @@ func display():
 	text_edit.text = pages_content[current_page_index]
 
 func _on_prev_button_pressed() -> void:
+	Globals.play_sound.emit("click")
 	print("prev_button_clicked")
 	if pages_content.size() == 0:
 		return
@@ -36,6 +37,7 @@ func _on_prev_button_pressed() -> void:
 	display()
 
 func _on_next_button_pressed() -> void:
+	Globals.play_sound.emit("click")
 	print("next_button_clicked")
 	if pages_content.size() == 0:
 		return

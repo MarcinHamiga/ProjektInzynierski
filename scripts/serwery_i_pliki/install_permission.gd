@@ -39,4 +39,5 @@ func get_task_by_employee_id(employee_id: int) -> Dictionary:
 
 
 func _on_close_pressed() -> void:
+	Globals.play_sound.emit("click")
 	back.emit()

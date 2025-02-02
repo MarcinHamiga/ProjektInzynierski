@@ -118,7 +118,42 @@ func _get_tfa(is_correct: bool) -> String:
 
 func get_login_screen_data(target_signal: Signal) -> Dictionary:
 	var data = {}
-	data['login'] = "kowal123"
+	var login1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W', 'Z', 'Ż']
+	var login2 = [
+		'Kowalski', 
+		'Kowalska', 
+		'Nowak', 
+		"Winniewski", 
+		'Winniewska', 
+		'Kowalczyk', 
+		'Kaminski', 
+		'Kaminska', 
+		'Lewandowski', 
+		'Lewandowska',
+		'Zielinski',
+		'Zielinska',
+		'Szymanski',
+		'Szymanska',
+		'Wozniak',
+		'Dabrowski',
+		'Dabrowska',
+		'Kozlowski',
+		'Kozlowska',
+		'Jankowski',
+		'Jankowska',
+		'Mazur',
+		'Kwiatkowski',
+		'Kwiatkowska',
+		'Wojciechowski',
+		'Wojciechowska',
+		'Krawczyk',
+		'Kaczmarek',
+		'Piotrowski',
+		'Piotrowska',
+		'Grabowski',
+		'Grabowska'
+	]
+	data['login'] = login1.pick_random() + login2.pick_random()
 	data['is_password_correct'] = self._get_password_status()
 	data['password'] = self._get_password(data['is_password_correct'])
 	if not self._verify_password(data['password']):

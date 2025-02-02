@@ -16,6 +16,7 @@ theme_override_constants/v_separation = 40
 columns = 2
 
 [node name="Test1" type="Button" parent="GameScreenGrid"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -24,6 +25,7 @@ autowrap_mode = 3
 clip_text = true
 
 [node name="Test2" type="Button" parent="GameScreenGrid"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -32,6 +34,7 @@ autowrap_mode = 3
 clip_text = true
 
 [node name="Test3" type="Button" parent="GameScreenGrid"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -40,6 +43,7 @@ autowrap_mode = 3
 clip_text = true
 
 [node name="Test4" type="Button" parent="GameScreenGrid"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
